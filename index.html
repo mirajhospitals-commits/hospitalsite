@@ -3,33 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <base href="https://mirajhospitals-commits.github.io/hospitalsite/">
-    <title>MedConnect - Find & Book Doctors</title>
+    <title>MedConnect - Healthcare Appointment Platform</title>
     
-    <!-- Load Font Awesome locally (fallback) -->
-    <style>
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Load Google Fonts -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- INLINE ALL CSS HERE -->
     <style>
+        /* ========== RESET & VARIABLES ========== */
         :root {
             --primary-blue: #3a8fff;
             --dark-blue: #1a5fb4;
             --light-blue: #e8f2ff;
             --text-dark: #2d3748;
             --text-gray: #718096;
-            --text-light: #a0aec0;
             --border-color: #e2e8f0;
             --bg-light: #f7fafc;
             --white: #ffffff;
             --green: #38a169;
-            --orange: #ed8936;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --orange: #ffab00;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --radius: 8px;
         }
         
@@ -44,24 +39,7 @@
             color: var(--text-dark);
             background-color: var(--bg-light);
             line-height: 1.6;
-            min-height: 100vh;
         }
-        
-        /* Add a temporary visible indicator */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--primary-blue);
-            color: white;
-            padding: 10px;
-            text-align: center;
-            z-index: 9999;
-        }
-        
-        /* REST OF YOUR CSS HERE - Make sure ALL CSS is inside this <style> tag */
-        /* Copy ALL CSS from your original file here */
         
         .container {
             width: 100%;
@@ -70,19 +48,434 @@
             padding: 0 20px;
         }
         
-        /* Continue with all other CSS rules... */
+        /* ========== HEADER ========== */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
         
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-blue);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+        }
+        
+        /* ========== HERO SECTION ========== */
+        .hero-banner {
+            background: linear-gradient(135deg, #e8f2ff 0%, #f0f7ff 100%);
+            padding: 80px 0;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+        
+        .search-widget {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+        
+        .search-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .search-field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-gray);
+        }
+        
+        .search-field select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+        
+        .search-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* ========== FEATURES ========== */
+        .features-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px 24px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+        
+        /* ========== DOCTORS ========== */
+        .doctors-section {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .doctor-img {
+            height: 200px;
+            background: linear-gradient(135deg, #e8f2ff 0%, #d4e6ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 60px;
+        }
+        
+        .doctor-info {
+            padding: 24px;
+        }
+        
+        .doctor-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .doctor-specialty {
+            color: var(--primary-blue);
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .doctor-rating {
+            color: var(--orange);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .doctor-fees {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        
+        .btn-book {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            width: 100%;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        /* ========== MODAL ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-body {
+            padding: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 15px;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .time-slot {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .time-slot.selected {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-confirm {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 14px;
+            width: 100%;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            background: #1a202c;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #cbd5e0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding: 24px 0;
+            text-align: center;
+            color: #a0aec0;
+        }
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- TEMPORARY LOADING INDICATOR -->
-    <div class="loading" id="loading">
-        ✅ Healthcare Platform Loading... If you see this, HTML is working!
-    </div>
-    
-    <!-- YOUR ENTIRE HTML CONTENT HERE -->
-    <!-- Copy ALL your HTML body content from original file -->
-    
+    <!-- HEADER -->
     <header>
         <div class="container header-content">
             <a href="#" class="logo">
@@ -91,65 +484,418 @@
                 </div>
                 MedConnect
             </a>
-            <!-- Rest of your header... -->
+            
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <a href="#" style="text-decoration: none; color: var(--text-dark); font-weight: 500;">
+                    <i class="fas fa-search"></i> Find Doctors
+                </a>
+                <a href="#" style="text-decoration: none; color: var(--text-dark); font-weight: 500;">
+                    <i class="fas fa-video"></i> Video Consult
+                </a>
+                <button style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                    Book Now
+                </button>
+            </div>
         </div>
     </header>
-    
-    <!-- Rest of your sections... -->
-    
-    <!-- INLINE ALL JAVASCRIPT HERE -->
-    <script>
-        // Remove loading indicator after page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.getElementById('loading').style.display = 'none';
-            }, 1000);
-            
-            // Your existing JavaScript code here
-            // Copy ALL JavaScript from your original file
-            
-            // Set minimum date to today
-            const today = new Date().toISOString().split('T')[0];
-            if (document.getElementById('appointmentDate')) {
-                document.getElementById('appointmentDate').setAttribute('min', today);
+
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Find & Book Appointment with Trusted Doctors</h1>
+                <p>Consult top specialists, book health checkups, order medicines, and manage your health records - all in one place.</p>
                 
-                // Set default date to tomorrow
+                <div class="search-widget">
+                    <div class="search-title">
+                        <i class="fas fa-search"></i>
+                        <span>Book Doctor Appointments</span>
+                    </div>
+                    
+                    <div class="search-grid">
+                        <div class="search-field">
+                            <label><i class="fas fa-map-marker-alt"></i> City</label>
+                            <select>
+                                <option value="">Select City</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="bangalore">Bangalore</option>
+                            </select>
+                        </div>
+                        
+                        <div class="search-field">
+                            <label><i class="fas fa-stethoscope"></i> Specialty</label>
+                            <select>
+                                <option value="">Select Specialty</option>
+                                <option value="dentist">Dentist</option>
+                                <option value="cardiologist">Cardiologist</option>
+                                <option value="dermatologist">Dermatologist</option>
+                            </select>
+                        </div>
+                        
+                        <div class="search-field">
+                            <label><i class="fas fa-user-md"></i> Doctor</label>
+                            <select>
+                                <option value="">Any Doctor</option>
+                                <option value="specialist">Specialist</option>
+                                <option value="consultant">Consultant</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i> Search Doctors
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div style="font-size: 300px; color: var(--primary-blue); opacity: 0.8; text-align: center;">
+                    <i class="fas fa-user-md"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose MedConnect?</h2>
+                <p>Comprehensive healthcare solutions for you and your family</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Instant Appointment</h3>
+                    <p>Book appointments in less than 60 seconds with confirmed slots</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Consultation</h3>
+                    <p>Consult with doctors from home with safe video calls</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-prescription"></i>
+                    </div>
+                    <h3>Digital Prescription</h3>
+                    <p>Get digital prescriptions shared directly with pharmacies</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safe & Secure</h3>
+                    <p>Your medical data is encrypted and completely secure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOCTORS -->
+    <section class="doctors-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Top Doctors Near You</h2>
+                <a href="#" style="color: var(--primary-blue); text-decoration: none; font-weight: 600;">
+                    View All Doctors <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+            
+            <div class="doctors-grid">
+                <!-- Doctor 1 -->
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3 class="doctor-name">Dr. Priya Sharma</h3>
+                        <div class="doctor-specialty">Gynecologist & Obstetrician</div>
+                        <div style="color: var(--text-gray); margin-bottom: 10px; font-size: 14px;">15 years experience</div>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            4.7 (1,240 reviews)
+                        </div>
+                        <div class="doctor-fees">₹800 <span style="font-size: 14px; color: var(--text-gray); font-weight: normal;">per consultation</span></div>
+                        <div style="margin-bottom: 15px; color: var(--green); font-weight: 600; font-size: 14px;">
+                            <i class="fas fa-circle" style="font-size: 8px;"></i> Available Today
+                        </div>
+                        <button class="btn-book book-btn" data-doctor="Dr. Priya Sharma" data-specialty="Gynecologist">
+                            <i class="fas fa-calendar-alt"></i> Book Appointment
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Doctor 2 -->
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3 class="doctor-name">Dr. Rajesh Kumar</h3>
+                        <div class="doctor-specialty">Cardiologist</div>
+                        <div style="color: var(--text-gray); margin-bottom: 10px; font-size: 14px;">18 years experience</div>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            5.0 (980 reviews)
+                        </div>
+                        <div class="doctor-fees">₹1,200 <span style="font-size: 14px; color: var(--text-gray); font-weight: normal;">per consultation</span></div>
+                        <div style="margin-bottom: 15px; color: var(--green); font-weight: 600; font-size: 14px;">
+                            <i class="fas fa-circle" style="font-size: 8px;"></i> Available Tomorrow
+                        </div>
+                        <button class="btn-book book-btn" data-doctor="Dr. Rajesh Kumar" data-specialty="Cardiologist">
+                            <i class="fas fa-calendar-alt"></i> Book Appointment
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Doctor 3 -->
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3 class="doctor-name">Dr. Anil Mehta</h3>
+                        <div class="doctor-specialty">Orthopedic Surgeon</div>
+                        <div style="color: var(--text-gray); margin-bottom: 10px; font-size: 14px;">22 years experience</div>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            4.9 (2,150 reviews)
+                        </div>
+                        <div class="doctor-fees">₹1,500 <span style="font-size: 14px; color: var(--text-gray); font-weight: normal;">per consultation</span></div>
+                        <div style="margin-bottom: 15px; color: var(--green); font-weight: 600; font-size: 14px;">
+                            <i class="fas fa-circle" style="font-size: 8px;"></i> Available Today
+                        </div>
+                        <button class="btn-book book-btn" data-doctor="Dr. Anil Mehta" data-specialty="Orthopedic Surgeon">
+                            <i class="fas fa-calendar-alt"></i> Book Appointment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalDoctorName">Book Appointment</h2>
+                <button id="closeModal" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="patientName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="patientPhone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="patientEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Appointment Date</label>
+                        <input type="date" id="appointmentDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Time Slot</label>
+                        <div class="time-slots">
+                            <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+                            <div class="time-slot" data-time="11:30 AM">11:30 AM</div>
+                            <div class="time-slot" data-time="01:00 PM">01:00 PM</div>
+                            <div class="time-slot" data-time="03:00 PM">03:00 PM</div>
+                            <div class="time-slot" data-time="04:30 PM">04:30 PM</div>
+                            <div class="time-slot" data-time="06:00 PM">06:00 PM</div>
+                        </div>
+                        <input type="hidden" id="selectedTime" required>
+                    </div>
+                    <button type="submit" class="btn-confirm">
+                        <i class="fas fa-calendar-check"></i> Confirm Appointment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MedConnect</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>For Patients</h3>
+                    <ul>
+                        <li><a href="#">Search for Doctors</a></li>
+                        <li><a href="#">Search for Clinics</a></li>
+                        <li><a href="#">Book Diagnostics</a></li>
+                        <li><a href="#">Medicine Orders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>For Doctors</h3>
+                    <ul>
+                        <li><a href="#">Doctor App</a></li>
+                        <li><a href="#">Consult Online</a></li>
+                        <li><a href="#">Profile Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> 1800-123-4567</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> help@medconnect.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 MedConnect Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Set minimum date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('appointmentDate');
+            
+            if (dateInput) {
+                dateInput.setAttribute('min', today);
+                
+                // Set default to tomorrow
                 const tomorrow = new Date();
                 tomorrow.setDate(tomorrow.getDate() + 1);
-                document.getElementById('appointmentDate').value = tomorrow.toISOString().split('T')[0];
+                dateInput.value = tomorrow.toISOString().split('T')[0];
             }
             
             // Booking Modal Logic
             const bookButtons = document.querySelectorAll('.book-btn');
             const bookingModal = document.getElementById('bookingModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalDoctorName = document.getElementById('modalDoctorName');
+            const timeSlots = document.querySelectorAll('.time-slot');
+            const selectedTimeInput = document.getElementById('selectedTime');
+            const bookingForm = document.getElementById('bookingForm');
             
-            if (bookButtons.length > 0 && bookingModal) {
-                bookButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        const doctorName = this.getAttribute('data-doctor');
-                        const doctorSpecialty = this.getAttribute('data-specialty');
-                        const modalDoctorName = document.getElementById('modalDoctorName');
-                        
-                        if (modalDoctorName) {
-                            modalDoctorName.textContent = `Book with ${doctorName} - ${doctorSpecialty}`;
-                        }
-                        
-                        bookingModal.style.display = 'flex';
-                        document.body.style.overflow = 'hidden';
-                    });
+            // Open modal
+            bookButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const doctorName = this.getAttribute('data-doctor');
+                    const doctorSpecialty = this.getAttribute('data-specialty');
+                    
+                    modalDoctorName.textContent = `Book with ${doctorName} - ${doctorSpecialty}`;
+                    bookingModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                bookingModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === bookingModal) {
+                    bookingModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Time slot selection
+            timeSlots.forEach(slot => {
+                slot.addEventListener('click', function() {
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedTimeInput.value = this.getAttribute('data-time');
+                });
+            });
+            
+            // Form submission
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!selectedTimeInput.value) {
+                    alert('Please select a time slot');
+                    return;
+                }
+                
+                const patientName = document.getElementById('patientName').value;
+                const appointmentTime = selectedTimeInput.value;
+                
+                // Format date
+                const appointmentDate = document.getElementById('appointmentDate').value;
+                const formattedDate = new Date(appointmentDate).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                // Show confirmation
+                alert(`✅ Appointment Confirmed!\n\nPatient: ${patientName}\nDate: ${formattedDate}\nTime: ${appointmentTime}\n\nA confirmation SMS has been sent to your phone.`);
+                
+                // Reset and close
+                bookingModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                bookingForm.reset();
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                selectedTimeInput.value = '';
+                
+                // Reset date
+                const newTomorrow = new Date();
+                newTomorrow.setDate(newTomorrow.getDate() + 1);
+                document.getElementById('appointmentDate').value = newTomorrow.toISOString().split('T')[0];
+            });
+            
+            // Search button
+            const searchBtn = document.getElementById('searchBtn');
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function() {
+                    alert('Searching for doctors... This would show filtered results.');
                 });
             }
             
-            // Add more of your JavaScript here...
-            
             console.log('Healthcare Platform loaded successfully!');
-        });
-        
-        // If still blank, show error
-        window.addEventListener('load', function() {
-            if (document.body.innerHTML.length < 100) {
-                document.body.innerHTML = '<h1 style="padding: 40px; color: red;">Content not loading. Please check console.</h1>' + document.body.innerHTML;
-            }
         });
     </script>
 </body>
