@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <base href="https://mirajhospitals-commits.github.io/hospitalsite/">
     <title>MedConnect - Find & Book Doctors</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Load Font Awesome locally (fallback) -->
     <style>
-        /* ALL CSS CODE IS HERE - 500+ lines */
-        /* No need to download separate CSS files */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+    </style>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- INLINE ALL CSS HERE -->
+    <style>
         :root {
             --primary-blue: #3a8fff;
             --dark-blue: #1a5fb4;
@@ -36,63 +44,113 @@
             color: var(--text-dark);
             background-color: var(--bg-light);
             line-height: 1.6;
+            min-height: 100vh;
         }
         
-        /* ... ALL OTHER STYLES ... */
+        /* Add a temporary visible indicator */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            z-index: 9999;
+        }
+        
+        /* REST OF YOUR CSS HERE - Make sure ALL CSS is inside this <style> tag */
+        /* Copy ALL CSS from your original file here */
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Continue with all other CSS rules... */
+        
     </style>
 </head>
 <body>
-    <!-- COMPLETE WEBSITE HTML HERE -->
-    <header>
-        <!-- Navigation -->
-    </header>
-    
-    <section class="hero-banner">
-        <!-- Hero section -->
-    </section>
-    
-    <section class="features-section">
-        <!-- Features -->
-    </section>
-    
-    <section class="doctors-section">
-        <!-- Doctors -->
-    </section>
-    
-    <footer>
-        <!-- Footer -->
-    </footer>
-    
-    <!-- Booking Modal -->
-    <div class="modal" id="bookingModal">
-        <!-- Modal content -->
+    <!-- TEMPORARY LOADING INDICATOR -->
+    <div class="loading" id="loading">
+        ✅ Healthcare Platform Loading... If you see this, HTML is working!
     </div>
     
+    <!-- YOUR ENTIRE HTML CONTENT HERE -->
+    <!-- Copy ALL your HTML body content from original file -->
+    
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                MedConnect
+            </a>
+            <!-- Rest of your header... -->
+        </div>
+    </header>
+    
+    <!-- Rest of your sections... -->
+    
+    <!-- INLINE ALL JAVASCRIPT HERE -->
     <script>
-        // ALL JAVASCRIPT CODE IS HERE
-        // No need to download separate JS files
-        
-        // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('appointmentDate').setAttribute('min', today);
-        
-        // ... ALL OTHER JAVASCRIPT CODE ...
-        
-        // Booking functionality
-        const bookButtons = document.querySelectorAll('.book-btn');
-        const bookingModal = document.getElementById('bookingModal');
-        
-        bookButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const doctorName = this.getAttribute('data-doctor');
-                const doctorSpecialty = this.getAttribute('data-specialty');
-                modalDoctorName.textContent = `Book with ${doctorName} - ${doctorSpecialty}`;
-                bookingModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
+        // Remove loading indicator after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+            }, 1000);
+            
+            // Your existing JavaScript code here
+            // Copy ALL JavaScript from your original file
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            if (document.getElementById('appointmentDate')) {
+                document.getElementById('appointmentDate').setAttribute('min', today);
+                
+                // Set default date to tomorrow
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                document.getElementById('appointmentDate').value = tomorrow.toISOString().split('T')[0];
+            }
+            
+            // Booking Modal Logic
+            const bookButtons = document.querySelectorAll('.book-btn');
+            const bookingModal = document.getElementById('bookingModal');
+            
+            if (bookButtons.length > 0 && bookingModal) {
+                bookButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const doctorName = this.getAttribute('data-doctor');
+                        const doctorSpecialty = this.getAttribute('data-specialty');
+                        const modalDoctorName = document.getElementById('modalDoctorName');
+                        
+                        if (modalDoctorName) {
+                            modalDoctorName.textContent = `Book with ${doctorName} - ${doctorSpecialty}`;
+                        }
+                        
+                        bookingModal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+            }
+            
+            // Add more of your JavaScript here...
+            
+            console.log('Healthcare Platform loaded successfully!');
         });
         
-        // ... MORE JS CODE ...
+        // If still blank, show error
+        window.addEventListener('load', function() {
+            if (document.body.innerHTML.length < 100) {
+                document.body.innerHTML = '<h1 style="padding: 40px; color: red;">Content not loading. Please check console.</h1>' + document.body.innerHTML;
+            }
+        });
     </script>
 </body>
 </html>
