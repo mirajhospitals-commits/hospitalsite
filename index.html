@@ -56,39 +56,55 @@
             font-weight: 600;
         }
         
-        /* ========== SEARCH AT TOP (MOVED UP) ========== */
-        .search-section {
-            background: white;
-            padding: 25px 24px;
-            margin: 30px auto 40px;
+        /* ========== HERO SEARCH AT TOP ========== */
+        .hero-search-section {
+            background: linear-gradient(135deg, var(--primary-light), #ffffff);
+            padding: 40px 24px;
+            margin: 0 auto 30px;
+            border-bottom: 1px solid var(--divider);
+        }
+        
+        .hero-search-container {
             max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: var(--radius);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--primary);
+            margin: 0 auto;
         }
         
-        .search-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
+        .hero-search-header {
+            margin-bottom: 30px;
+            text-align: center;
         }
         
-        .search-title {
-            font-size: 20px;
-            font-weight: 600;
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
             color: var(--text);
+            margin-bottom: 10px;
         }
         
-        .search-grid {
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero-search-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
         }
         
-        /* ========== DOCTORS BELOW SEARCH ========== */
+        .hero-search-card {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 3px solid var(--primary);
+        }
+        
+        /* ========== DOCTORS SECTION ========== */
         .doctors-section {
             padding: 0 24px 20px;
             max-width: 1200px;
@@ -212,7 +228,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .search-grid {
+            .hero-search-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -222,12 +238,20 @@
                 grid-template-columns: 1fr;
             }
             
-            .search-grid {
+            .hero-search-grid {
                 grid-template-columns: 1fr;
             }
             
-            .doctors-section, .search-section {
-                padding: 20px 16px;
+            .hero-search-section {
+                padding: 30px 16px;
+            }
+            
+            .doctors-section {
+                padding: 0 16px 20px;
+            }
+            
+            .hero-title {
+                font-size: 24px;
             }
         }
     </style>
@@ -245,55 +269,66 @@
         </button>
     </header>
 
-    <!-- SEARCH AT TOP (MOVED UP) -->
-    <section class="search-section">
-        <div class="search-header">
-            <span class="material-icons" style="color: var(--primary);">search</span>
-            <h2 class="search-title">Find & Book Doctors Appointment</h2>
-        </div>
-        
-        <div class="search-grid">
-            <div>
-                <label style="display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary);">
-                    <span class="material-icons" style="font-size: 14px; vertical-align: middle;">location_on</span> City
-                </label>
-                <select class="mat-select">
-                    <option>Select City</option>
-                    <option>Mumbai</option>
-                    <option>Delhi</option>
-                    <option>Bangalore</option>
-                </select>
+    <!-- HERO SEARCH AT TOP -->
+    <section class="hero-search-section">
+        <div class="hero-search-container">
+            <div class="hero-search-header">
+                <h1 class="hero-title">Find & Book Doctors Appointment</h1>
+                <p class="hero-subtitle">Search from 500+ verified doctors across 50+ specialties. Book instant appointments with top-rated healthcare professionals.</p>
             </div>
             
-            <div>
-                <label style="display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary);">
-                    <span class="material-icons" style="font-size: 14px; vertical-align: middle;">medical_services</span> Specialty
-                </label>
-                <select class="mat-select">
-                    <option>Select Specialty</option>
-                    <option>Cardiologist</option>
-                    <option>Gynecologist</option>
-                    <option>Orthopedic</option>
-                </select>
-            </div>
-            
-            <div>
-                <label style="display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary);">
-                    <span class="material-icons" style="font-size: 14px; vertical-align: middle;">date_range</span> Date
-                </label>
-                <input type="date" class="mat-input">
-            </div>
-            
-            <div style="align-self: end;">
-                <button class="mat-button" style="width: 100%;">
-                    <span class="material-icons">search</span>
-                    Search Doctors
-                </button>
+            <div class="hero-search-card">
+                <div class="hero-search-grid">
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: var(--text-secondary); font-weight: 500;">
+                            <span class="material-icons" style="font-size: 16px; vertical-align: middle;">location_on</span> City
+                        </label>
+                        <select class="mat-select">
+                            <option>Select City</option>
+                            <option>Mumbai</option>
+                            <option>Delhi</option>
+                            <option>Bangalore</option>
+                            <option>Chennai</option>
+                            <option>Hyderabad</option>
+                            <option>Kolkata</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: var(--text-secondary); font-weight: 500;">
+                            <span class="material-icons" style="font-size: 16px; vertical-align: middle;">medical_services</span> Specialty
+                        </label>
+                        <select class="mat-select">
+                            <option>Select Specialty</option>
+                            <option>General Physician</option>
+                            <option>Cardiologist</option>
+                            <option>Gynecologist</option>
+                            <option>Orthopedic</option>
+                            <option>Dermatologist</option>
+                            <option>Pediatrician</option>
+                            <option>Dentist</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: var(--text-secondary); font-weight: 500;">
+                            <span class="material-icons" style="font-size: 16px; vertical-align: middle;">date_range</span> Date
+                        </label>
+                        <input type="date" class="mat-input">
+                    </div>
+                    
+                    <div style="align-self: end;">
+                        <button class="mat-button" style="width: 100%; padding: 14px; font-size: 15px;">
+                            <span class="material-icons">search</span>
+                            Search Doctors
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- DOCTORS (NOW BELOW SEARCH) -->
+    <!-- DOCTORS SECTION -->
     <section class="doctors-section">
         <div class="section-header">
             <h1 class="section-title">Top Doctors Available Now</h1>
