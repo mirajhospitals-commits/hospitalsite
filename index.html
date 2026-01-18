@@ -13,22 +13,21 @@
     <style>
         /* ========== PRACTO COLOR THEME ========== */
         :root {
-            --primary: #14bef0;           /* Practo's bright blue - buttons, primary actions */
-            --primary-dark: #0d8cbf;      /* Darker blue - hover states */
-            --primary-light: #e1f7ff;     /* Light blue - backgrounds, highlights */
-            --accent: #ff6b35;            /* Orange accent - special actions */
-            --warn: #f44336;              /* Red - warnings, errors */
-            --success: #4caf50;           /* Green - success, availability */
-            --background: #f8f9fa;        /* Off-white - page background */
-            --card: #ffffff;              /* White - cards, containers */
-            --text: #333333;              /* Dark grey - main text */
-            --text-secondary: #666666;    /* Medium grey - secondary text */
-            --text-light: #999999;        /* Light grey - labels, hints */
-            --divider: #e9ecef;           /* Light grey - borders, dividers */
+            --primary: #14bef0;           /* Practo's bright blue */
+            --primary-dark: #0d8cbf;      /* Darker blue */
+            --primary-light: #e1f7ff;     /* Light blue */
+            --accent: #ff6b35;            /* Orange accent */
+            --warn: #f44336;              /* Red */
+            --success: #4caf50;           /* Green */
+            --background: #f8f9fa;        /* Off-white */
+            --card: #ffffff;              /* White */
+            --text: #333333;              /* Dark text */
+            --text-secondary: #666666;    /* Medium grey */
+            --divider: #e9ecef;           /* Light grey */
             --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.08);
             --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.12);
             --shadow-3: 0 8px 24px rgba(0, 0, 0, 0.16);
-            --radius: 8px;                /* Practo uses slightly larger radius */
+            --radius: 8px;
             --transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
         
@@ -71,236 +70,68 @@
             font-weight: 600;
         }
         
-        .mat-icon-button {
-            background: none;
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .mat-icon-button:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        /* ========== SIDENAV ========== */
-        .mat-sidenav-container {
-            margin-top: 64px;
-            min-height: calc(100vh - 64px);
-        }
-        
-        .mat-sidenav {
-            background: var(--card);
-            width: 280px;
-            border-right: 1px solid var(--divider);
-            box-shadow: var(--shadow-1);
-        }
-        
-        .nav-list {
-            padding: 16px 0;
-        }
-        
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 14px 24px;
-            color: var(--text);
-            text-decoration: none;
-            transition: var(--transition);
-            gap: 16px;
-            font-size: 15px;
-            border-left: 3px solid transparent;
-        }
-        
-        .nav-item:hover {
-            background: var(--primary-light);
-            color: var(--primary);
-        }
-        
-        .nav-item.active {
-            background: var(--primary-light);
-            color: var(--primary);
-            border-left-color: var(--primary);
-            font-weight: 500;
-        }
-        
-        /* ========== CONTENT AREA ========== */
-        .content-container {
-            padding: 32px 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .mat-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-1);
-            padding: 28px;
-            margin-bottom: 24px;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-        
-        .mat-card:hover {
-            box-shadow: var(--shadow-2);
-            border-color: var(--primary-light);
-        }
-        
-        .mat-card-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-        
-        /* ========== BUTTONS ========== */
-        .mat-button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            padding: 12px 28px;
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .mat-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-2);
-        }
-        
-        .mat-button.outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .mat-button.outline:hover {
-            background: var(--primary-light);
-        }
-        
-        .mat-button.accent {
-            background: var(--accent);
-        }
-        
-        .mat-button.accent:hover {
-            background: #e55a2a;
-        }
-        
-        /* ========== FORMS ========== */
-        .mat-form-field {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        
-        .mat-form-field label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text);
-            font-size: 14px;
-        }
-        
-        .mat-input, .mat-select {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--divider);
-            border-radius: var(--radius);
-            font-size: 15px;
-            color: var(--text);
-            transition: var(--transition);
+        /* ========== COMPACT SEARCH SECTION ========== */
+        .compact-search {
             background: white;
+            padding: 20px 24px;
+            margin: 84px 0 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-1);
+            border-left: 4px solid var(--primary);
         }
         
-        .mat-input:focus, .mat-select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(20, 190, 240, 0.1);
-        }
-        
-        /* ========== GRID SYSTEM ========== */
-        .row {
+        .search-header {
             display: flex;
-            flex-wrap: wrap;
-            margin: 0 -12px;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
         }
         
-        .col {
-            padding: 0 12px;
-            flex: 1;
+        .search-header h2 {
+            font-size: 20px;
+            color: var(--text);
+            font-weight: 600;
         }
         
-        .col-4 {
-            flex: 0 0 33.333%;
-            max-width: 33.333%;
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            align-items: end;
         }
         
-        .col-6 {
-            flex: 0 0 50%;
-            max-width: 50%;
-        }
-        
-        /* ========== ANIMATIONS ========== */
-        .fade-in {
-            animation: fadeIn 0.4s ease-in;
-        }
-        
-        .slide-in {
-            animation: slideIn 0.4s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        /* ========== FEATURED DOCTORS SECTION ========== */
+        /* ========== FEATURED DOCTORS AT TOP ========== */
         .featured-doctors {
-            margin: 40px 0 32px;
+            margin: 0 0 40px 0;
         }
         
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
         }
         
         .section-title {
             font-size: 28px;
             font-weight: 600;
             color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 12px;
         }
         
         /* ========== DOCTOR CARDS ========== */
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
         .doctor-card {
             background: var(--card);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow-1);
             transition: var(--transition);
-            height: 100%;
             border: 1px solid var(--divider);
         }
         
@@ -311,16 +142,16 @@
         }
         
         .doctor-avatar {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 36px;
-            margin: 0 auto 20px;
+            font-size: 32px;
+            margin: 0 auto 16px;
             border: 4px solid white;
             box-shadow: var(--shadow-1);
         }
@@ -332,105 +163,100 @@
             justify-content: center;
             gap: 10px;
             width: 100%;
-            margin: 32px auto 0;
-            padding: 14px;
-            font-size: 16px;
+            margin: 20px auto 0;
+            padding: 12px;
+            font-size: 15px;
             max-width: 300px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .view-more-btn:hover {
+            background: var(--primary-light);
         }
         
         .more-doctors {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 32px;
+            gap: 25px;
+            margin-top: 30px;
         }
         
         .hidden {
             display: none !important;
         }
         
-        /* ========== MODAL/DIALOG ========== */
-        .mat-dialog-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* ========== FORM ELEMENTS ========== */
+        .mat-form-field {
+            margin-bottom: 0;
+        }
+        
+        .mat-form-field label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        
+        .mat-input, .mat-select {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .mat-dialog {
-            background: var(--card);
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-3);
-        }
-        
-        .mat-dialog-title {
-            padding: 24px;
-            background: var(--primary);
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: var(--radius) var(--radius) 0 0;
-        }
-        
-        .mat-dialog-content {
-            padding: 24px;
-        }
-        
-        /* ========== TIME SLOTS ========== */
-        .time-slots {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .time-slot-btn {
-            padding: 12px;
+            padding: 10px 12px;
             border: 1px solid var(--divider);
             border-radius: var(--radius);
-            background: white;
-            color: var(--text);
-            cursor: pointer;
-            transition: var(--transition);
             font-size: 14px;
-            text-align: center;
+            color: var(--text);
+            transition: var(--transition);
+            background: white;
         }
         
-        .time-slot-btn:hover {
+        .mat-input:focus, .mat-select:focus {
+            outline: none;
             border-color: var(--primary);
-            background: var(--primary-light);
+            box-shadow: 0 0 0 2px rgba(20, 190, 240, 0.1);
         }
         
-        .time-slot-btn.selected {
+        .mat-button {
             background: var(--primary);
             color: white;
-            border-color: var(--primary);
+            border: none;
+            border-radius: var(--radius);
+            padding: 11px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 40px;
+        }
+        
+        .mat-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        
+        /* ========== CONTENT AREA ========== */
+        .content-container {
+            padding: 20px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         /* ========== RESPONSIVE ========== */
         @media (max-width: 992px) {
-            .more-doctors {
+            .search-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .col-4 {
-                flex: 0 0 50%;
-                max-width: 50%;
+            .doctors-grid, .more-doctors {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -440,45 +266,37 @@
                 padding: 0 16px;
             }
             
-            .mat-sidenav-container {
-                margin-top: 60px;
+            .compact-search {
+                margin: 70px 0 24px;
+                padding: 16px;
             }
             
-            .content-container {
-                padding: 20px 16px;
+            .search-grid {
+                grid-template-columns: 1fr;
             }
             
-            .col-4, .col-6 {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
-            
-            .more-doctors {
+            .doctors-grid, .more-doctors {
                 grid-template-columns: 1fr;
             }
             
             .section-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 16px;
+                gap: 15px;
             }
             
             .doctor-avatar {
-                width: 80px;
-                height: 80px;
-                font-size: 32px;
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
             }
         }
         
         /* ========== UTILITY CLASSES ========== */
         .text-center { text-align: center; }
-        .mb-1 { margin-bottom: 8px; }
         .mb-2 { margin-bottom: 16px; }
         .mb-3 { margin-bottom: 24px; }
-        .mt-1 { margin-top: 8px; }
-        .mt-2 { margin-top: 16px; }
         .mt-3 { margin-top: 24px; }
-        .p-3 { padding: 24px; }
         .d-flex { display: flex; }
         .align-center { align-items: center; }
         .justify-between { justify-content: space-between; }
@@ -487,12 +305,9 @@
     </style>
 </head>
 <body>
-    <!-- ========== PRACTO-STYLE TOOLBAR ========== -->
+    <!-- ========== TOOLBAR ========== -->
     <header class="mat-toolbar">
         <div class="d-flex align-center gap-2">
-            <button class="mat-icon-button" onclick="toggleSidenav()">
-                <span class="material-icons">menu</span>
-            </button>
             <div class="toolbar-title">
                 <span class="material-icons">medical_services</span>
                 <span>MedConnect</span>
@@ -500,9 +315,6 @@
         </div>
         
         <div class="d-flex align-center gap-2">
-            <button class="mat-icon-button" onclick="showComponent('notifications')">
-                <span class="material-icons">notifications</span>
-            </button>
             <button class="mat-button" onclick="openBookingDialog('Quick Booking', 'General Physician')">
                 <span class="material-icons">calendar_today</span>
                 Book Now
@@ -510,721 +322,379 @@
         </div>
     </header>
 
-    <!-- ========== SIDENAV ========== -->
-    <div class="mat-sidenav-container">
-        <div class="mat-sidenav" id="sidenav" style="display: none;">
-            <div class="nav-list">
-                <a href="#" class="nav-item active" onclick="showComponent('dashboard')">
-                    <span class="material-icons">dashboard</span>
-                    Dashboard
-                </a>
-                <a href="#" class="nav-item" onclick="showComponent('doctors')">
-                    <span class="material-icons">group</span>
-                    Find Doctors
-                </a>
-                <a href="#" class="nav-item" onclick="showComponent('hospitals')">
-                    <span class="material-icons">local_hospital</span>
-                    Hospitals
-                </a>
-                <a href="#" class="nav-item" onclick="showComponent('appointments')">
-                    <span class="material-icons">event_available</span>
-                    My Appointments
-                </a>
-                <a href="#" class="nav-item" onclick="showComponent('telemedicine')">
-                    <span class="material-icons">videocam</span>
-                    Video Consult
-                </a>
-                <a href="#" class="nav-item" onclick="showComponent('medicines')">
-                    <span class="material-icons">medication</span>
-                    Medicines
-                </a>
-                <a href="#" class="nav-item" onclick="showComponent('records')">
-                    <span class="material-icons">folder</span>
-                    Health Records
-                </a>
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="content-container">
+        <!-- COMPACT SEARCH SECTION -->
+        <div class="compact-search">
+            <div class="search-header">
+                <span class="material-icons" style="color: var(--primary);">search</span>
+                <h2>Find & Book Doctors Appointment</h2>
+            </div>
+            
+            <div class="search-grid">
+                <div class="mat-form-field">
+                    <label><span class="material-icons" style="font-size: 16px; vertical-align: middle;">location_on</span> City</label>
+                    <select class="mat-select" id="searchCity">
+                        <option>Select City</option>
+                        <option>Mumbai</option>
+                        <option>Delhi</option>
+                        <option>Bangalore</option>
+                        <option>Hyderabad</option>
+                    </select>
+                </div>
                 
-                <div style="padding: 24px; border-top: 1px solid var(--divider); margin-top: 16px;">
-                    <a href="#" class="nav-item" onclick="showComponent('about')">
-                        <span class="material-icons">info</span>
-                        About Us
-                    </a>
-                    <a href="#" class="nav-item" onclick="showComponent('services')">
-                        <span class="material-icons">miscellaneous_services</span>
-                        Our Services
-                    </a>
-                    <a href="#" class="nav-item" onclick="showComponent('careers')">
-                        <span class="material-icons">work</span>
-                        Careers
-                    </a>
-                    <a href="#" class="nav-item" onclick="showComponent('blog')">
-                        <span class="material-icons">article</span>
-                        Blog
-                    </a>
+                <div class="mat-form-field">
+                    <label><span class="material-icons" style="font-size: 16px; vertical-align: middle;">medical_services</span> Specialty</label>
+                    <select class="mat-select" id="searchSpecialty">
+                        <option>Select Specialty</option>
+                        <option>Cardiologist</option>
+                        <option>Dermatologist</option>
+                        <option>Gynecologist</option>
+                        <option>Orthopedic</option>
+                        <option>Pediatrician</option>
+                    </select>
+                </div>
+                
+                <div class="mat-form-field">
+                    <label><span class="material-icons" style="font-size: 16px; vertical-align: middle;">date_range</span> Date</label>
+                    <input type="date" class="mat-input" id="searchDate">
+                </div>
+                
+                <div>
+                    <button class="mat-button w-100" onclick="searchDoctors()">
+                        <span class="material-icons">search</span>
+                        Search
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- ========== ROUTER OUTLET ========== -->
-        <main class="content-container">
-            <!-- DASHBOARD COMPONENT -->
-            <div id="dashboard" class="router-outlet active">
-                <div class="mat-card slide-in">
-                    <h1 class="mat-card-title">Welcome to MedConnect</h1>
-                    <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 17px;">
-                        Your comprehensive healthcare management platform
-                    </p>
-                    
-                    <!-- Search Widget -->
-                    <div class="mat-card mb-3" style="background: linear-gradient(135deg, var(--primary-light), #e8f7ff); border-left: 4px solid var(--primary);">
-                        <h2 style="margin-bottom: 24px; color: var(--primary); font-size: 22px;">
-                            <span class="material-icons" style="vertical-align: middle;">search</span>
-                            Find & Book Doctors
-                        </h2>
-                        
-                        <div class="row mb-3">
-                            <div class="col-4">
-                                <div class="mat-form-field">
-                                    <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-weight: 500;">
-                                        <span class="material-icons" style="font-size: 16px; vertical-align: middle; color: var(--primary);">location_on</span>
-                                        City
-                                    </label>
-                                    <select class="mat-select" id="searchCity">
-                                        <option>Select City</option>
-                                        <option>Mumbai</option>
-                                        <option>Delhi</option>
-                                        <option>Bangalore</option>
-                                        <option>Hyderabad</option>
-                                        <option>Chennai</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="col-4">
-                                <div class="mat-form-field">
-                                    <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-weight: 500;">
-                                        <span class="material-icons" style="font-size: 16px; vertical-align: middle; color: var(--primary);">medical_services</span>
-                                        Specialty
-                                    </label>
-                                    <select class="mat-select" id="searchSpecialty">
-                                        <option>Select Specialty</option>
-                                        <option>Cardiologist</option>
-                                        <option>Dermatologist</option>
-                                        <option>Orthopedic</option>
-                                        <option>Gynecologist</option>
-                                        <option>Pediatrician</option>
-                                        <option>General Physician</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="col-4">
-                                <div class="mat-form-field">
-                                    <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-weight: 500;">
-                                        <span class="material-icons" style="font-size: 16px; vertical-align: middle; color: var(--primary);">date_range</span>
-                                        Date
-                                    </label>
-                                    <input type="date" class="mat-input" id="searchDate">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button class="mat-button" onclick="searchDoctors()" style="width: 100%; padding: 14px; font-size: 16px;">
-                            <span class="material-icons">search</span>
-                            Search Available Doctors
-                        </button>
-                    </div>
-                    
-                    <!-- FEATURED DOCTORS SECTION -->
-                    <div class="featured-doctors">
-                        <div class="section-header">
-                            <h2 class="section-title">
-                                <span class="material-icons" style="color: var(--primary);">star</span>
-                                Top Rated Doctors
-                            </h2>
-                            <button class="mat-button outline" onclick="showComponent('doctors')">
-                                <span class="material-icons">arrow_forward</span>
-                                View All Doctors
-                            </button>
-                        </div>
-                        
-                        <div class="row">
-                            <!-- Featured Doctor 1 -->
-                            <div class="col-4 mb-3">
-                                <div class="doctor-card">
-                                    <div class="p-3">
-                                        <div class="doctor-avatar">
-                                            <span class="material-icons">female</span>
-                                        </div>
-                                        <h3 class="text-center mb-1">Dr. Priya Sharma</h3>
-                                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 15px;">
-                                            Gynecologist
-                                        </p>
-                                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 14px;">
-                                            <span class="material-icons" style="font-size: 14px; vertical-align: middle;">work</span>
-                                            15 years experience
-                                        </p>
-                                        <div class="text-center mb-2">
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star_half</span>
-                                            <span style="font-size: 14px; color: var(--text-secondary); margin-left: 5px;">
-                                                4.7 (1,240 reviews)
-                                            </span>
-                                        </div>
-                                        <div class="text-center mb-2" style="color: var(--success); font-weight: 600; font-size: 14px; background: rgba(76, 175, 80, 0.1); padding: 6px 12px; border-radius: 20px; display: inline-block;">
-                                            <span class="material-icons" style="font-size: 14px; vertical-align: middle;">check_circle</span>
-                                            Available Today
-                                        </div>
-                                        <p class="text-center mb-2" style="font-size: 22px; font-weight: 700; color: var(--text); margin-top: 12px;">
-                                            ₹800 <span style="font-size: 15px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
-                                        </p>
-                                        <button class="mat-button" onclick="openBookingDialog('Dr. Priya Sharma', 'Gynecologist')" style="width: 100%; padding: 12px;">
-                                            <span class="material-icons">calendar_today</span>
-                                            Book Appointment
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Featured Doctor 2 -->
-                            <div class="col-4 mb-3">
-                                <div class="doctor-card">
-                                    <div class="p-3">
-                                        <div class="doctor-avatar">
-                                            <span class="material-icons">male</span>
-                                        </div>
-                                        <h3 class="text-center mb-1">Dr. Rajesh Kumar</h3>
-                                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 15px;">
-                                            Cardiologist
-                                        </p>
-                                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 14px;">
-                                            <span class="material-icons" style="font-size: 14px; vertical-align: middle;">work</span>
-                                            18 years experience
-                                        </p>
-                                        <div class="text-center mb-2">
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span style="font-size: 14px; color: var(--text-secondary); margin-left: 5px;">
-                                                5.0 (980 reviews)
-                                            </span>
-                                        </div>
-                                        <div class="text-center mb-2" style="color: #ff9800; font-weight: 600; font-size: 14px; background: rgba(255, 152, 0, 0.1); padding: 6px 12px; border-radius: 20px; display: inline-block;">
-                                            <span class="material-icons" style="font-size: 14px; vertical-align: middle;">schedule</span>
-                                            Available Tomorrow
-                                        </div>
-                                        <p class="text-center mb-2" style="font-size: 22px; font-weight: 700; color: var(--text); margin-top: 12px;">
-                                            ₹1,200 <span style="font-size: 15px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
-                                        </p>
-                                        <button class="mat-button" onclick="openBookingDialog('Dr. Rajesh Kumar', 'Cardiologist')" style="width: 100%; padding: 12px;">
-                                            <span class="material-icons">calendar_today</span>
-                                            Book Appointment
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Featured Doctor 3 -->
-                            <div class="col-4 mb-3">
-                                <div class="doctor-card">
-                                    <div class="p-3">
-                                        <div class="doctor-avatar">
-                                            <span class="material-icons">male</span>
-                                        </div>
-                                        <h3 class="text-center mb-1">Dr. Anil Mehta</h3>
-                                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 15px;">
-                                            Orthopedic Surgeon
-                                        </p>
-                                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 14px;">
-                                            <span class="material-icons" style="font-size: 14px; vertical-align: middle;">work</span>
-                                            22 years experience
-                                        </p>
-                                        <div class="text-center mb-2">
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                            <span style="font-size: 14px; color: var(--text-secondary); margin-left: 5px;">
-                                                4.9 (2,150 reviews)
-                                            </span>
-                                        </div>
-                                        <div class="text-center mb-2" style="color: var(--success); font-weight: 600; font-size: 14px; background: rgba(76, 175, 80, 0.1); padding: 6px 12px; border-radius: 20px; display: inline-block;">
-                                            <span class="material-icons" style="font-size: 14px; vertical-align: middle;">check_circle</span>
-                                            Available Today
-                                        </div>
-                                        <p class="text-center mb-2" style="font-size: 22px; font-weight: 700; color: var(--text); margin-top: 12px;">
-                                            ₹1,500 <span style="font-size: 15px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
-                                        </p>
-                                        <button class="mat-button" onclick="openBookingDialog('Dr. Anil Mehta', 'Orthopedic Surgeon')" style="width: 100%; padding: 12px;">
-                                            <span class="material-icons">calendar_today</span>
-                                            Book Appointment
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- View More Button -->
-                        <button class="mat-button view-more-btn outline" onclick="showMoreDoctors()" id="viewMoreBtn">
-                            <span class="material-icons">expand_more</span>
-                            View More Doctors
-                            <span class="material-icons">expand_more</span>
-                        </button>
-                        
-                        <!-- More Doctors (Initially Hidden) -->
-                        <div class="more-doctors hidden" id="moreDoctors">
-                            <!-- Additional Doctor 4 -->
-                            <div class="doctor-card">
-                                <div class="p-3">
-                                    <div class="doctor-avatar">
-                                        <span class="material-icons">female</span>
-                                    </div>
-                                    <h3 class="text-center mb-1">Dr. Sunita Reddy</h3>
-                                    <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 15px;">
-                                        Pediatrician
-                                    </p>
-                                    <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 14px;">
-                                        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">work</span>
-                                        14 years experience
-                                    </p>
-                                    <div class="text-center mb-2">
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star_half</span>
-                                        <span style="font-size: 14px; color: var(--text-secondary); margin-left: 5px;">
-                                            4.6 (1,780 reviews)
-                                        </span>
-                                    </div>
-                                    <div class="text-center mb-2" style="color: var(--success); font-weight: 600; font-size: 14px; background: rgba(76, 175, 80, 0.1); padding: 6px 12px; border-radius: 20px; display: inline-block;">
-                                        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">check_circle</span>
-                                        Available Today
-                                    </div>
-                                    <p class="text-center mb-2" style="font-size: 22px; font-weight: 700; color: var(--text); margin-top: 12px;">
-                                        ₹700 <span style="font-size: 15px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
-                                    </p>
-                                    <button class="mat-button" onclick="openBookingDialog('Dr. Sunita Reddy', 'Pediatrician')" style="width: 100%; padding: 12px;">
-                                        <span class="material-icons">calendar_today</span>
-                                        Book Appointment
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- Additional Doctor 5 -->
-                            <div class="doctor-card">
-                                <div class="p-3">
-                                    <div class="doctor-avatar">
-                                        <span class="material-icons">male</span>
-                                    </div>
-                                    <h3 class="text-center mb-1">Dr. Michael Chen</h3>
-                                    <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 15px;">
-                                        Dermatologist
-                                    </p>
-                                    <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 14px;">
-                                        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">work</span>
-                                        12 years experience
-                                    </p>
-                                    <div class="text-center mb-2">
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span style="font-size: 14px; color: var(--text-secondary); margin-left: 5px;">
-                                            5.0 (890 reviews)
-                                        </span>
-                                    </div>
-                                    <div class="text-center mb-2" style="color: #ff9800; font-weight: 600; font-size: 14px; background: rgba(255, 152, 0, 0.1); padding: 6px 12px; border-radius: 20px; display: inline-block;">
-                                        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">schedule</span>
-                                        Available Tomorrow
-                                    </div>
-                                    <p class="text-center mb-2" style="font-size: 22px; font-weight: 700; color: var(--text); margin-top: 12px;">
-                                        ₹900 <span style="font-size: 15px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
-                                    </p>
-                                    <button class="mat-button" onclick="openBookingDialog('Dr. Michael Chen', 'Dermatologist')" style="width: 100%; padding: 12px;">
-                                        <span class="material-icons">calendar_today</span>
-                                        Book Appointment
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- Additional Doctor 6 -->
-                            <div class="doctor-card">
-                                <div class="p-3">
-                                    <div class="doctor-avatar">
-                                        <span class="material-icons">male</span>
-                                    </div>
-                                    <h3 class="text-center mb-1">Dr. Arjun Patel</h3>
-                                    <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 15px;">
-                                        Neurologist
-                                    </p>
-                                    <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 14px;">
-                                        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">work</span>
-                                        20 years experience
-                                    </p>
-                                    <div class="text-center mb-2">
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>
-                                        <span style="font-size: 14px; color: var(--text-secondary); margin-left: 5px;">
-                                            4.8 (1,560 reviews)
-                                        </span>
-                                    </div>
-                                    <div class="text-center mb-2" style="color: var(--success); font-weight: 600; font-size: 14px; background: rgba(76, 175, 80, 0.1); padding: 6px 12px; border-radius: 20px; display: inline-block;">
-                                        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">check_circle</span>
-                                        Available Today
-                                    </div>
-                                    <p class="text-center mb-2" style="font-size: 22px; font-weight: 700; color: var(--text); margin-top: 12px;">
-                                        ₹1,800 <span style="font-size: 15px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
-                                    </p>
-                                    <button class="mat-button" onclick="openBookingDialog('Dr. Arjun Patel', 'Neurologist')" style="width: 100%; padding: 12px;">
-                                        <span class="material-icons">calendar_today</span>
-                                        Book Appointment
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quick Stats -->
-                    <div class="row mb-3">
-                        <div class="col-4">
-                            <div class="mat-card text-center" style="height: 100%;">
-                                <span class="material-icons" style="font-size: 48px; color: var(--primary); margin-bottom: 16px;">
-                                    group
-                                </span>
-                                <h3 style="font-size: 32px; color: var(--text); margin-bottom: 8px;">500+</h3>
-                                <p style="color: var(--text-secondary); font-size: 15px;">Verified Doctors</p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-4">
-                            <div class="mat-card text-center" style="height: 100%;">
-                                <span class="material-icons" style="font-size: 48px; color: var(--success); margin-bottom: 16px;">
-                                    local_hospital
-                                </span>
-                                <h3 style="font-size: 32px; color: var(--text); margin-bottom: 8px;">50+</h3>
-                                <p style="color: var(--text-secondary); font-size: 15px;">Partner Hospitals</p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-4">
-                            <div class="mat-card text-center" style="height: 100%;">
-                                <span class="material-icons" style="font-size: 48px; color: var(--accent); margin-bottom: 16px;">
-                                    event_available
-                                </span>
-                                <h3 style="font-size: 32px; color: var(--text); margin-bottom: 8px;">10,000+</h3>
-                                <p style="color: var(--text-secondary); font-size: 15px;">Appointments</p>
-                            </div>
-                        </div>
-                    </div>
+        <!-- FEATURED DOCTORS SECTION (MOVED TO TOP) -->
+        <div class="featured-doctors">
+            <div class="section-header">
+                <h2 class="section-title">Top Doctors Available Now</h2>
+                <div style="color: var(--text-secondary); font-size: 15px;">
+                    <span class="material-icons" style="font-size: 16px; vertical-align: middle; color: var(--success);">check_circle</span>
+                    Verified & Available for Appointment
                 </div>
             </div>
-
-            <!-- DOCTORS COMPONENT (Full List) -->
-            <div id="doctors" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">All Doctors</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    
-                    <div class="more-doctors" id="allDoctors">
-                        <!-- All 6 doctors will be dynamically rendered here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- ABOUT US COMPONENT -->
-            <div id="about" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">About MedConnect</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-6">
-                            <h3 class="mb-2" style="color: var(--primary);">Our Mission</h3>
-                            <p class="mb-3" style="line-height: 1.8; font-size: 16px;">
-                                To make quality healthcare accessible, affordable, and convenient for everyone through innovative technology solutions.
-                            </p>
-                            
-                            <h3 class="mb-2" style="color: var(--primary);">Our Vision</h3>
-                            <p class="mb-3" style="line-height: 1.8; font-size: 16px;">
-                                To become the most trusted digital healthcare platform, transforming how people access and manage their health.
-                            </p>
+            
+            <div class="doctors-grid">
+                <!-- Doctor 1 -->
+                <div class="doctor-card">
+                    <div style="padding: 24px;">
+                        <div class="doctor-avatar">
+                            <span class="material-icons">female</span>
                         </div>
-                        
-                        <div class="col-6">
-                            <h3 class="mb-2" style="color: var(--primary);">Core Values</h3>
-                            <ul style="padding-left: 24px; line-height: 2; font-size: 16px;">
-                                <li>Patient-first approach</li>
-                                <li>Clinical excellence</li>
-                                <li>Data privacy & security</li>
-                                <li>Innovation & technology</li>
-                                <li>Accessibility & affordability</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SERVICES COMPONENT -->
-            <div id="services" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Our Services</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-4 mb-3">
-                            <div class="mat-card text-center" style="height: 100%; border-top: 4px solid var(--primary);">
-                                <span class="material-icons" style="font-size: 52px; color: var(--primary); margin-bottom: 20px;">
-                                    calendar_today
-                                </span>
-                                <h3 class="mb-2" style="color: var(--text);">Doctor Appointments</h3>
-                                <p style="color: var(--text-secondary); font-size: 15px;">
-                                    Book appointments with verified specialists at your convenience
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-4 mb-3">
-                            <div class="mat-card text-center" style="height: 100%; border-top: 4px solid var(--primary);">
-                                <span class="material-icons" style="font-size: 52px; color: var(--primary); margin-bottom: 20px;">
-                                    videocam
-                                </span>
-                                <h3 class="mb-2" style="color: var(--text);">Video Consultation</h3>
-                                <p style="color: var(--text-secondary); font-size: 15px;">
-                                    Consult doctors online from the comfort of your home
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-4 mb-3">
-                            <div class="mat-card text-center" style="height: 100%; border-top: 4px solid var(--primary);">
-                                <span class="material-icons" style="font-size: 52px; color: var(--primary); margin-bottom: 20px;">
-                                    medication
-                                </span>
-                                <h3 class="mb-2" style="color: var(--text);">Medicine Delivery</h3>
-                                <p style="color: var(--text-secondary); font-size: 15px;">
-                                    Get genuine medicines delivered to your doorstep
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CAREERS COMPONENT -->
-            <div id="careers" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Careers</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    
-                    <p style="margin-bottom: 32px; line-height: 1.8; font-size: 16px; color: var(--text-secondary);">
-                        Join our mission to transform healthcare. We're looking for passionate individuals who want to make a difference in people's lives through technology and innovation.
-                    </p>
-                    
-                    <div class="mat-card mb-2" style="border-left: 4px solid var(--primary);">
-                        <h3 class="mb-2" style="color: var(--text);">Frontend Developer</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 15px;">
-                            Build beautiful, responsive healthcare applications that patients and doctors love to use.
+                        <h3 class="text-center mb-2" style="font-size: 18px;">Dr. Priya Sharma</h3>
+                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 14px;">
+                            Gynecologist
                         </p>
-                        <button class="mat-button">Apply Now</button>
-                    </div>
-                    
-                    <div class="mat-card mb-2" style="border-left: 4px solid var(--primary);">
-                        <h3 class="mb-2" style="color: var(--text);">Healthcare Consultant</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 15px;">
-                            Help design patient-first healthcare solutions and improve our service offerings.
+                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 13px;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">work</span>
+                            15 years experience
                         </p>
-                        <button class="mat-button">Apply Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BLOG COMPONENT -->
-            <div id="blog" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Health Blog</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    
-                    <div class="mat-card mb-3" style="border-left: 4px solid var(--success);">
-                        <h3 class="mb-2" style="color: var(--text);">10 Tips for Heart Health</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 15px;">
-                            Learn simple lifestyle changes to improve your cardiovascular health and reduce the risk of heart disease.
+                        <div class="text-center mb-2">
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star_half</span>
+                            <span style="font-size: 13px; color: var(--text-secondary); margin-left: 4px;">
+                                4.7 (1,240)
+                            </span>
+                        </div>
+                        <div class="text-center mb-2" style="color: var(--success); font-weight: 600; font-size: 13px; background: rgba(76, 175, 80, 0.1); padding: 5px 10px; border-radius: 20px; display: inline-block;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">check_circle</span>
+                            Available Today
+                        </div>
+                        <p class="text-center mb-2" style="font-size: 20px; font-weight: 700; color: var(--text); margin-top: 12px;">
+                            ₹800 <span style="font-size: 14px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
                         </p>
-                        <button class="mat-button">Read More</button>
+                        <button class="mat-button w-100" onclick="openBookingDialog('Dr. Priya Sharma', 'Gynecologist')">
+                            <span class="material-icons">calendar_today</span>
+                            Book Appointment
+                        </button>
                     </div>
-                    
-                    <div class="mat-card mb-3" style="border-left: 4px solid var(--primary);">
-                        <h3 class="mb-2" style="color: var(--text);">Managing Stress in Modern Life</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 15px;">
-                            Effective techniques to reduce stress, improve mental wellbeing, and maintain work-life balance.
+                </div>
+                
+                <!-- Doctor 2 -->
+                <div class="doctor-card">
+                    <div style="padding: 24px;">
+                        <div class="doctor-avatar">
+                            <span class="material-icons">male</span>
+                        </div>
+                        <h3 class="text-center mb-2" style="font-size: 18px;">Dr. Rajesh Kumar</h3>
+                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 14px;">
+                            Cardiologist
                         </p>
-                        <button class="mat-button">Read More</button>
+                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 13px;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">work</span>
+                            18 years experience
+                        </p>
+                        <div class="text-center mb-2">
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span style="font-size: 13px; color: var(--text-secondary); margin-left: 4px;">
+                                5.0 (980)
+                            </span>
+                        </div>
+                        <div class="text-center mb-2" style="color: #ff9800; font-weight: 600; font-size: 13px; background: rgba(255, 152, 0, 0.1); padding: 5px 10px; border-radius: 20px; display: inline-block;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">schedule</span>
+                            Available Tomorrow
+                        </div>
+                        <p class="text-center mb-2" style="font-size: 20px; font-weight: 700; color: var(--text); margin-top: 12px;">
+                            ₹1,200 <span style="font-size: 14px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
+                        </p>
+                        <button class="mat-button w-100" onclick="openBookingDialog('Dr. Rajesh Kumar', 'Cardiologist')">
+                            <span class="material-icons">calendar_today</span>
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Doctor 3 -->
+                <div class="doctor-card">
+                    <div style="padding: 24px;">
+                        <div class="doctor-avatar">
+                            <span class="material-icons">male</span>
+                        </div>
+                        <h3 class="text-center mb-2" style="font-size: 18px;">Dr. Anil Mehta</h3>
+                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 14px;">
+                            Orthopedic Surgeon
+                        </p>
+                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 13px;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">work</span>
+                            22 years experience
+                        </p>
+                        <div class="text-center mb-2">
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span style="font-size: 13px; color: var(--text-secondary); margin-left: 4px;">
+                                4.9 (2,150)
+                            </span>
+                        </div>
+                        <div class="text-center mb-2" style="color: var(--success); font-weight: 600; font-size: 13px; background: rgba(76, 175, 80, 0.1); padding: 5px 10px; border-radius: 20px; display: inline-block;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">check_circle</span>
+                            Available Today
+                        </div>
+                        <p class="text-center mb-2" style="font-size: 20px; font-weight: 700; color: var(--text); margin-top: 12px;">
+                            ₹1,500 <span style="font-size: 14px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
+                        </p>
+                        <button class="mat-button w-100" onclick="openBookingDialog('Dr. Anil Mehta', 'Orthopedic Surgeon')">
+                            <span class="material-icons">calendar_today</span>
+                            Book Appointment
+                        </button>
                     </div>
                 </div>
             </div>
+            
+            <!-- View More Button -->
+            <button class="view-more-btn" onclick="showMoreDoctors()" id="viewMoreBtn">
+                <span class="material-icons">expand_more</span>
+                View More Doctors
+                <span class="material-icons">expand_more</span>
+            </button>
+            
+            <!-- More Doctors (Initially Hidden) -->
+            <div class="more-doctors hidden" id="moreDoctors">
+                <!-- Additional Doctor 4 -->
+                <div class="doctor-card">
+                    <div style="padding: 24px;">
+                        <div class="doctor-avatar">
+                            <span class="material-icons">female</span>
+                        </div>
+                        <h3 class="text-center mb-2" style="font-size: 18px;">Dr. Sunita Reddy</h3>
+                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 14px;">
+                            Pediatrician
+                        </p>
+                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 13px;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">work</span>
+                            14 years experience
+                        </p>
+                        <div class="text-center mb-2">
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star_half</span>
+                            <span style="font-size: 13px; color: var(--text-secondary); margin-left: 4px;">
+                                4.6 (1,780)
+                            </span>
+                        </div>
+                        <div class="text-center mb-2" style="color: var(--success); font-weight: 600; font-size: 13px; background: rgba(76, 175, 80, 0.1); padding: 5px 10px; border-radius: 20px; display: inline-block;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">check_circle</span>
+                            Available Today
+                        </div>
+                        <p class="text-center mb-2" style="font-size: 20px; font-weight: 700; color: var(--text); margin-top: 12px;">
+                            ₹700 <span style="font-size: 14px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
+                        </p>
+                        <button class="mat-button w-100" onclick="openBookingDialog('Dr. Sunita Reddy', 'Pediatrician')">
+                            <span class="material-icons">calendar_today</span>
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Additional Doctor 5 -->
+                <div class="doctor-card">
+                    <div style="padding: 24px;">
+                        <div class="doctor-avatar">
+                            <span class="material-icons">male</span>
+                        </div>
+                        <h3 class="text-center mb-2" style="font-size: 18px;">Dr. Michael Chen</h3>
+                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 14px;">
+                            Dermatologist
+                        </p>
+                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 13px;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">work</span>
+                            12 years experience
+                        </p>
+                        <div class="text-center mb-2">
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span style="font-size: 13px; color: var(--text-secondary); margin-left: 4px;">
+                                5.0 (890)
+                            </span>
+                        </div>
+                        <div class="text-center mb-2" style="color: #ff9800; font-weight: 600; font-size: 13px; background: rgba(255, 152, 0, 0.1); padding: 5px 10px; border-radius: 20px; display: inline-block;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">schedule</span>
+                            Available Tomorrow
+                        </div>
+                        <p class="text-center mb-2" style="font-size: 20px; font-weight: 700; color: var(--text); margin-top: 12px;">
+                            ₹900 <span style="font-size: 14px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
+                        </p>
+                        <button class="mat-button w-100" onclick="openBookingDialog('Dr. Michael Chen', 'Dermatologist')">
+                            <span class="material-icons">calendar_today</span>
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Additional Doctor 6 -->
+                <div class="doctor-card">
+                    <div style="padding: 24px;">
+                        <div class="doctor-avatar">
+                            <span class="material-icons">male</span>
+                        </div>
+                        <h3 class="text-center mb-2" style="font-size: 18px;">Dr. Arjun Patel</h3>
+                        <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 14px;">
+                            Neurologist
+                        </p>
+                        <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 13px;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">work</span>
+                            20 years experience
+                        </p>
+                        <div class="text-center mb-2">
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span class="material-icons" style="color: #ffb300; font-size: 16px;">star</span>
+                            <span style="font-size: 13px; color: var(--text-secondary); margin-left: 4px;">
+                                4.8 (1,560)
+                            </span>
+                        </div>
+                        <div class="text-center mb-2" style="color: var(--success); font-weight: 600; font-size: 13px; background: rgba(76, 175, 80, 0.1); padding: 5px 10px; border-radius: 20px; display: inline-block;">
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">check_circle</span>
+                            Available Today
+                        </div>
+                        <p class="text-center mb-2" style="font-size: 20px; font-weight: 700; color: var(--text); margin-top: 12px;">
+                            ₹1,800 <span style="font-size: 14px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
+                        </p>
+                        <button class="mat-button w-100" onclick="openBookingDialog('Dr. Arjun Patel', 'Neurologist')">
+                            <span class="material-icons">calendar_today</span>
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <!-- OTHER COMPONENTS PLACEHOLDERS -->
-            <div id="hospitals" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Hospitals</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    <p style="color: var(--text-secondary);">Hospital directory coming soon...</p>
+        <!-- QUICK STATS SECTION -->
+        <div style="background: linear-gradient(135deg, var(--primary-light), #e8f7ff); padding: 30px; border-radius: var(--radius); margin: 40px 0;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
+                <div>
+                    <span class="material-icons" style="font-size: 40px; color: var(--primary); margin-bottom: 10px;">group</span>
+                    <h3 style="font-size: 28px; color: var(--text); margin-bottom: 5px;">500+</h3>
+                    <p style="color: var(--text-secondary);">Verified Doctors</p>
+                </div>
+                <div>
+                    <span class="material-icons" style="font-size: 40px; color: var(--success); margin-bottom: 10px;">local_hospital</span>
+                    <h3 style="font-size: 28px; color: var(--text); margin-bottom: 5px;">50+</h3>
+                    <p style="color: var(--text-secondary);">Partner Hospitals</p>
+                </div>
+                <div>
+                    <span class="material-icons" style="font-size: 40px; color: var(--accent); margin-bottom: 10px;">event_available</span>
+                    <h3 style="font-size: 28px; color: var(--text); margin-bottom: 5px;">10,000+</h3>
+                    <p style="color: var(--text-secondary);">Appointments</p>
                 </div>
             </div>
-            
-            <div id="appointments" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">My Appointments</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    <p style="color: var(--text-secondary);">Your appointment history will appear here...</p>
-                </div>
-            </div>
-            
-            <div id="telemedicine" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Video Consultation</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    <p style="color: var(--text-secondary);">Start a video call with your doctor...</p>
-                </div>
-            </div>
-            
-            <div id="medicines" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Order Medicines</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    <p style="color: var(--text-secondary);">Browse and order medicines online...</p>
-                </div>
-            </div>
-            
-            <div id="records" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Health Records</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    <p style="color: var(--text-secondary);">Access your medical history and reports...</p>
-                </div>
-            </div>
-            
-            <div id="notifications" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Notifications</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    <p style="color: var(--text-secondary);">No new notifications...</p>
-                </div>
-            </div>
-            
-            <div id="book-appointment" class="router-outlet">
-                <div class="mat-card slide-in">
-                    <div class="d-flex justify-between align-center mb-3">
-                        <h1 class="mat-card-title">Quick Book Appointment</h1>
-                        <button class="mat-button outline" onclick="showComponent('dashboard')">
-                            <span class="material-icons">arrow_back</span>
-                            Back to Dashboard
-                        </button>
-                    </div>
-                    <p style="color: var(--text-secondary);">Quick booking form coming soon...</p>
-                </div>
-            </div>
-        </main>
-    </div>
+        </div>
 
-    <!-- ========== BOOKING DIALOG ========== -->
-    <div class="mat-dialog-container" id="bookingDialog">
-        <div class="mat-dialog">
-            <div class="mat-dialog-title">
-                <span id="dialogDoctorName">Book Appointment</span>
-                <button class="mat-icon-button" onclick="closeBookingDialog()" style="color: white;">
-                    <span class="material-icons">close</span>
+        <!-- QUICK ACTIONS -->
+        <div style="margin: 40px 0;">
+            <h2 style="font-size: 24px; color: var(--text); margin-bottom: 20px;">Quick Actions</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                <button class="mat-button" style="background: var(--success);" onclick="alert('Video Consult Coming Soon')">
+                    <span class="material-icons">videocam</span>
+                    Video Consult
+                </button>
+                <button class="mat-button" style="background: #9c27b0;" onclick="alert('Order Medicines Coming Soon')">
+                    <span class="material-icons">medication</span>
+                    Order Medicines
+                </button>
+                <button class="mat-button" style="background: #ff9800;" onclick="alert('Health Records Coming Soon')">
+                    <span class="material-icons">folder</span>
+                    Health Records
                 </button>
             </div>
+        </div>
+    </main>
+
+    <!-- BOOKING DIALOG -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;" id="bookingDialog">
+        <div style="background: white; border-radius: var(--radius); width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto;">
+            <div style="background: var(--primary); color: white; padding: 20px; border-radius: var(--radius) var(--radius) 0 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 id="dialogDoctorName" style="font-size: 18px; font-weight: 600;">Book Appointment</h3>
+                    <button onclick="closeBookingDialog()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">×</button>
+                </div>
+            </div>
             
-            <div class="mat-dialog-content">
-                <div class="mat-form-field">
-                    <label>Full Name *</label>
-                    <input type="text" class="mat-input" placeholder="Enter your full name" id="patientName">
+            <div style="padding: 24px;">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Full Name *</label>
+                    <input type="text" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: var(--radius);" id="patientName" placeholder="Enter your name">
                 </div>
                 
-                <div class="mat-form-field">
-                    <label>Phone Number *</label>
-                    <input type="tel" class="mat-input" placeholder="Enter your phone number" id="patientPhone">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Phone Number *</label>
+                    <input type="tel" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: var(--radius);" id="patientPhone" placeholder="Enter your phone">
                 </div>
                 
-                <div class="mat-form-field">
-                    <label>Email Address *</label>
-                    <input type="email" class="mat-input" placeholder="Enter your email address" id="patientEmail">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email Address *</label>
+                    <input type="email" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: var(--radius);" id="patientEmail" placeholder="Enter your email">
                 </div>
                 
-                <div class="mat-form-field">
-                    <label>Appointment Date *</label>
-                    <input type="date" class="mat-input" id="appointmentDate">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Appointment Date *</label>
+                    <input type="date" style="width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: var(--radius);" id="appointmentDate">
                 </div>
                 
-                <div class="mat-form-field">
-                    <label>Select Time Slot *</label>
-                    <div class="time-slots">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Select Time Slot *</label>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
                         <button class="time-slot-btn" data-time="09:00 AM">09:00 AM</button>
                         <button class="time-slot-btn" data-time="10:30 AM">10:30 AM</button>
                         <button class="time-slot-btn" data-time="12:00 PM">12:00 PM</button>
@@ -1232,11 +702,6 @@
                         <button class="time-slot-btn" data-time="03:30 PM">03:30 PM</button>
                         <button class="time-slot-btn" data-time="05:00 PM">05:00 PM</button>
                     </div>
-                </div>
-                
-                <div class="mat-form-field">
-                    <label>Reason for Visit (Optional)</label>
-                    <textarea class="mat-input" placeholder="Briefly describe your symptoms or reason for appointment" rows="3" id="visitReason"></textarea>
                 </div>
                 
                 <button class="mat-button w-100" onclick="confirmBooking()" style="padding: 14px; font-size: 16px;">
@@ -1248,146 +713,19 @@
     </div>
 
     <script>
-        // ========== DOCTORS DATA ==========
-        const doctors = [
-            {
-                id: 1,
-                name: "Dr. Priya Sharma",
-                specialty: "Gynecologist",
-                experience: "15 years",
-                rating: 4.7,
-                reviews: 1240,
-                available: "today",
-                fee: 800,
-                icon: "female"
-            },
-            {
-                id: 2,
-                name: "Dr. Rajesh Kumar",
-                specialty: "Cardiologist",
-                experience: "18 years",
-                rating: 5.0,
-                reviews: 980,
-                available: "tomorrow",
-                fee: 1200,
-                icon: "male"
-            },
-            {
-                id: 3,
-                name: "Dr. Anil Mehta",
-                specialty: "Orthopedic Surgeon",
-                experience: "22 years",
-                rating: 4.9,
-                reviews: 2150,
-                available: "today",
-                fee: 1500,
-                icon: "male"
-            },
-            {
-                id: 4,
-                name: "Dr. Sunita Reddy",
-                specialty: "Pediatrician",
-                experience: "14 years",
-                rating: 4.6,
-                reviews: 1780,
-                available: "today",
-                fee: 700,
-                icon: "female"
-            },
-            {
-                id: 5,
-                name: "Dr. Michael Chen",
-                specialty: "Dermatologist",
-                experience: "12 years",
-                rating: 5.0,
-                reviews: 890,
-                available: "tomorrow",
-                fee: 900,
-                icon: "male"
-            },
-            {
-                id: 6,
-                name: "Dr. Arjun Patel",
-                specialty: "Neurologist",
-                experience: "20 years",
-                rating: 4.8,
-                reviews: 1560,
-                available: "today",
-                fee: 1800,
-                icon: "male"
-            }
-        ];
-
-        // ========== ANGULAR-LIKE ROUTING SYSTEM ==========
-        let currentComponent = 'dashboard';
-        
-        function showComponent(componentId) {
-            // Hide all components
-            document.querySelectorAll('.router-outlet').forEach(comp => {
-                comp.classList.remove('active');
-            });
-            
-            // Hide sidenav on mobile
-            if (window.innerWidth < 768) {
-                document.getElementById('sidenav').style.display = 'none';
-            }
-            
-            // Show selected component
-            document.getElementById(componentId).classList.add('active');
-            
-            // Update active nav item
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Set active nav item
-            const navItem = document.querySelector(`.nav-item[onclick*="${componentId}"]`);
-            if (navItem) navItem.classList.add('active');
-            
-            // Update current component
-            currentComponent = componentId;
-            
-            // If showing doctors component, render all doctors
-            if (componentId === 'doctors') {
-                renderAllDoctors();
-            }
-            
-            // Update document title
-            const titles = {
-                'dashboard': 'Dashboard',
-                'doctors': 'All Doctors',
-                'about': 'About Us',
-                'services': 'Our Services',
-                'careers': 'Careers',
-                'blog': 'Blog'
-            };
-            
-            if (titles[componentId]) {
-                document.title = `${titles[componentId]} - MedConnect`;
-            }
-        }
-        
-        function toggleSidenav() {
-            const sidenav = document.getElementById('sidenav');
-            sidenav.style.display = sidenav.style.display === 'none' ? 'block' : 'none';
-        }
-        
-        // ========== VIEW MORE DOCTORS FUNCTIONALITY ==========
+        // ========== VIEW MORE DOCTORS ==========
         function showMoreDoctors() {
             const moreDoctors = document.getElementById('moreDoctors');
             const viewMoreBtn = document.getElementById('viewMoreBtn');
             
             if (moreDoctors.classList.contains('hidden')) {
-                // Show more doctors
                 moreDoctors.classList.remove('hidden');
                 viewMoreBtn.innerHTML = `
                     <span class="material-icons">expand_less</span>
                     View Less Doctors
                     <span class="material-icons">expand_less</span>
                 `;
-                moreDoctors.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } else {
-                // Hide more doctors
                 moreDoctors.classList.add('hidden');
                 viewMoreBtn.innerHTML = `
                     <span class="material-icons">expand_more</span>
@@ -1395,77 +733,6 @@
                     <span class="material-icons">expand_more</span>
                 `;
             }
-        }
-        
-        // ========== RENDER ALL DOCTORS ==========
-        function renderAllDoctors() {
-            const container = document.getElementById('allDoctors');
-            container.innerHTML = '';
-            
-            doctors.forEach(doctor => {
-                const stars = getStarRating(doctor.rating);
-                const availabilityColor = doctor.available === 'today' ? 'var(--success)' : '#ff9800';
-                const availabilityText = doctor.available === 'today' ? 'Available Today' : 'Available Tomorrow';
-                const icon = doctor.icon === 'female' ? 'female' : 'male';
-                
-                const doctorCard = `
-                    <div class="doctor-card">
-                        <div class="p-3">
-                            <div class="doctor-avatar">
-                                <span class="material-icons">${icon}</span>
-                            </div>
-                            <h3 class="text-center mb-1">${doctor.name}</h3>
-                            <p class="text-center mb-2" style="color: var(--primary); font-weight: 600; font-size: 15px;">
-                                ${doctor.specialty}
-                            </p>
-                            <p class="text-center mb-2" style="color: var(--text-secondary); font-size: 14px;">
-                                <span class="material-icons" style="font-size: 14px; vertical-align: middle;">work</span>
-                                ${doctor.experience} experience
-                            </p>
-                            <div class="text-center mb-2">
-                                ${stars}
-                                <span style="font-size: 14px; color: var(--text-secondary); margin-left: 5px;">
-                                    ${doctor.rating} (${doctor.reviews.toLocaleString()} reviews)
-                                </span>
-                            </div>
-                            <div class="text-center mb-2" style="color: ${availabilityColor}; font-weight: 600; font-size: 14px; background: ${doctor.available === 'today' ? 'rgba(76, 175, 80, 0.1)' : 'rgba(255, 152, 0, 0.1)'}; padding: 6px 12px; border-radius: 20px; display: inline-block;">
-                                <span class="material-icons" style="font-size: 14px; vertical-align: middle;">${doctor.available === 'today' ? 'check_circle' : 'schedule'}</span>
-                                ${availabilityText}
-                            </div>
-                            <p class="text-center mb-2" style="font-size: 22px; font-weight: 700; color: var(--text); margin-top: 12px;">
-                                ₹${doctor.fee} <span style="font-size: 15px; color: var(--text-secondary); font-weight: normal;">/consultation</span>
-                            </p>
-                            <button class="mat-button" onclick="openBookingDialog('${doctor.name}', '${doctor.specialty}')" style="width: 100%; padding: 12px;">
-                                <span class="material-icons">calendar_today</span>
-                                Book Appointment
-                            </button>
-                        </div>
-                    </div>
-                `;
-                
-                container.innerHTML += doctorCard;
-            });
-        }
-        
-        function getStarRating(rating) {
-            let stars = '';
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 >= 0.5;
-            
-            for (let i = 0; i < fullStars; i++) {
-                stars += '<span class="material-icons" style="color: #ffb300; font-size: 18px;">star</span>';
-            }
-            
-            if (hasHalfStar) {
-                stars += '<span class="material-icons" style="color: #ffb300; font-size: 18px;">star_half</span>';
-            }
-            
-            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-            for (let i = 0; i < emptyStars; i++) {
-                stars += '<span class="material-icons" style="color: #e0e0e0; font-size: 18px;">star</span>';
-            }
-            
-            return stars;
         }
         
         // ========== SEARCH FUNCTIONALITY ==========
@@ -1479,25 +746,17 @@
                 return;
             }
             
-            // Show loading state
-            const searchBtn = document.querySelector('#dashboard .mat-button');
+            // Show loading
+            const searchBtn = document.querySelector('.compact-search .mat-button');
             const originalText = searchBtn.innerHTML;
-            searchBtn.innerHTML = '<span class="material-icons" style="animation: spin 1s linear infinite;">refresh</span> Searching...';
+            searchBtn.innerHTML = '<span class="material-icons" style="animation: spin 1s linear infinite;">refresh</span>';
             searchBtn.disabled = true;
             
             // Simulate search
             setTimeout(() => {
-                showComponent('doctors');
+                alert(`Found doctors in ${city} specializing in ${specialty}`);
                 searchBtn.innerHTML = originalText;
                 searchBtn.disabled = false;
-                
-                // Scroll to top of doctors section
-                document.getElementById('doctors').scrollIntoView({ behavior: 'smooth' });
-                
-                // Show success message
-                setTimeout(() => {
-                    alert(`Found doctors in ${city} specializing in ${specialty}`);
-                }, 300);
             }, 1000);
         }
         
@@ -1506,16 +765,16 @@
             document.getElementById('dialogDoctorName').textContent = `Book with ${doctorName} - ${specialty}`;
             document.getElementById('bookingDialog').style.display = 'flex';
             
-            // Set minimum date to today
+            // Set date
             const today = new Date().toISOString().split('T')[0];
-            document.getElementById('appointmentDate').min = today;
+            const dateInput = document.getElementById('appointmentDate');
+            dateInput.min = today;
             
-            // Set default to tomorrow
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
-            document.getElementById('appointmentDate').value = tomorrow.toISOString().split('T')[0];
+            dateInput.value = tomorrow.toISOString().split('T')[0];
             
-            // Clear previous selections
+            // Clear selections
             document.querySelectorAll('.time-slot-btn').forEach(btn => {
                 btn.classList.remove('selected');
             });
@@ -1530,9 +789,8 @@
             const phone = document.getElementById('patientPhone').value;
             const email = document.getElementById('patientEmail').value;
             const date = document.getElementById('appointmentDate').value;
-            const reason = document.getElementById('visitReason').value;
             
-            // Check time slot selection
+            // Check time slot
             const selectedTime = document.querySelector('.time-slot-btn.selected');
             if (!selectedTime) {
                 alert('Please select a time slot');
@@ -1544,7 +802,6 @@
                 return;
             }
             
-            // Format date
             const formattedDate = new Date(date).toLocaleDateString('en-US', {
                 weekday: 'long',
                 year: 'numeric',
@@ -1555,7 +812,7 @@
             const time = selectedTime.getAttribute('data-time');
             const doctorInfo = document.getElementById('dialogDoctorName').textContent;
             
-            alert(`✅ Appointment Confirmed!\n\nPatient: ${name}\n${doctorInfo}\nDate: ${formattedDate}\nTime: ${time}\nReason: ${reason || 'Not specified'}\n\nConfirmation sent to: ${email}`);
+            alert(`✅ Appointment Confirmed!\n\nPatient: ${name}\n${doctorInfo}\nDate: ${formattedDate}\nTime: ${time}\n\nConfirmation sent to: ${email}`);
             
             closeBookingDialog();
             
@@ -1563,14 +820,13 @@
             document.getElementById('patientName').value = '';
             document.getElementById('patientPhone').value = '';
             document.getElementById('patientEmail').value = '';
-            document.getElementById('visitReason').value = '';
             
-            // Reset date to tomorrow
+            // Reset date
             const newTomorrow = new Date();
             newTomorrow.setDate(newTomorrow.getDate() + 1);
             document.getElementById('appointmentDate').value = newTomorrow.toISOString().split('T')[0];
             
-            // Clear time slot selection
+            // Clear time slots
             document.querySelectorAll('.time-slot-btn').forEach(btn => {
                 btn.classList.remove('selected');
             });
@@ -1579,40 +835,23 @@
         // Time slot selection
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('time-slot-btn')) {
-                // Remove selection from all buttons
                 document.querySelectorAll('.time-slot-btn').forEach(btn => {
                     btn.classList.remove('selected');
+                    btn.style.background = '';
+                    btn.style.color = '';
                 });
                 
-                // Add selection to clicked button
                 e.target.classList.add('selected');
-            }
-        });
-        
-        // Close dialog when clicking outside
-        document.getElementById('bookingDialog').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeBookingDialog();
+                e.target.style.background = 'var(--primary)';
+                e.target.style.color = 'white';
             }
         });
         
         // Initialize
         window.addEventListener('load', function() {
-            // Initialize date pickers
-            const today = new Date().toISOString().split('T')[0];
-            const dateInputs = document.querySelectorAll('input[type="date"]');
-            dateInputs.forEach(input => {
-                input.min = today;
-                
-                // Set default to tomorrow
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                input.value = tomorrow.toISOString().split('T')[0];
-            });
-            
             // Style time slot buttons
             document.querySelectorAll('.time-slot-btn').forEach(btn => {
-                btn.style.padding = '12px';
+                btn.style.padding = '10px';
                 btn.style.border = '1px solid var(--divider)';
                 btn.style.borderRadius = 'var(--radius)';
                 btn.style.background = 'white';
@@ -1621,7 +860,8 @@
                 btn.style.fontSize = '14px';
             });
             
-            // Initialize search date
+            // Set search date
+            const today = new Date().toISOString().split('T')[0];
             const searchDate = document.getElementById('searchDate');
             if (searchDate) {
                 searchDate.min = today;
@@ -1630,31 +870,21 @@
                 searchDate.value = tomorrow.toISOString().split('T')[0];
             }
             
-            // Set initial active nav item
-            document.querySelector('.nav-item.active').classList.remove('active');
-            document.querySelector('.nav-item[onclick*="dashboard"]').classList.add('active');
+            // Add CSS for spinner
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
         });
         
-        // Close sidenav when clicking outside on mobile
-        document.addEventListener('click', function(e) {
-            const sidenav = document.getElementById('sidenav');
-            if (window.innerWidth < 768 && 
-                sidenav.style.display === 'block' &&
-                !e.target.closest('.mat-sidenav') &&
-                !e.target.closest('.mat-icon-button')) {
-                sidenav.style.display = 'none';
-            }
+        // Close dialog on outside click
+        document.getElementById('bookingDialog').addEventListener('click', function(e) {
+            if (e.target === this) closeBookingDialog();
         });
-        
-        // Add CSS for loading spinner
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
