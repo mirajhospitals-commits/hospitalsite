@@ -107,6 +107,182 @@
             align-items: center;
         }
         
+        /* ========== TOP SEARCH BAR ========== */
+        .top-search-section {
+            background: white;
+            padding: 40px 20px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--divider);
+        }
+        
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .search-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .search-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        
+        .search-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .main-search-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid var(--divider);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .location-search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--divider);
+        }
+        
+        .location-icon {
+            color: var(--primary);
+        }
+        
+        .location-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .location-city {
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .search-input-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px 20px 18px 60px;
+            border: 2px solid var(--divider);
+            border-radius: var(--radius);
+            font-size: 18px;
+            color: var(--text);
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        .search-input-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 24px;
+        }
+        
+        .search-placeholder {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            margin-left: 4px;
+        }
+        
+        .search-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .search-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+        
+        /* ========== POPULAR SEARCHES ========== */
+        .popular-searches {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--divider);
+        }
+        
+        .popular-title {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .popular-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .popular-tag {
+            background: var(--primary-light);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .popular-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
         /* ========== QUICK APPOINTMENT BOOKING ========== */
         .quick-booking-section {
             background: white;
@@ -555,6 +731,15 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .search-title {
+                font-size: 28px;
+            }
+            
+            .search-input {
+                font-size: 16px;
+                padding: 16px 20px 16px 50px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -567,6 +752,10 @@
             }
             
             .booking-card {
+                padding: 20px;
+            }
+            
+            .main-search-card {
                 padding: 20px;
             }
         }
@@ -611,10 +800,71 @@
         </div>
     </header>
 
-    <!-- QUICK APPOINTMENT BOOKING SECTION -->
+    <!-- TOP SEARCH BAR (Matching Image) -->
+    <section class="top-search-section">
+        <div class="search-container">
+            <div class="search-header">
+                <h1 class="search-title">Find and Book</h1>
+                <p class="search-subtitle">Find and book doctors appointment</p>
+            </div>
+            
+            <div class="main-search-card">
+                <!-- Location -->
+                <div class="location-search">
+                    <span class="material-icons location-icon">location_on</span>
+                    <span class="location-text">Currently showing doctors in</span>
+                    <span class="location-city" onclick="changeLocation()">
+                        Bangalore
+                        <span class="material-icons" style="font-size: 18px;">expand_more</span>
+                    </span>
+                </div>
+                
+                <!-- Search Input -->
+                <div class="search-input-container">
+                    <span class="material-icons search-input-icon">search</span>
+                    <input type="text" class="search-input" id="mainSearchInput" 
+                           placeholder="Search doctors, clinics, hospitals, etc.">
+                </div>
+                
+                <div class="search-placeholder">
+                    Enter doctor name, speciality, clinic or hospital name
+                </div>
+                
+                <button class="search-button" onclick="performMainSearch()">
+                    <span class="material-icons">search</span>
+                    Search
+                </button>
+                
+                <!-- Popular Searches -->
+                <div class="popular-searches">
+                    <div class="popular-title">Popular searches:</div>
+                    <div class="popular-tags">
+                        <span class="popular-tag" onclick="searchByTag('Dermatologist')">
+                            <span class="material-icons" style="font-size: 16px;">search</span>
+                            Dermatologist
+                        </span>
+                        <span class="popular-tag" onclick="searchByTag('Pediatrician')">
+                            <span class="material-icons" style="font-size: 16px;">search</span>
+                            Pediatrician
+                        </span>
+                        <span class="popular-tag" onclick="searchByTag('Gynecologist')">
+                            <span class="material-icons" style="font-size: 16px;">search</span>
+                            Gynecologist/Obstetrician
+                        </span>
+                        <span class="popular-tag" onclick="searchByTag('Other Specialties')">
+                            <span class="material-icons" style="font-size: 16px;">search</span>
+                            Others
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK APPOINTMENT BOOKING -->
     <section class="quick-booking-section">
         <div class="booking-container">
-            <h1 class="booking-title">Book Doctor Appointment in 3 Simple Steps</h1>
+            <h2 class="booking-title">Book Doctor Appointment in 3 Simple Steps</h2>
             <p class="booking-subtitle">Find and book appointments with the best doctors near you</p>
             
             <div class="booking-card">
@@ -980,6 +1230,31 @@
     </div>
 
     <script>
+        // Main Search Functions
+        function performMainSearch() {
+            const searchTerm = document.getElementById('mainSearchInput').value;
+            if (searchTerm.trim()) {
+                alert(`Searching for: "${searchTerm}"`);
+                // In a real app, this would redirect or filter results
+            } else {
+                alert('Please enter a search term');
+            }
+        }
+        
+        function searchByTag(tag) {
+            document.getElementById('mainSearchInput').value = tag;
+            performMainSearch();
+        }
+        
+        function changeLocation() {
+            const cities = ['Mumbai', 'Delhi', 'Chennai', 'Hyderabad', 'Kolkata'];
+            const currentCity = document.querySelector('.location-city');
+            const currentText = currentCity.textContent.replace('expand_more', '').trim();
+            const currentIndex = cities.indexOf(currentText) !== -1 ? cities.indexOf(currentText) : 0;
+            const nextIndex = (currentIndex + 1) % cities.length;
+            currentCity.innerHTML = `${cities[nextIndex]} <span class="material-icons" style="font-size: 18px;">expand_more</span>`;
+        }
+        
         // Quick Booking Form Submission
         function findAvailableDoctors() {
             const form = document.getElementById('quickBookingForm');
@@ -1001,6 +1276,7 @@
         function searchBySpecialty(specialty) {
             const form = document.getElementById('quickBookingForm');
             form.querySelector('select:nth-child(2)').value = specialty;
+            document.getElementById('mainSearchInput').value = specialty;
             alert(`Searching for ${specialty}...`);
             // In real app, this would filter doctors by specialty
         }
