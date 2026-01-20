@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Medical Connect - Hospital Platform</title>
+    <title>City Medical Connect - Complete Hospital Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏥</text></svg>">
     <style>
         :root {
             --primary: #0066cc;
@@ -17,6 +18,11 @@
             --text-light: #666;
             --border: #e0e0e0;
             --bg: #f8fafc;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --shadow: 0 5px 15px rgba(0,0,0,0.08);
+            --radius: 10px;
         }
         
         * {
@@ -30,6 +36,7 @@
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
         }
         
         .container {
@@ -44,7 +51,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
         
         .header-content {
@@ -58,6 +65,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
         }
         
         .logo i {
@@ -88,6 +96,12 @@
             overflow: hidden;
             padding: 8px 15px;
             width: 300px;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
         }
         
         .search-box input {
@@ -95,6 +109,7 @@
             outline: none;
             flex: 1;
             padding: 0 10px;
+            font-size: 0.95rem;
         }
         
         .search-box button {
@@ -102,6 +117,7 @@
             border: none;
             color: var(--primary);
             cursor: pointer;
+            padding: 0 5px;
         }
         
         .user-menu {
@@ -114,18 +130,22 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            cursor: pointer;
         }
         
         /* Main Navigation */
         .main-nav {
             background: var(--primary);
             color: white;
+            position: sticky;
+            top: 72px;
+            z-index: 999;
         }
         
         .nav-tabs {
@@ -161,6 +181,7 @@
         /* Main Content */
         .main-content {
             padding: 30px 0;
+            min-height: calc(100vh - 280px);
         }
         
         .section-header {
@@ -168,11 +189,16 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .section-header h2 {
             color: var(--primary);
             font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .view-all {
@@ -182,6 +208,12 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: all 0.3s;
+        }
+        
+        .view-all:hover {
+            gap: 10px;
+            color: var(--primary-dark);
         }
         
         /* Hospital Grid */
@@ -194,9 +226,9 @@
         
         .hospital-card {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
@@ -220,6 +252,7 @@
             padding: 5px 10px;
             border-radius: 15px;
             font-size: 0.8rem;
+            backdrop-filter: blur(5px);
         }
         
         .hospital-header h3 {
@@ -232,6 +265,7 @@
             align-items: center;
             gap: 5px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
         
         .hospital-rating i {
@@ -260,6 +294,7 @@
         .detail-item i {
             color: var(--primary);
             width: 20px;
+            text-align: center;
         }
         
         .specialties {
@@ -275,6 +310,12 @@
             padding: 5px 10px;
             border-radius: 15px;
             font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        
+        .specialty-tag:hover {
+            background: var(--primary);
+            color: white;
         }
         
         .hospital-actions {
@@ -294,6 +335,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-size: 0.95rem;
         }
         
         .btn-primary {
@@ -304,6 +346,7 @@
         
         .btn-primary:hover {
             background: var(--primary-dark);
+            transform: translateY(-2px);
         }
         
         .btn-secondary {
@@ -314,6 +357,37 @@
         
         .btn-secondary:hover {
             background: #d1e7ff;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background: var(--warning);
+            color: #333;
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
         }
         
         /* Services Grid */
@@ -326,21 +400,22 @@
         
         .service-card {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius);
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
             text-align: center;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .service-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         
         .service-icon {
             width: 60px;
             height: 60px;
-            background: var(--primary-light);
+            background: linear-gradient(135deg, var(--primary-light) 0%, #d1e7ff 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -383,9 +458,9 @@
         /* Appointment Section */
         .appointment-section {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius);
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
             margin-bottom: 40px;
         }
         
@@ -405,13 +480,39 @@
             margin-bottom: 8px;
             font-weight: 500;
             color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
-        .form-group select, .form-group input {
+        .form-group label:after {
+            content: "*";
+            color: var(--danger);
+            margin-left: 2px;
+        }
+        
+        .form-group label.optional:after {
+            content: "";
+        }
+        
+        .form-group select, .form-group input, .form-group textarea {
             padding: 12px 15px;
             border: 1px solid var(--border);
             border-radius: 5px;
             font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group select:focus, .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
         }
         
         .appointment-actions {
@@ -419,11 +520,13 @@
             justify-content: center;
             gap: 15px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
         
         .btn-large {
             padding: 15px 30px;
             font-size: 1.1rem;
+            min-width: 200px;
         }
         
         .btn-accent {
@@ -433,6 +536,7 @@
         
         .btn-accent:hover {
             background: #e55a2b;
+            transform: translateY(-2px);
         }
         
         /* Recent Appointments */
@@ -440,9 +544,9 @@
             width: 100%;
             border-collapse: collapse;
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
         }
         
         .appointments-table th {
@@ -467,6 +571,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: 600;
+            display: inline-block;
         }
         
         .status-confirmed {
@@ -479,12 +584,22 @@
             color: #ef6c00;
         }
         
+        .status-cancelled {
+            background: #f8d7da;
+            color: var(--danger);
+        }
+        
+        .status-completed {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
         /* Filters */
         .filters {
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             margin-bottom: 30px;
         }
         
@@ -492,24 +607,33 @@
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
-            align-items: center;
+            align-items: flex-end;
         }
         
         .filter-group {
             display: flex;
             flex-direction: column;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .filter-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+            font-size: 0.9rem;
         }
         
         .filter-group select {
             padding: 10px;
             border: 1px solid var(--border);
             border-radius: 5px;
-            min-width: 150px;
+            font-size: 0.95rem;
         }
         
         /* Footer */
         footer {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #003366 100%);
             color: white;
             padding: 40px 0 20px;
             margin-top: 40px;
@@ -525,6 +649,7 @@
         .footer-section h3 {
             margin-bottom: 20px;
             font-size: 1.2rem;
+            color: white;
         }
         
         .footer-links {
@@ -538,11 +663,39 @@
         .footer-links a {
             color: #cce0ff;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
         }
         
         .footer-links a:hover {
             color: white;
-            text-decoration: underline;
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
         
         .copyright {
@@ -562,10 +715,17 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            z-index: 1000;
+            backdrop-filter: blur(3px);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .modal-content {
@@ -576,6 +736,12 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
         .modal-close {
@@ -588,13 +754,19 @@
             cursor: pointer;
             color: var(--text-light);
             z-index: 10;
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.9);
             border-radius: 50%;
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            background: var(--primary-light);
+            color: var(--primary);
         }
         
         /* Digital Health Card Styling */
@@ -643,6 +815,7 @@
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.9rem;
+            backdrop-filter: blur(5px);
         }
         
         .qr-code-placeholder {
@@ -657,6 +830,13 @@
             color: var(--primary);
             margin: 20px auto;
             padding: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         .qr-code-placeholder i {
@@ -682,9 +862,11 @@
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 25px;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-size: 1.1rem;
             letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: bold;
         }
         
         .detail-row {
@@ -692,6 +874,7 @@
             justify-content: space-between;
             padding: 12px 0;
             border-bottom: 1px solid var(--border);
+            align-items: flex-start;
         }
         
         .detail-row:last-child {
@@ -701,12 +884,14 @@
         .detail-label {
             color: var(--text-light);
             font-weight: 500;
+            flex: 1;
         }
         
         .detail-value {
             font-weight: 600;
             text-align: right;
-            max-width: 60%;
+            flex: 2;
+            word-break: break-word;
         }
         
         .card-footer {
@@ -716,11 +901,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .card-actions {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .btn-outline {
@@ -731,23 +919,15 @@
         
         .btn-outline:hover {
             background: var(--primary-light);
-        }
-        
-        .btn-success {
-            background: var(--secondary);
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background: #1b5e20;
+            transform: translateY(-2px);
         }
         
         /* Saved Cards Section */
         .saved-cards-section {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius);
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
             margin-top: 30px;
             display: none;
         }
@@ -763,14 +943,26 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: var(--radius);
             position: relative;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
         }
         
         .mini-health-card:hover {
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .mini-health-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
         }
         
         .mini-card-header {
@@ -781,53 +973,141 @@
         }
         
         .mini-appointment-id {
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-size: 0.9rem;
             background: rgba(255,255,255,0.2);
             padding: 3px 10px;
             border-radius: 15px;
+            backdrop-filter: blur(5px);
         }
         
         .mini-card-details p {
             margin: 5px 0;
             font-size: 0.9rem;
             opacity: 0.9;
-        }
-        
-        /* Reminders Section */
-        .reminders-section {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            margin-top: 30px;
-            display: none;
-        }
-        
-        .reminder-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            background: var(--primary-light);
+            gap: 8px;
         }
         
-        .reminder-icon {
-            width: 40px;
-            height: 40px;
+        /* Data Management */
+        .data-management {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .data-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        /* Storage Status */
+        .storage-status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
             background: var(--primary);
             color: white;
-            border-radius: 50%;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            gap: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            animation: slideInLeft 0.3s ease;
         }
         
-        /* Responsive */
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .storage-status i {
+            animation: spin 4s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 2001;
+            animation: slideInRight 0.3s ease;
+            max-width: 350px;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .toast-success {
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .toast-error {
+            border-left: 4px solid var(--danger);
+        }
+        
+        .toast-info {
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--primary-light);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        /* Emergency Banner */
+        .emergency-banner {
+            background: linear-gradient(135deg, var(--accent) 0%, #e55a2b 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: var(--radius);
+            animation: pulse 2s infinite;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--border);
+            margin-bottom: 15px;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -840,6 +1120,10 @@
             
             .nav-tabs {
                 flex-direction: column;
+            }
+            
+            .nav-tabs li {
+                width: 100%;
             }
             
             .hospital-grid {
@@ -856,7 +1140,7 @@
             
             .filter-options {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
             }
             
             .card-grid {
@@ -865,6 +1149,83 @@
             
             .card-actions {
                 flex-direction: column;
+                width: 100%;
+            }
+            
+            .card-actions button {
+                width: 100%;
+            }
+            
+            .card-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .appointment-actions {
+                flex-direction: column;
+            }
+            
+            .btn-large {
+                width: 100%;
+            }
+            
+            .data-actions {
+                flex-direction: column;
+            }
+            
+            .data-actions button {
+                width: 100%;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .storage-status {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                font-size: 0.8rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                max-width: 95%;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .detail-label, .detail-value {
+                text-align: left;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .hospital-actions {
+                flex-direction: column;
+            }
+            
+            .appointments-table {
+                display: block;
+                overflow-x: auto;
             }
         }
         
@@ -874,8 +1235,28 @@
             }
             
             .modal-close,
-            .card-actions {
-                display: none;
+            .card-actions,
+            .storage-status,
+            header,
+            .main-nav,
+            footer,
+            .data-management {
+                display: none !important;
+            }
+            
+            .modal-content {
+                box-shadow: none;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .health-card, .card-details, .card-footer {
+                padding: 15px;
+            }
+            
+            .qr-code-placeholder {
+                border: 1px solid #ccc;
             }
         }
     </style>
@@ -885,19 +1266,19 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
+                <a href="#" class="logo" onclick="scrollToTop(event)">
                     <i class="fas fa-hospital-alt"></i>
                     <h1>City<span>Medical</span> Connect</h1>
-                </div>
+                </a>
                 
                 <div class="header-controls">
                     <div class="search-box">
-                        <input type="text" placeholder="Search hospitals, doctors, services...">
-                        <button><i class="fas fa-search"></i></button>
+                        <input type="text" placeholder="Search hospitals, doctors, services..." id="search-input">
+                        <button id="search-button"><i class="fas fa-search"></i></button>
                     </div>
                     
                     <div class="user-menu">
-                        <div class="avatar">JD</div>
+                        <div class="avatar" title="Click to view profile" onclick="showUserProfile()">JD</div>
                         <div>
                             <p style="font-weight: 500;">John Doe</p>
                             <small style="color: var(--text-light);">Patient</small>
@@ -912,25 +1293,35 @@
     <nav class="main-nav">
         <div class="container">
             <ul class="nav-tabs">
-                <li><a href="#hospitals" class="active"><i class="fas fa-hospital"></i> Hospitals</a></li>
-                <li><a href="#appointments"><i class="fas fa-calendar-check"></i> Appointments</a></li>
-                <li><a href="#services"><i class="fas fa-stethoscope"></i> Medical Services</a></li>
-                <li><a href="#my-health-cards"><i class="fas fa-id-card"></i> My Health Cards</a></li>
+                <li><a href="#hospitals" class="active" onclick="switchTab('hospitals')"><i class="fas fa-hospital"></i> Hospitals</a></li>
+                <li><a href="#appointments" onclick="switchTab('appointments')"><i class="fas fa-calendar-check"></i> Appointments</a></li>
+                <li><a href="#services" onclick="switchTab('services')"><i class="fas fa-stethoscope"></i> Services</a></li>
+                <li><a href="#health-cards" onclick="switchTab('health-cards')"><i class="fas fa-id-card"></i> Health Cards</a></li>
+                <li><a href="#data" onclick="switchTab('data')"><i class="fas fa-database"></i> Data</a></li>
             </ul>
         </div>
     </nav>
     
+    <!-- Emergency Banner -->
+    <div class="container">
+        <div class="emergency-banner" id="emergency-banner">
+            <i class="fas fa-ambulance"></i> 
+            <strong>EMERGENCY:</strong> Call 911 or visit nearest emergency room for immediate assistance
+        </div>
+    </div>
+    
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- Hospitals Section -->
-            <section id="hospitals-section">
+            <!-- Hospitals Section (Default) -->
+            <section id="hospitals-section" class="tab-content active">
                 <div class="section-header">
                     <h2><i class="fas fa-hospital"></i> Hospitals in Our City</h2>
                     <div class="filter-options">
                         <div class="filter-group">
+                            <label>Hospital Type</label>
                             <select id="filter-type">
-                                <option value="">All Hospital Types</option>
+                                <option value="">All Types</option>
                                 <option value="general">General Hospital</option>
                                 <option value="specialty">Specialty Hospital</option>
                                 <option value="clinic">Clinic</option>
@@ -938,6 +1329,7 @@
                             </select>
                         </div>
                         <div class="filter-group">
+                            <label>Area/Location</label>
                             <select id="filter-area">
                                 <option value="">All Areas</option>
                                 <option value="north">North City</option>
@@ -947,7 +1339,12 @@
                                 <option value="central">Central</option>
                             </select>
                         </div>
-                        <button class="btn btn-secondary" id="apply-filters">Apply Filters</button>
+                        <button class="btn btn-primary" id="apply-filters">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                        <button class="btn btn-secondary" id="clear-filters">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
                     </div>
                 </div>
                 
@@ -956,135 +1353,220 @@
                 </div>
             </section>
             
-            <!-- Appointment Booking Section -->
-            <section id="appointment-section" class="appointment-section">
-                <h2><i class="fas fa-calendar-plus"></i> Book an Appointment</h2>
-                <p>Schedule your visit to any hospital in the city</p>
-                
-                <form id="appointment-form" class="appointment-form">
-                    <div class="form-group">
-                        <label for="hospital-select">Select Hospital</label>
-                        <select id="hospital-select" required>
-                            <option value="">Choose a hospital</option>
-                            <!-- Options will be populated by JS -->
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="department-select">Department/Specialty</label>
-                        <select id="department-select" required>
-                            <option value="">Select department</option>
-                            <option value="cardiology">Cardiology</option>
-                            <option value="orthopedics">Orthopedics</option>
-                            <option value="neurology">Neurology</option>
-                            <option value="pediatrics">Pediatrics</option>
-                            <option value="dermatology">Dermatology</option>
-                            <option value="general">General Medicine</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="appointment-date">Preferred Date</label>
-                        <input type="date" id="appointment-date" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="time-slot">Preferred Time Slot</label>
-                        <select id="time-slot" required>
-                            <option value="">Select time</option>
-                            <option value="9-10">9:00 AM - 10:00 AM</option>
-                            <option value="10-11">10:00 AM - 11:00 AM</option>
-                            <option value="11-12">11:00 AM - 12:00 PM</option>
-                            <option value="2-3">2:00 PM - 3:00 PM</option>
-                            <option value="3-4">3:00 PM - 4:00 PM</option>
-                            <option value="4-5">4:00 PM - 5:00 PM</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="patient-name">Patient Name</label>
-                        <input type="text" id="patient-name" value="John Doe" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="patient-contact">Contact Number</label>
-                        <input type="tel" id="patient-contact" value="+1 (555) 123-4567" required>
-                    </div>
-                </form>
-                
-                <div class="appointment-actions">
-                    <button class="btn btn-primary btn-large" id="book-appointment">
-                        <i class="fas fa-calendar-check"></i> Book Appointment
-                    </button>
-                    <button class="btn btn-accent btn-large" id="emergency-appointment">
-                        <i class="fas fa-ambulance"></i> Emergency Booking
-                    </button>
-                </div>
-            </section>
-            
-            <!-- My Health Cards Section -->
-            <section id="my-health-cards-section" class="saved-cards-section">
+            <!-- Appointments Section -->
+            <section id="appointments-section" class="tab-content">
                 <div class="section-header">
-                    <h2><i class="fas fa-id-card"></i> My Digital Health Cards</h2>
-                    <span class="badge" id="card-count">0 cards</span>
+                    <h2><i class="fas fa-calendar-check"></i> Book Appointment</h2>
+                    <a href="#appointment-list" class="view-all" onclick="switchTab('health-cards')">
+                        View Health Cards <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
                 
-                <p>Access your appointment cards anytime. Present at hospital reception for quick check-in.</p>
+                <div class="appointment-section">
+                    <p>Schedule your visit to any hospital in the city. All fields marked with * are required.</p>
+                    
+                    <form id="appointment-form" class="appointment-form">
+                        <div class="form-group">
+                            <label for="hospital-select"><i class="fas fa-hospital"></i> Select Hospital</label>
+                            <select id="hospital-select" required>
+                                <option value="">Choose a hospital...</option>
+                                <!-- Options populated by JavaScript -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="department-select"><i class="fas fa-stethoscope"></i> Department/Specialty</label>
+                            <select id="department-select" required>
+                                <option value="">Select department...</option>
+                                <option value="cardiology">Cardiology</option>
+                                <option value="orthopedics">Orthopedics</option>
+                                <option value="neurology">Neurology</option>
+                                <option value="pediatrics">Pediatrics</option>
+                                <option value="dermatology">Dermatology</option>
+                                <option value="general">General Medicine</option>
+                                <option value="emergency">Emergency</option>
+                                <option value="surgery">Surgery</option>
+                                <option value="radiology">Radiology</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointment-date"><i class="fas fa-calendar-alt"></i> Preferred Date</label>
+                            <input type="date" id="appointment-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time-slot"><i class="fas fa-clock"></i> Preferred Time</label>
+                            <select id="time-slot" required>
+                                <option value="">Select time slot...</option>
+                                <option value="9-10">9:00 AM - 10:00 AM</option>
+                                <option value="10-11">10:00 AM - 11:00 AM</option>
+                                <option value="11-12">11:00 AM - 12:00 PM</option>
+                                <option value="1-2">1:00 PM - 2:00 PM</option>
+                                <option value="2-3">2:00 PM - 3:00 PM</option>
+                                <option value="3-4">3:00 PM - 4:00 PM</option>
+                                <option value="4-5">4:00 PM - 5:00 PM</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patient-name"><i class="fas fa-user"></i> Patient Name</label>
+                            <input type="text" id="patient-name" value="John Doe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patient-contact"><i class="fas fa-phone"></i> Contact Number</label>
+                            <input type="tel" id="patient-contact" value="+1 (555) 123-4567" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patient-notes" class="optional"><i class="fas fa-file-medical-alt"></i> Symptoms/Notes</label>
+                            <textarea id="patient-notes" placeholder="Describe your symptoms or any special requirements..."></textarea>
+                        </div>
+                    </form>
+                    
+                    <div class="appointment-actions">
+                        <button class="btn btn-primary btn-large" id="book-appointment">
+                            <i class="fas fa-calendar-check"></i> Book Appointment
+                        </button>
+                        <button class="btn btn-accent btn-large" id="emergency-appointment">
+                            <i class="fas fa-ambulance"></i> Emergency Assistance
+                        </button>
+                    </div>
+                </div>
                 
-                <div class="card-grid" id="health-cards-list">
-                    <!-- Saved health cards will appear here -->
-                    <p id="no-cards-message" style="text-align: center; color: var(--text-light); grid-column: 1 / -1;">
-                        No health cards yet. Book an appointment to get your first digital health card!
-                    </p>
+                <!-- Recent Appointments Table -->
+                <div style="margin-top: 40px;">
+                    <div class="section-header">
+                        <h2><i class="fas fa-history"></i> Recent Appointments</h2>
+                    </div>
+                    
+                    <div class="appointments-table-container">
+                        <table class="appointments-table">
+                            <thead>
+                                <tr>
+                                    <th>Hospital</th>
+                                    <th>Department</th>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointments-table-body">
+                                <!-- Appointments loaded here -->
+                            </tbody>
+                        </table>
+                        <div id="no-appointments" class="empty-state" style="display: none;">
+                            <i class="fas fa-calendar-times"></i>
+                            <h3>No Appointments Yet</h3>
+                            <p>Book your first appointment above to get started!</p>
+                        </div>
+                    </div>
                 </div>
             </section>
             
-            <!-- Reminders Section -->
-            <section id="reminders-section" class="reminders-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-bell"></i> Upcoming Appointments</h2>
-                </div>
-                
-                <div id="reminders-list">
-                    <!-- Reminders will appear here -->
-                    <p id="no-reminders-message" style="text-align: center; color: var(--text-light);">
-                        No upcoming appointments
-                    </p>
-                </div>
-            </section>
-            
-            <!-- Medical Services Section -->
-            <section id="services-section">
+            <!-- Services Section -->
+            <section id="services-section" class="tab-content">
                 <div class="section-header">
                     <h2><i class="fas fa-stethoscope"></i> Medical Services</h2>
-                    <a href="#" class="view-all">View All Services <i class="fas fa-arrow-right"></i></a>
+                    <a href="#hospitals" class="view-all" onclick="switchTab('hospitals')">
+                        Find Hospitals <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
                 
                 <div class="services-grid" id="services-list">
-                    <!-- Services will be loaded here -->
+                    <!-- Services loaded here -->
                 </div>
             </section>
             
-            <!-- Recent Appointments -->
-            <section id="recent-appointments">
-                <div class="section-header">
-                    <h2><i class="fas fa-history"></i> Recent Appointments</h2>
+            <!-- Health Cards Section -->
+            <section id="health-cards-section" class="tab-content">
+                <div class="saved-cards-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-id-card"></i> My Health Cards</h2>
+                        <span class="status-badge status-confirmed" id="card-count">0 cards</span>
+                    </div>
+                    
+                    <p>Your digital health cards. Present at hospital reception for quick check-in. Click any card to view details.</p>
+                    
+                    <div class="card-grid" id="health-cards-list">
+                        <!-- Health cards loaded here -->
+                    </div>
+                    <div id="no-cards" class="empty-state">
+                        <i class="fas fa-id-card"></i>
+                        <h3>No Health Cards Yet</h3>
+                        <p>Book an appointment to get your first digital health card!</p>
+                        <button class="btn btn-primary" onclick="switchTab('appointments')" style="margin-top: 15px;">
+                            <i class="fas fa-calendar-plus"></i> Book Appointment
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Data Management Section -->
+            <section id="data-section" class="tab-content">
+                <div class="data-management">
+                    <div class="section-header">
+                        <h2><i class="fas fa-database"></i> Data Management</h2>
+                    </div>
+                    <p>All your data is stored within this single HTML file. No external database required!</p>
+                    
+                    <div class="data-actions">
+                        <button class="btn btn-success" onclick="exportHTMLWithData()">
+                            <i class="fas fa-download"></i> Save Complete HTML
+                        </button>
+                        <button class="btn btn-primary" onclick="backupData()">
+                            <i class="fas fa-save"></i> Backup Data Now
+                        </button>
+                        <button class="btn btn-secondary" onclick="loadDataFromFile()">
+                            <i class="fas fa-upload"></i> Import Data
+                        </button>
+                        <button class="btn btn-warning" onclick="showDataInEditor()">
+                            <i class="fas fa-code"></i> View Raw Data
+                        </button>
+                        <button class="btn btn-danger" onclick="resetAllData()">
+                            <i class="fas fa-trash"></i> Reset All Data
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 25px; background: var(--bg); padding: 15px; border-radius: var(--radius);">
+                        <h4 style="margin-bottom: 10px;"><i class="fas fa-info-circle"></i> How It Works:</h4>
+                        <ul style="color: var(--text-light); padding-left: 20px;">
+                            <li>All data is stored within this HTML file</li>
+                            <li>Click "Save Complete HTML" to download with all data</li>
+                            <li>Share the downloaded file with anyone - they see all your data</li>
+                            <li>Works completely offline, no internet required</li>
+                            <li>Auto-saves every time you make changes</li>
+                        </ul>
+                    </div>
+                    
+                    <input type="file" id="dataFileInput" accept=".html,.json" style="display: none;">
                 </div>
                 
-                <table class="appointments-table">
-                    <thead>
-                        <tr>
-                            <th>Hospital</th>
-                            <th>Department</th>
-                            <th>Date & Time</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="appointments-table-body">
-                        <!-- Appointments will be loaded here -->
-                    </tbody>
-                </table>
+                <!-- Statistics -->
+                <div class="data-management" style="margin-top: 20px;">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-bar"></i> Statistics</h2>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div style="background: var(--primary-light); padding: 15px; border-radius: var(--radius);">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--primary);" id="stats-hospitals">5</div>
+                            <div style="color: var(--text-light);">Hospitals</div>
+                        </div>
+                        <div style="background: var(--secondary-light); padding: 15px; border-radius: var(--radius);">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--secondary);" id="stats-appointments">0</div>
+                            <div style="color: var(--text-light);">Appointments</div>
+                        </div>
+                        <div style="background: var(--primary-light); padding: 15px; border-radius: var(--radius);">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--primary);" id="stats-services">4</div>
+                            <div style="color: var(--text-light);">Services</div>
+                        </div>
+                        <div style="background: var(--secondary-light); padding: 15px; border-radius: var(--radius);">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--secondary);" id="stats-healthcards">0</div>
+                            <div style="color: var(--text-light);">Health Cards</div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -1095,25 +1577,31 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>City Medical Connect</h3>
-                    <p>Connecting patients with hospitals and medical services across the city. Your health is our priority.</p>
+                    <p>Your trusted partner in healthcare. Connecting patients with hospitals and medical services across the city.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#hospitals">Find Hospitals</a></li>
-                        <li><a href="#services">Medical Services</a></li>
-                        <li><a href="#doctors">Find Doctors</a></li>
-                        <li><a href="#emergency">Emergency Services</a></li>
+                        <li><a href="#hospitals" onclick="switchTab('hospitals')"><i class="fas fa-chevron-right"></i> Find Hospitals</a></li>
+                        <li><a href="#services" onclick="switchTab('services')"><i class="fas fa-chevron-right"></i> Medical Services</a></li>
+                        <li><a href="#appointments" onclick="switchTab('appointments')"><i class="fas fa-chevron-right"></i> Book Appointment</a></li>
+                        <li><a href="#health-cards" onclick="switchTab('health-cards')"><i class="fas fa-chevron-right"></i> My Health Cards</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Contact Us</h3>
+                    <h3>Emergency Contacts</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-phone"></i> Emergency: 911</li>
-                        <li><i class="fas fa-phone-alt"></i> Support: (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> help@citymedicalconnect.org</li>
+                        <li><a href="tel:911"><i class="fas fa-phone"></i> Emergency: 911</a></li>
+                        <li><a href="tel:5551234567"><i class="fas fa-phone-alt"></i> Support: (555) 123-4567</a></li>
+                        <li><a href="mailto:help@citymedicalconnect.org"><i class="fas fa-envelope"></i> help@citymedicalconnect.org</a></li>
                         <li><i class="fas fa-map-marker-alt"></i> 123 Medical Center, City</li>
                     </ul>
                 </div>
@@ -1121,6 +1609,7 @@
             
             <div class="copyright">
                 <p>&copy; 2023 City Medical Connect. All rights reserved. | A platform connecting healthcare across the city</p>
+                <p style="margin-top: 5px; font-size: 0.8rem;">Data stored in HTML | Version 2.0</p>
             </div>
         </div>
     </footer>
@@ -1128,7 +1617,7 @@
     <!-- Digital Health Card Modal -->
     <div id="health-card-modal" class="modal">
         <div class="modal-content">
-            <button class="modal-close">&times;</button>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
             
             <!-- Digital Health Card Content -->
             <div class="health-card">
@@ -1188,257 +1677,411 @@
                     <div class="detail-label">Issued On</div>
                     <div class="detail-value" id="modal-issued-date">Oct 10, 2023</div>
                 </div>
+                
+                <div class="detail-row">
+                    <div class="detail-label">Symptoms/Notes</div>
+                    <div class="detail-value" id="modal-notes">No additional notes</div>
+                </div>
             </div>
             
             <div class="card-footer">
                 <div class="card-actions">
-                    <button class="btn btn-outline" id="print-card">
+                    <button class="btn btn-outline" onclick="printHealthCard()">
                         <i class="fas fa-print"></i> Print Card
                     </button>
-                    <button class="btn btn-outline" id="download-card">
+                    <button class="btn btn-outline" onclick="downloadHealthCard()">
                         <i class="fas fa-download"></i> Save as PDF
                     </button>
                 </div>
-                <button class="btn btn-success" id="add-to-wallet">
+                <button class="btn btn-success" onclick="addToWallet()">
                     <i class="fas fa-plus-circle"></i> Add to My Wallet
                 </button>
             </div>
         </div>
     </div>
+    
+    <!-- Storage Status -->
+    <div class="storage-status" id="storage-status">
+        <i class="fas fa-database"></i>
+        <span id="storage-info">All data stored in this HTML file</span>
+    </div>
+
+    <!-- ============================================
+    DATA STORAGE - EMBEDDED IN HTML
+    ============================================ -->
+    
+    <!-- Initial data embedded directly in HTML -->
+    <script id="medical-data" type="application/json">
+    {
+        "hospitals": [
+            {
+                "id": "HOS_001",
+                "name": "City General Hospital",
+                "type": "general",
+                "area": "central",
+                "address": "123 Medical Center Blvd, Central City",
+                "phone": "(555) 123-4567",
+                "emergency": true,
+                "rating": 4.5,
+                "specialties": ["Cardiology", "Neurology", "General Surgery", "Emergency Care", "Pediatrics", "Radiology"],
+                "description": "Full-service hospital with 24/7 emergency services and state-of-the-art facilities",
+                "distance": "2.5 miles",
+                "email": "info@citygeneralhospital.org",
+                "website": "www.citygeneralhospital.org",
+                "beds": 450,
+                "doctors": 120
+            },
+            {
+                "id": "HOS_002",
+                "name": "Northside Medical Center",
+                "type": "multispecialty",
+                "area": "north",
+                "address": "456 Health Park Dr, North City",
+                "phone": "(555) 234-5678",
+                "emergency": true,
+                "rating": 4.7,
+                "specialties": ["Orthopedics", "Pediatrics", "Oncology", "Maternity", "Cardiac Care", "Neurology"],
+                "description": "Modern multispecialty hospital with advanced facilities and expert medical staff",
+                "distance": "5.2 miles",
+                "email": "contact@northsidemedical.org",
+                "website": "www.northsidemedical.org",
+                "beds": 320,
+                "doctors": 95
+            },
+            {
+                "id": "HOS_003",
+                "name": "Children's Health Institute",
+                "type": "specialty",
+                "area": "west",
+                "address": "789 Pediatric Way, West City",
+                "phone": "(555) 345-6789",
+                "emergency": true,
+                "rating": 4.8,
+                "specialties": ["Pediatrics", "Neonatology", "Child Psychiatry", "Pediatric Surgery", "Vaccinations"],
+                "description": "Specialized care for children and adolescents with child-friendly environment",
+                "distance": "3.8 miles",
+                "email": "info@childrenshealth.org",
+                "website": "www.childrenshealth.org",
+                "beds": 180,
+                "doctors": 65
+            },
+            {
+                "id": "HOS_004",
+                "name": "South City Clinic",
+                "type": "clinic",
+                "area": "south",
+                "address": "321 Wellness St, South City",
+                "phone": "(555) 456-7890",
+                "emergency": false,
+                "rating": 4.2,
+                "specialties": ["General Medicine", "Dermatology", "Physiotherapy", "Dental Care", "Eye Care"],
+                "description": "Outpatient clinic with specialist consultations and diagnostic services",
+                "distance": "4.5 miles",
+                "email": "appointments@southcityclinic.org",
+                "website": "www.southcityclinic.org",
+                "beds": 50,
+                "doctors": 25
+            },
+            {
+                "id": "HOS_005",
+                "name": "Eastside Specialty Hospital",
+                "type": "specialty",
+                "area": "east",
+                "address": "654 Care Ave, East City",
+                "phone": "(555) 567-8901",
+                "emergency": true,
+                "rating": 4.6,
+                "specialties": ["Cardiac Surgery", "Neurology", "Orthopedics", "Transplant", "Critical Care"],
+                "description": "Advanced specialty care center with surgical facilities and ICU",
+                "distance": "6.1 miles",
+                "email": "contact@eastsidespecialty.org",
+                "website": "www.eastsidespecialty.org",
+                "beds": 280,
+                "doctors": 85
+            }
+        ],
+        "services": [
+            {
+                "id": "SRV_001",
+                "name": "Emergency Services",
+                "icon": "fas fa-ambulance",
+                "description": "24/7 emergency care, trauma center, and ambulance services",
+                "features": ["Trauma Care", "Critical Care", "Ambulance Service", "Emergency Surgery", "Stabilization"],
+                "category": "emergency",
+                "duration": "Immediate",
+                "hospitals": ["HOS_001", "HOS_002", "HOS_003", "HOS_005"]
+            },
+            {
+                "id": "SRV_002",
+                "name": "Telemedicine",
+                "icon": "fas fa-video",
+                "description": "Virtual consultations with specialists from the comfort of your home",
+                "features": ["Video Consultations", "E-Prescriptions", "Remote Monitoring", "Follow-ups", "Second Opinions"],
+                "category": "consultation",
+                "duration": "30-60 mins",
+                "hospitals": ["HOS_001", "HOS_002", "HOS_003", "HOS_004"]
+            },
+            {
+                "id": "SRV_003",
+                "name": "Diagnostic Services",
+                "icon": "fas fa-flask",
+                "description": "Comprehensive lab tests, imaging, and health screenings",
+                "features": ["Blood Tests", "X-ray & MRI", "Ultrasound", "Pathology", "Health Checkups"],
+                "category": "diagnostics",
+                "duration": "2-4 hours",
+                "hospitals": ["HOS_001", "HOS_002", "HOS_004", "HOS_005"]
+            },
+            {
+                "id": "SRV_004",
+                "name": "Specialist Consultations",
+                "icon": "fas fa-user-md",
+                "description": "Expert consultations across all medical specialties",
+                "features": ["Cardiology", "Neurology", "Orthopedics", "Dermatology", "Pediatrics", "Surgery"],
+                "category": "consultation",
+                "duration": "30-45 mins",
+                "hospitals": ["HOS_001", "HOS_002", "HOS_003", "HOS_005"]
+            },
+            {
+                "id": "SRV_005",
+                "name": "Surgical Services",
+                "icon": "fas fa-syringe",
+                "description": "Advanced surgical procedures with modern technology",
+                "features": ["Minimally Invasive", "Day Surgery", "Major Surgery", "Post-op Care", "Rehabilitation"],
+                "category": "surgery",
+                "duration": "Varies",
+                "hospitals": ["HOS_001", "HOS_002", "HOS_005"]
+            },
+            {
+                "id": "SRV_006",
+                "name": "Maternity Care",
+                "icon": "fas fa-baby",
+                "description": "Complete care for expectant mothers and newborns",
+                "features": ["Prenatal Care", "Delivery", "Postnatal Care", "Neonatal ICU", "Parenting Classes"],
+                "category": "specialized",
+                "duration": "9 months+",
+                "hospitals": ["HOS_002", "HOS_003"]
+            }
+        ],
+        "appointments": [],
+        "healthCards": [],
+        "lastAppointmentId": 0,
+        "settings": {
+            "autoSave": true,
+            "notifications": true,
+            "theme": "light",
+            "emergencyContacts": ["911", "(555) 123-4567"]
+        },
+        "user": {
+            "id": "USR_001",
+            "name": "John Doe",
+            "email": "john.doe@example.com",
+            "phone": "+1 (555) 123-4567",
+            "type": "patient",
+            "address": "123 Main Street, City",
+            "dateOfBirth": "1985-06-15",
+            "bloodGroup": "O+",
+            "emergencyContact": "+1 (555) 987-6543",
+            "allergies": ["Penicillin", "Peanuts"]
+        },
+        "metadata": {
+            "created": "2023-10-01",
+            "lastUpdated": "",
+            "version": "2.0",
+            "totalAppointments": 0,
+            "totalHealthCards": 0
+        }
+    }
+    </script>
 
     <script>
-        // Hospital data
-        const hospitals = [
-            {
-                id: 1,
-                name: "City General Hospital",
-                type: "general",
-                area: "central",
-                address: "123 Medical Center Blvd, Central City",
-                phone: "(555) 123-4567",
-                emergency: true,
-                rating: 4.5,
-                specialties: ["Cardiology", "Neurology", "General Surgery", "Emergency Care"],
-                description: "Full-service hospital with 24/7 emergency services",
-                distance: "2.5 miles"
-            },
-            {
-                id: 2,
-                name: "Northside Medical Center",
-                type: "multispecialty",
-                area: "north",
-                address: "456 Health Park Dr, North City",
-                phone: "(555) 234-5678",
-                emergency: true,
-                rating: 4.7,
-                specialties: ["Orthopedics", "Pediatrics", "Oncology", "Maternity"],
-                description: "Modern multispecialty hospital with advanced facilities",
-                distance: "5.2 miles"
-            },
-            {
-                id: 3,
-                name: "Children's Health Institute",
-                type: "specialty",
-                area: "west",
-                address: "789 Pediatric Way, West City",
-                phone: "(555) 345-6789",
-                emergency: true,
-                rating: 4.8,
-                specialties: ["Pediatrics", "Neonatology", "Child Psychiatry"],
-                description: "Specialized care for children and adolescents",
-                distance: "3.8 miles"
-            },
-            {
-                id: 4,
-                name: "South City Clinic",
-                type: "clinic",
-                area: "south",
-                address: "321 Wellness St, South City",
-                phone: "(555) 456-7890",
-                emergency: false,
-                rating: 4.2,
-                specialties: ["General Medicine", "Dermatology", "Physiotherapy"],
-                description: "Outpatient clinic with specialist consultations",
-                distance: "4.5 miles"
-            },
-            {
-                id: 5,
-                name: "Eastside Specialty Hospital",
-                type: "specialty",
-                area: "east",
-                address: "654 Care Ave, East City",
-                phone: "(555) 567-8901",
-                emergency: true,
-                rating: 4.6,
-                specialties: ["Cardiac Surgery", "Neurology", "Orthopedics"],
-                description: "Advanced specialty care with surgical facilities",
-                distance: "6.1 miles"
-            },
-            {
-                id: 6,
-                name: "Downtown Medical Center",
-                type: "multispecialty",
-                area: "central",
-                address: "987 Downtown Plaza, Central City",
-                phone: "(555) 678-9012",
-                emergency: true,
-                rating: 4.4,
-                specialties: ["Emergency Medicine", "Internal Medicine", "Radiology"],
-                description: "Conveniently located downtown medical facility",
-                distance: "1.8 miles"
-            }
-        ];
-
-        // Medical services data
-        const medicalServices = [
-            {
-                id: 1,
-                name: "Emergency Services",
-                icon: "fas fa-ambulance",
-                description: "24/7 emergency care and ambulance services",
-                features: ["Trauma Care", "Critical Care", "Ambulance", "Emergency Surgery"]
-            },
-            {
-                id: 2,
-                name: "Telemedicine",
-                icon: "fas fa-video",
-                description: "Virtual consultations with specialists",
-                features: ["Video Consultations", "E-Prescriptions", "Remote Monitoring", "Follow-ups"]
-            },
-            {
-                id: 3,
-                name: "Diagnostic Services",
-                icon: "fas fa-flask",
-                description: "Comprehensive lab tests and imaging",
-                features: ["Blood Tests", "X-ray & MRI", "Ultrasound", "Pathology"]
-            },
-            {
-                id: 4,
-                name: "Specialist Consultations",
-                icon: "fas fa-user-md",
-                description: "Expert consultations across specialties",
-                features: ["Cardiology", "Neurology", "Orthopedics", "Dermatology"]
-            },
-            {
-                id: 5,
-                name: "Surgical Services",
-                icon: "fas fa-syringe",
-                description: "Advanced surgical procedures",
-                features: ["Minimally Invasive", "Day Surgery", "Major Surgery", "Post-op Care"]
-            },
-            {
-                id: 6,
-                name: "Wellness Programs",
-                icon: "fas fa-heartbeat",
-                description: "Preventive care and health maintenance",
-                features: ["Health Checkups", "Vaccinations", "Nutrition Counseling", "Fitness Programs"]
-            }
-        ];
-
-        // Appointments data
-        let appointments = [
-            {
-                id: 1,
-                hospital: "City General Hospital",
-                department: "Cardiology",
-                date: "2023-10-15",
-                time: "10:00 AM",
-                status: "confirmed",
-                patientName: "John Doe",
-                contact: "+1 (555) 123-4567",
-                appointmentId: "APPT-789123",
-                issuedDate: "2023-10-10"
-            },
-            {
-                id: 2,
-                hospital: "Northside Medical Center",
-                department: "Orthopedics",
-                date: "2023-10-18",
-                time: "2:30 PM",
-                status: "pending",
-                patientName: "John Doe",
-                contact: "+1 (555) 123-4567",
-                appointmentId: "APPT-456789",
-                issuedDate: "2023-10-11"
-            },
-            {
-                id: 3,
-                hospital: "Children's Health Institute",
-                department: "Pediatrics",
-                date: "2023-10-10",
-                time: "9:00 AM",
-                status: "confirmed",
-                patientName: "John Doe",
-                contact: "+1 (555) 123-4567",
-                appointmentId: "APPT-123456",
-                issuedDate: "2023-10-05"
-            }
-        ];
-
-        // Digital Health Cards storage
-        let healthCards = [...appointments];
-
-        // DOM elements
-        const hospitalList = document.getElementById('hospital-list');
-        const hospitalSelect = document.getElementById('hospital-select');
-        const servicesList = document.getElementById('services-list');
-        const appointmentsTableBody = document.getElementById('appointments-table-body');
-        const filterType = document.getElementById('filter-type');
-        const filterArea = document.getElementById('filter-area');
-        const applyFiltersBtn = document.getElementById('apply-filters');
-        const bookAppointmentBtn = document.getElementById('book-appointment');
-        const appointmentForm = document.getElementById('appointment-form');
-        const healthCardModal = document.getElementById('health-card-modal');
-        const closeModalBtn = document.querySelector('.modal-close');
-        const healthCardsSection = document.getElementById('my-health-cards-section');
-        const healthCardsList = document.getElementById('health-cards-list');
-        const noCardsMessage = document.getElementById('no-cards-message');
-        const cardCount = document.getElementById('card-count');
-        const remindersSection = document.getElementById('reminders-section');
-        const remindersList = document.getElementById('reminders-list');
-
-        // Modal elements
-        const modalAppointmentId = document.getElementById('modal-appointment-id');
-        const modalPatientName = document.getElementById('modal-patient-name');
-        const modalHospital = document.getElementById('modal-hospital');
-        const modalDepartment = document.getElementById('modal-department');
-        const modalDatetime = document.getElementById('modal-datetime');
-        const modalContact = document.getElementById('modal-contact');
-        const modalStatus = document.getElementById('modal-status');
-        const modalIssuedDate = document.getElementById('modal-issued-date');
-
-        // Initialize the page
-        function init() {
-            renderHospitals(hospitals);
-            renderServices(medicalServices);
-            renderAppointments();
-            populateHospitalSelect();
-            renderHealthCards();
-            renderReminders();
+        // ============================================
+        // CITY MEDICAL CONNECT - COMPLETE APPLICATION
+        // ============================================
+        
+        // Global application state
+        const App = {
+            data: null,
+            currentTab: 'hospitals',
+            toastQueue: [],
+            isInitialized: false
+        };
+        
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        
+        function initializeApp() {
+            if (App.isInitialized) return;
+            
+            console.log('🚀 Initializing City Medical Connect...');
+            
+            // Load data from HTML
+            loadDataFromHTML();
+            
+            // Set up today's date for appointment form
+            setMinDateForAppointment();
+            
+            // Render initial content
+            renderAllSections();
+            
+            // Set up event listeners
             setupEventListeners();
             
-            // Set minimum date for appointment to today
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('appointment-date').min = today;
+            // Update storage status
+            updateStorageStatus();
+            
+            // Update statistics
+            updateStatistics();
+            
+            // Show welcome message
+            setTimeout(() => {
+                showToast('🏥 Welcome to City Medical Connect!', 'info');
+            }, 1000);
+            
+            App.isInitialized = true;
+            console.log('✅ Application initialized successfully');
         }
-
-        // Render hospitals to the grid
-        function renderHospitals(hospitalsArray) {
+        
+        // ============================================
+        // DATA MANAGEMENT
+        // ============================================
+        
+        function loadDataFromHTML() {
+            try {
+                const dataScript = document.getElementById('medical-data');
+                if (dataScript) {
+                    App.data = JSON.parse(dataScript.textContent);
+                    
+                    // Try to load saved data from localStorage as backup
+                    const savedData = localStorage.getItem('cityMedicalDataBackup');
+                    if (savedData) {
+                        try {
+                            const parsedSavedData = JSON.parse(savedData);
+                            // Merge user data (appointments, health cards)
+                            if (parsedSavedData.appointments) {
+                                App.data.appointments = parsedSavedData.appointments;
+                            }
+                            if (parsedSavedData.healthCards) {
+                                App.data.healthCards = parsedSavedData.healthCards;
+                            }
+                            if (parsedSavedData.lastAppointmentId) {
+                                App.data.lastAppointmentId = parsedSavedData.lastAppointmentId;
+                            }
+                            console.log('📂 Loaded backup data from localStorage');
+                        } catch (e) {
+                            console.warn('Could not parse backup data from localStorage');
+                        }
+                    }
+                    
+                    // Update metadata
+                    App.data.metadata.lastUpdated = new Date().toISOString();
+                    App.data.metadata.totalAppointments = App.data.appointments.length;
+                    App.data.metadata.totalHealthCards = App.data.healthCards.length;
+                    
+                    console.log(`📊 Data loaded: ${App.data.hospitals.length} hospitals, ${App.data.appointments.length} appointments`);
+                    return true;
+                } else {
+                    throw new Error('No data found in HTML');
+                }
+            } catch (error) {
+                console.error('❌ Error loading data:', error);
+                // Create default data structure
+                App.data = {
+                    hospitals: [],
+                    services: [],
+                    appointments: [],
+                    healthCards: [],
+                    lastAppointmentId: 0,
+                    settings: {},
+                    user: {},
+                    metadata: {}
+                };
+                showToast('⚠️ Could not load data. Using default configuration.', 'error');
+                return false;
+            }
+        }
+        
+        function saveData() {
+            try {
+                // Update the script tag in HTML (in-memory)
+                const dataScript = document.getElementById('medical-data');
+                if (dataScript) {
+                    // Update metadata before saving
+                    App.data.metadata.lastUpdated = new Date().toISOString();
+                    App.data.metadata.totalAppointments = App.data.appointments.length;
+                    App.data.metadata.totalHealthCards = App.data.healthCards.length;
+                    
+                    dataScript.textContent = JSON.stringify(App.data, null, 2);
+                }
+                
+                // Save to localStorage as backup
+                const backupData = {
+                    appointments: App.data.appointments,
+                    healthCards: App.data.healthCards,
+                    lastAppointmentId: App.data.lastAppointmentId,
+                    user: App.data.user,
+                    metadata: App.data.metadata
+                };
+                localStorage.setItem('cityMedicalDataBackup', JSON.stringify(backupData));
+                
+                updateStorageStatus();
+                updateStatistics();
+                console.log('💾 Data saved successfully');
+                return true;
+            } catch (error) {
+                console.error('Error saving data:', error);
+                showToast('⚠️ Error saving data', 'error');
+                return false;
+            }
+        }
+        
+        function backupData() {
+            saveData();
+            showToast('✅ Data backed up successfully!', 'success');
+        }
+        
+        // ============================================
+        // RENDERING FUNCTIONS
+        // ============================================
+        
+        function renderAllSections() {
+            renderHospitals();
+            renderServices();
+            renderAppointments();
+            renderHealthCards();
+            populateHospitalSelect();
+        }
+        
+        function renderHospitals() {
+            const hospitalList = document.getElementById('hospital-list');
+            if (!hospitalList) return;
+            
             hospitalList.innerHTML = '';
             
-            hospitalsArray.forEach(hospital => {
+            if (App.data.hospitals.length === 0) {
+                hospitalList.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="fas fa-hospital"></i>
+                        <h3>No Hospitals Found</h3>
+                        <p>No hospital data available at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            App.data.hospitals.forEach(hospital => {
                 const hospitalCard = document.createElement('div');
                 hospitalCard.className = 'hospital-card';
                 hospitalCard.innerHTML = `
                     <div class="hospital-header">
-                        <div class="hospital-type">${hospital.type.charAt(0).toUpperCase() + hospital.type.slice(1)}</div>
+                        <div class="hospital-type">${hospital.type.toUpperCase()}</div>
                         <h3>${hospital.name}</h3>
                         <p>${hospital.description}</p>
                         <div class="hospital-rating">
                             <i class="fas fa-star"></i>
-                            <span>${hospital.rating}</span>
+                            <span>${hospital.rating}/5</span>
                             <span>• ${hospital.distance} away</span>
-                            ${hospital.emergency ? '<span style="margin-left: 10px;"><i class="fas fa-ambulance"></i> 24/7 Emergency</span>' : ''}
+                            ${hospital.emergency ? '<span><i class="fas fa-ambulance"></i> 24/7 Emergency</span>' : ''}
                         </div>
                     </div>
                     <div class="hospital-body">
@@ -1453,23 +2096,29 @@
                             </div>
                             <div class="detail-item">
                                 <i class="fas fa-compass"></i>
-                                <span>${hospital.area.charAt(0).toUpperCase() + hospital.area.slice(1)} City</span>
+                                <span>${hospital.area} City</span>
                             </div>
                             <div class="detail-item">
-                                <i class="fas fa-clock"></i>
-                                <span>${hospital.emergency ? '24/7 Open' : 'Mon-Fri: 8AM-8PM'}</span>
+                                <i class="fas fa-procedures"></i>
+                                <span>${hospital.beds} Beds</span>
                             </div>
                         </div>
                         
                         <div class="specialties">
-                            ${hospital.specialties.map(spec => `<span class="specialty-tag">${spec}</span>`).join('')}
+                            ${hospital.specialties.slice(0, 5).map(spec => 
+                                `<span class="specialty-tag">${spec}</span>`
+                            ).join('')}
+                            ${hospital.specialties.length > 5 ? 
+                                `<span class="specialty-tag">+${hospital.specialties.length - 5} more</span>` : 
+                                ''
+                            }
                         </div>
                         
                         <div class="hospital-actions">
-                            <button class="btn btn-primary" onclick="bookAtHospital(${hospital.id})">
+                            <button class="btn btn-primary" onclick="bookAtHospital('${hospital.id}')">
                                 <i class="fas fa-calendar-check"></i> Book Appointment
                             </button>
-                            <button class="btn btn-secondary" onclick="viewHospitalDetails(${hospital.id})">
+                            <button class="btn btn-secondary" onclick="viewHospitalDetails('${hospital.id}')">
                                 <i class="fas fa-info-circle"></i> Details
                             </button>
                         </div>
@@ -1478,12 +2127,14 @@
                 hospitalList.appendChild(hospitalCard);
             });
         }
-
-        // Render medical services
-        function renderServices(servicesArray) {
+        
+        function renderServices() {
+            const servicesList = document.getElementById('services-list');
+            if (!servicesList) return;
+            
             servicesList.innerHTML = '';
             
-            servicesArray.forEach(service => {
+            App.data.services.forEach(service => {
                 const serviceCard = document.createElement('div');
                 serviceCard.className = 'service-card';
                 serviceCard.innerHTML = `
@@ -1493,24 +2144,47 @@
                     <h3>${service.name}</h3>
                     <p>${service.description}</p>
                     <ul class="service-features">
-                        ${service.features.map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
+                        ${service.features.map(feature => 
+                            `<li><i class="fas fa-check"></i> ${feature}</li>`
+                        ).join('')}
                     </ul>
-                    <button class="btn btn-secondary" onclick="findServiceProviders('${service.name}')" style="margin-top: 15px;">
-                        Find Providers
+                    <button class="btn btn-secondary" onclick="findServiceProviders('${service.id}')" style="margin-top: 15px;">
+                        <i class="fas fa-search"></i> Find Providers
                     </button>
                 `;
                 servicesList.appendChild(serviceCard);
             });
         }
-
-        // Render appointments table
+        
         function renderAppointments() {
+            const appointmentsTableBody = document.getElementById('appointments-table-body');
+            const noAppointmentsElement = document.getElementById('no-appointments');
+            
+            if (!appointmentsTableBody) return;
+            
             appointmentsTableBody.innerHTML = '';
             
-            appointments.forEach(appointment => {
+            if (App.data.appointments.length === 0) {
+                if (noAppointmentsElement) {
+                    noAppointmentsElement.style.display = 'block';
+                }
+                return;
+            }
+            
+            if (noAppointmentsElement) {
+                noAppointmentsElement.style.display = 'none';
+            }
+            
+            // Sort appointments by date (newest first)
+            const sortedAppointments = [...App.data.appointments].sort((a, b) => 
+                new Date(b.date + ' ' + b.time) - new Date(a.date + ' ' + a.time)
+            );
+            
+            sortedAppointments.forEach(appointment => {
+                const hospital = App.data.hospitals.find(h => h.id === appointment.hospitalId);
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${appointment.hospital}</td>
+                    <td>${hospital ? hospital.name : 'Unknown Hospital'}</td>
                     <td>${appointment.department}</td>
                     <td>${formatDate(appointment.date)} at ${appointment.time}</td>
                     <td>
@@ -1519,34 +2193,51 @@
                         </span>
                     </td>
                     <td>
-                        <button class="btn btn-secondary" onclick="cancelAppointment(${appointment.id})" style="padding: 5px 10px; font-size: 0.9rem;">
-                            Cancel
+                        <button class="btn btn-secondary" onclick="cancelAppointment('${appointment.id}')" style="padding: 5px 10px; font-size: 0.9rem;">
+                            <i class="fas fa-times"></i> Cancel
                         </button>
-                        <button class="btn btn-primary" onclick="viewHealthCard('${appointment.appointmentId}')" style="padding: 5px 10px; font-size: 0.9rem; margin-left: 5px;">
-                            View Card
+                        <button class="btn btn-primary" onclick="viewHealthCard('${appointment.id}')" style="padding: 5px 10px; font-size: 0.9rem; margin-left: 5px;">
+                            <i class="fas fa-id-card"></i> View Card
                         </button>
                     </td>
                 `;
                 appointmentsTableBody.appendChild(row);
             });
         }
-
-        // Render digital health cards
+        
         function renderHealthCards() {
+            const healthCardsList = document.getElementById('health-cards-list');
+            const noCardsElement = document.getElementById('no-cards');
+            const cardCountElement = document.getElementById('card-count');
+            
+            if (!healthCardsList) return;
+            
             healthCardsList.innerHTML = '';
             
-            if (healthCards.length === 0) {
-                noCardsMessage.style.display = 'block';
-                healthCardsSection.style.display = 'none';
-                cardCount.textContent = '0 cards';
+            if (App.data.healthCards.length === 0) {
+                if (noCardsElement) {
+                    noCardsElement.style.display = 'block';
+                }
+                if (cardCountElement) {
+                    cardCountElement.textContent = '0 cards';
+                }
                 return;
             }
             
-            noCardsMessage.style.display = 'none';
-            healthCardsSection.style.display = 'block';
-            cardCount.textContent = `${healthCards.length} card${healthCards.length !== 1 ? 's' : ''}`;
+            if (noCardsElement) {
+                noCardsElement.style.display = 'none';
+            }
             
-            healthCards.forEach(card => {
+            if (cardCountElement) {
+                cardCountElement.textContent = `${App.data.healthCards.length} card${App.data.healthCards.length !== 1 ? 's' : ''}`;
+            }
+            
+            // Sort health cards by date (newest first)
+            const sortedHealthCards = [...App.data.healthCards].sort((a, b) => 
+                new Date(b.issuedDate) - new Date(a.issuedDate)
+            );
+            
+            sortedHealthCards.forEach(card => {
                 const cardElement = document.createElement('div');
                 cardElement.className = 'mini-health-card';
                 cardElement.onclick = () => viewHealthCard(card.appointmentId);
@@ -1572,66 +2263,717 @@
                 healthCardsList.appendChild(cardElement);
             });
         }
-
-        // Render reminders
-        function renderReminders() {
-            remindersList.innerHTML = '';
-            
-            const upcomingAppointments = appointments.filter(apt => {
-                const appointmentDate = new Date(apt.date);
-                const today = new Date();
-                const diffTime = appointmentDate - today;
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                return diffDays >= 0 && diffDays <= 7; // Next 7 days
-            });
-            
-            if (upcomingAppointments.length === 0) {
-                remindersSection.style.display = 'none';
-                return;
-            }
-            
-            remindersSection.style.display = 'block';
-            document.getElementById('no-reminders-message').style.display = 'none';
-            
-            upcomingAppointments.forEach(apt => {
-                const reminder = document.createElement('div');
-                reminder.className = 'reminder-item';
-                reminder.innerHTML = `
-                    <div class="reminder-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div style="flex: 1;">
-                        <p style="font-weight: 600; margin-bottom: 5px;">${apt.hospital}</p>
-                        <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
-                            ${formatDate(apt.date)} at ${apt.time} • ${apt.department}
-                        </p>
-                    </div>
-                    <button class="btn btn-primary" onclick="viewHealthCard('${apt.appointmentId}')" style="padding: 8px 15px;">
-                        View Card
-                    </button>
-                `;
-                remindersList.appendChild(reminder);
-            });
-        }
-
-        // Populate hospital select dropdown
+        
         function populateHospitalSelect() {
-            hospitalSelect.innerHTML = '<option value="">Choose a hospital</option>';
+            const hospitalSelect = document.getElementById('hospital-select');
+            if (!hospitalSelect) return;
             
-            hospitals.forEach(hospital => {
+            hospitalSelect.innerHTML = '<option value="">Choose a hospital...</option>';
+            
+            App.data.hospitals.forEach(hospital => {
                 const option = document.createElement('option');
                 option.value = hospital.id;
-                option.textContent = hospital.name;
+                option.textContent = `${hospital.name} (${hospital.area} - ${hospital.distance} away)`;
                 hospitalSelect.appendChild(option);
             });
         }
-
-        // Filter hospitals
-        function filterHospitals() {
-            const typeFilter = filterType.value;
-            const areaFilter = filterArea.value;
+        
+        // ============================================
+        // APPOINTMENT FUNCTIONS
+        // ============================================
+        
+        function bookAppointment() {
+            const hospitalId = document.getElementById('hospital-select').value;
+            const department = document.getElementById('department-select').value;
+            const date = document.getElementById('appointment-date').value;
+            const timeSlot = document.getElementById('time-slot').value;
+            const patientName = document.getElementById('patient-name').value;
+            const contact = document.getElementById('patient-contact').value;
+            const notes = document.getElementById('patient-notes').value;
             
-            let filteredHospitals = hospitals;
+            // Validation
+            if (!hospitalId || !department || !date || !timeSlot || !patientName || !contact) {
+                showToast('⚠️ Please fill all required fields', 'error');
+                return;
+            }
+            
+            const selectedHospital = App.data.hospitals.find(h => h.id === hospitalId);
+            if (!selectedHospital) {
+                showToast('⚠️ Selected hospital not found', 'error');
+                return;
+            }
+            
+            // Format time for display
+            const timeMap = {
+                '9-10': '9:00 AM',
+                '10-11': '10:00 AM', 
+                '11-12': '11:00 AM',
+                '1-2': '1:00 PM',
+                '2-3': '2:00 PM',
+                '3-4': '3:00 PM',
+                '4-5': '4:00 PM'
+            };
+            
+            const displayTime = timeMap[timeSlot] || timeSlot;
+            
+            // Generate appointment ID
+            App.data.lastAppointmentId++;
+            const appointmentId = `APT_${Date.now().toString(36).toUpperCase()}`;
+            const healthCardId = `CARD_${Date.now().toString(36).toUpperCase()}`;
+            
+            // Create appointment
+            const newAppointment = {
+                id: appointmentId,
+                hospitalId: hospitalId,
+                department: department,
+                date: date,
+                time: displayTime,
+                status: 'confirmed',
+                patientName: patientName,
+                contact: contact,
+                notes: notes || 'No additional notes',
+                symptoms: notes || 'None reported',
+                createdAt: new Date().toISOString(),
+                appointmentNumber: `APPT-${App.data.lastAppointmentId.toString().padStart(6, '0')}`
+            };
+            
+            // Create health card
+            const newHealthCard = {
+                id: healthCardId,
+                appointmentId: appointmentId,
+                hospital: selectedHospital.name,
+                department: department,
+                date: date,
+                time: displayTime,
+                patientName: patientName,
+                status: 'confirmed',
+                issuedDate: new Date().toISOString().split('T')[0],
+                notes: notes || 'No additional notes',
+                appointmentNumber: newAppointment.appointmentNumber
+            };
+            
+            // Add to data
+            App.data.appointments.unshift(newAppointment);
+            App.data.healthCards.unshift(newHealthCard);
+            
+            // Save data
+            saveData();
+            
+            // Update UI
+            renderAppointments();
+            renderHealthCards();
+            
+            // Show success message and health card
+            showToast('✅ Appointment booked successfully!', 'success');
+            showHealthCardModal(newAppointment, newHealthCard);
+            
+            // Reset form
+            document.getElementById('appointment-form').reset();
+            document.getElementById('patient-name').value = 'John Doe';
+            document.getElementById('patient-contact').value = '+1 (555) 123-4567';
+        }
+        
+        function cancelAppointment(appointmentId) {
+            if (!confirm('Are you sure you want to cancel this appointment?')) {
+                return;
+            }
+            
+            const appointmentIndex = App.data.appointments.findIndex(a => a.id === appointmentId);
+            if (appointmentIndex === -1) {
+                showToast('⚠️ Appointment not found', 'error');
+                return;
+            }
+            
+            const appointment = App.data.appointments[appointmentIndex];
+            
+            // Update appointment status
+            appointment.status = 'cancelled';
+            
+            // Update corresponding health card
+            const healthCardIndex = App.data.healthCards.findIndex(c => c.appointmentId === appointmentId);
+            if (healthCardIndex !== -1) {
+                App.data.healthCards[healthCardIndex].status = 'cancelled';
+            }
+            
+            // Save data
+            saveData();
+            
+            // Update UI
+            renderAppointments();
+            renderHealthCards();
+            
+            showToast('✅ Appointment cancelled successfully', 'success');
+        }
+        
+        function bookAtHospital(hospitalId) {
+            switchTab('appointments');
+            document.getElementById('hospital-select').value = hospitalId;
+            document.getElementById('appointment-date').focus();
+        }
+        
+        // ============================================
+        // HEALTH CARD FUNCTIONS
+        // ============================================
+        
+        function showHealthCardModal(appointment, healthCard = null) {
+            if (!healthCard) {
+                healthCard = App.data.healthCards.find(c => c.appointmentId === appointment.id);
+            }
+            
+            if (!healthCard) return;
+            
+            const hospital = App.data.hospitals.find(h => h.id === appointment.hospitalId);
+            
+            // Update modal content
+            document.getElementById('modal-appointment-id').textContent = healthCard.appointmentNumber;
+            document.getElementById('modal-patient-name').textContent = appointment.patientName;
+            document.getElementById('modal-hospital').textContent = hospital ? hospital.name : 'Unknown Hospital';
+            document.getElementById('modal-department').textContent = appointment.department;
+            document.getElementById('modal-datetime').textContent = `${formatDate(appointment.date)} at ${appointment.time}`;
+            document.getElementById('modal-contact').textContent = appointment.contact;
+            document.getElementById('modal-issued-date').textContent = formatDate(healthCard.issuedDate);
+            document.getElementById('modal-notes').textContent = appointment.notes || 'No additional notes';
+            
+            // Update status
+            const statusElement = document.getElementById('modal-status');
+            statusElement.textContent = appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1);
+            statusElement.className = `status-badge status-${appointment.status}`;
+            
+            // Show modal
+            document.getElementById('health-card-modal').style.display = 'flex';
+        }
+        
+        function viewHealthCard(appointmentId) {
+            const appointment = App.data.appointments.find(a => a.id === appointmentId);
+            if (appointment) {
+                showHealthCardModal(appointment);
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('health-card-modal').style.display = 'none';
+        }
+        
+        function printHealthCard() {
+            window.print();
+        }
+        
+        function downloadHealthCard() {
+            const appointmentId = document.getElementById('modal-appointment-id').textContent;
+            showToast(`📄 Health card ${appointmentId} downloaded as PDF`, 'success');
+        }
+        
+        function addToWallet() {
+            const appointmentId = document.getElementById('modal-appointment-id').textContent;
+            showToast(`✅ Health card ${appointmentId} added to your wallet`, 'success');
+            closeModal();
+        }
+        
+        // ============================================
+        // UTILITY FUNCTIONS
+        // ============================================
+        
+        function switchTab(tabName) {
+            // Update navigation
+            document.querySelectorAll('.nav-tabs a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${tabName}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            const targetSection = document.getElementById(`${tabName}-section`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                // Scroll to section
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+            
+            App.currentTab = tabName;
+        }
+        
+        function setMinDateForAppointment() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const dateInput = document.getElementById('appointment-date');
+            if (dateInput) {
+                dateInput.min = tomorrow.toISOString().split('T')[0];
+                
+                // Set default to tomorrow
+                const defaultDate = new Date(tomorrow);
+                defaultDate.setDate(defaultDate.getDate() + 7); // One week from tomorrow
+                dateInput.value = defaultDate.toISOString().split('T')[0];
+            }
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            if (isNaN(date)) return dateString;
+            
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'short',
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+        
+        function viewHospitalDetails(hospitalId) {
+            const hospital = App.data.hospitals.find(h => h.id === hospitalId);
+            if (!hospital) return;
+            
+            const details = `
+🏥 ${hospital.name}
+📍 ${hospital.address}
+📞 ${hospital.phone}
+📧 ${hospital.email}
+🌐 ${hospital.website}
+
+⭐ Rating: ${hospital.rating}/5
+🚑 Emergency: ${hospital.emergency ? '24/7 Available' : 'Not Available'}
+📍 Area: ${hospital.area} City
+📏 Distance: ${hospital.distance}
+🛏️ Beds: ${hospital.beds}
+👨‍⚕️ Doctors: ${hospital.doctors}
+
+🩺 Specialties:
+${hospital.specialties.map(spec => `• ${spec}`).join('\n')}
+
+📝 ${hospital.description}
+            `;
+            
+            alert(details);
+        }
+        
+        function findServiceProviders(serviceId) {
+            const service = App.data.services.find(s => s.id === serviceId);
+            if (!service) return;
+            
+            const hospitals = App.data.hospitals.filter(h => 
+                service.hospitals.includes(h.id)
+            );
+            
+            if (hospitals.length === 0) {
+                alert(`No hospitals found offering ${service.name}.`);
+                return;
+            }
+            
+            const hospitalList = hospitals.map(h => 
+                `• ${h.name} (${h.distance} away) - ${h.phone}`
+            ).join('\n');
+            
+            alert(`🏥 Hospitals offering ${service.name}:\n\n${hospitalList}\n\nClick "Book Appointment" to schedule.`);
+        }
+        
+        function showUserProfile() {
+            const user = App.data.user;
+            const profile = `
+👤 Patient Profile
+────────────────
+Name: ${user.name}
+Email: ${user.email}
+Phone: ${user.phone}
+Address: ${user.address}
+Date of Birth: ${formatDate(user.dateOfBirth)}
+Blood Group: ${user.bloodGroup}
+Emergency Contact: ${user.emergencyContact}
+
+⚠️ Allergies:
+${user.allergies.map(allergy => `• ${allergy}`).join('\n')}
+
+📊 Statistics:
+• Appointments: ${App.data.appointments.length}
+• Health Cards: ${App.data.healthCards.length}
+            `;
+            
+            alert(profile);
+        }
+        
+        function scrollToTop(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            switchTab('hospitals');
+        }
+        
+        // ============================================
+        // DATA MANAGEMENT FUNCTIONS
+        // ============================================
+        
+        function exportHTMLWithData() {
+            // Save current data
+            saveData();
+            
+            // Get current HTML
+            const htmlContent = document.documentElement.outerHTML;
+            
+            // Create download link
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `CityMedicalConnect_${new Date().toISOString().split('T')[0]}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('💾 HTML file with all data downloaded!', 'success');
+        }
+        
+        function loadDataFromFile() {
+            document.getElementById('dataFileInput').click();
+        }
+        
+        document.getElementById('dataFileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const fileContent = e.target.result;
+                    
+                    // Try to extract data from HTML file
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(fileContent, 'text/html');
+                    const dataScript = doc.getElementById('medical-data');
+                    
+                    if (dataScript) {
+                        const importedData = JSON.parse(dataScript.textContent);
+                        
+                        // Import user data only (appointments, health cards)
+                        if (importedData.appointments) {
+                            App.data.appointments = importedData.appointments;
+                        }
+                        if (importedData.healthCards) {
+                            App.data.healthCards = importedData.healthCards;
+                        }
+                        if (importedData.lastAppointmentId) {
+                            App.data.lastAppointmentId = importedData.lastAppointmentId;
+                        }
+                        if (importedData.user) {
+                            App.data.user = importedData.user;
+                        }
+                        
+                        saveData();
+                        renderAllSections();
+                        showToast('✅ Data imported successfully!', 'success');
+                    } else {
+                        // Try as JSON file
+                        try {
+                            const jsonData = JSON.parse(fileContent);
+                            if (jsonData.appointments) {
+                                App.data.appointments = jsonData.appointments;
+                                App.data.healthCards = jsonData.healthCards || [];
+                                App.data.lastAppointmentId = jsonData.lastAppointmentId || 0;
+                                saveData();
+                                renderAllSections();
+                                showToast('✅ Data imported from JSON file!', 'success');
+                            }
+                        } catch (jsonError) {
+                            showToast('❌ Could not find valid data in the file', 'error');
+                        }
+                    }
+                } catch (error) {
+                    showToast(`❌ Error importing data: ${error.message}`, 'error');
+                }
+            };
+            reader.readAsText(file);
+        });
+        
+        function showDataInEditor() {
+            saveData();
+            
+            const dataStr = JSON.stringify(App.data, null, 2);
+            const newWindow = window.open();
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Medical Data Viewer</title>
+                    <style>
+                        body { font-family: monospace; padding: 20px; background: #f5f5f5; margin: 0; }
+                        pre { background: white; padding: 20px; border-radius: 5px; border: 1px solid #ddd; overflow-x: auto; }
+                        .actions { margin-bottom: 20px; display: flex; gap: 10px; }
+                        button { padding: 10px 15px; background: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer; }
+                        button:hover { background: #004d99; }
+                    </style>
+                </head>
+                <body>
+                    <div class="actions">
+                        <button onclick="window.print()">🖨️ Print</button>
+                        <button onclick="copyToClipboard()">📋 Copy</button>
+                        <button onclick="window.close()">❌ Close</button>
+                    </div>
+                    <pre id="data">${dataStr}</pre>
+                    <script>
+                        function copyToClipboard() {
+                            const text = document.getElementById('data').textContent;
+                            navigator.clipboard.writeText(text).then(() => {
+                                alert('✅ Data copied to clipboard!');
+                            });
+                        }
+                    <\/script>
+                </body>
+                </html>
+            `);
+        }
+        
+        function resetAllData() {
+            if (!confirm('⚠️ WARNING: This will delete ALL your appointments and health cards. This action cannot be undone. Are you sure?')) {
+                return;
+            }
+            
+            // Reset to initial state
+            loadDataFromHTML(); // This will reload from the embedded data
+            
+            // Clear appointments and health cards
+            App.data.appointments = [];
+            App.data.healthCards = [];
+            App.data.lastAppointmentId = 0;
+            
+            // Save and re-render
+            saveData();
+            renderAllSections();
+            
+            showToast('🔄 All data has been reset to initial state', 'success');
+        }
+        
+        function updateStorageStatus() {
+            const statusElement = document.getElementById('storage-info');
+            if (statusElement) {
+                const appointmentCount = App.data.appointments.length;
+                const hospitalCount = App.data.hospitals.length;
+                const lastUpdated = App.data.metadata.lastUpdated ? 
+                    new Date(App.data.metadata.lastUpdated).toLocaleTimeString() : 'Never';
+                statusElement.textContent = `${appointmentCount} appointments | ${hospitalCount} hospitals | Updated: ${lastUpdated}`;
+            }
+        }
+        
+        function updateStatistics() {
+            // Update statistics display
+            const statsElements = {
+                'stats-hospitals': App.data.hospitals.length,
+                'stats-appointments': App.data.appointments.length,
+                'stats-services': App.data.services.length,
+                'stats-healthcards': App.data.healthCards.length
+            };
+            
+            Object.entries(statsElements).forEach(([id, value]) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = value;
+                }
+            });
+        }
+        
+        // ============================================
+        // TOAST NOTIFICATIONS
+        // ============================================
+        
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                toast.style.animation = 'slideInRight 0.3s ease reverse';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 5000);
+        }
+        
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        
+        function setupEventListeners() {
+            // Navigation clicks
+            document.querySelectorAll('.nav-tabs a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabName = this.getAttribute('href').substring(1);
+                    switchTab(tabName);
+                });
+            });
+            
+            // Search functionality
+            const searchButton = document.getElementById('search-button');
+            const searchInput = document.getElementById('search-input');
+            
+            if (searchButton && searchInput) {
+                searchButton.addEventListener('click', performSearch);
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') performSearch();
+                });
+            }
+            
+            // Filters
+            const applyFiltersBtn = document.getElementById('apply-filters');
+            const clearFiltersBtn = document.getElementById('clear-filters');
+            
+            if (applyFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', applyHospitalFilters);
+            }
+            
+            if (clearFiltersBtn) {
+                clearFiltersBtn.addEventListener('click', clearHospitalFilters);
+            }
+            
+            // Appointment booking
+            const bookAppointmentBtn = document.getElementById('book-appointment');
+            if (bookAppointmentBtn) {
+                bookAppointmentBtn.addEventListener('click', bookAppointment);
+            }
+            
+            // Emergency appointment
+            const emergencyAppointmentBtn = document.getElementById('emergency-appointment');
+            if (emergencyAppointmentBtn) {
+                emergencyAppointmentBtn.addEventListener('click', function() {
+                    alert('🚨 For immediate emergency assistance:\n\n1. Call 911\n2. Go to the nearest emergency room\n3. This platform can help schedule urgent care appointments during business hours');
+                });
+            }
+            
+            // Modal close
+            const modal = document.getElementById('health-card-modal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+            
+            // Auto-save on form changes
+            const appointmentForm = document.getElementById('appointment-form');
+            if (appointmentForm && App.data.settings.autoSave) {
+                appointmentForm.addEventListener('change', function() {
+                    saveData();
+                });
+            }
+            
+            // Window beforeunload - remind to save
+            window.addEventListener('beforeunload', function(e) {
+                saveData();
+            });
+        }
+        
+        function performSearch() {
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput.value.trim().toLowerCase();
+            
+            if (!query) {
+                renderHospitals();
+                return;
+            }
+            
+            // Search hospitals
+            const results = App.data.hospitals.filter(hospital => 
+                hospital.name.toLowerCase().includes(query) ||
+                hospital.specialties.some(spec => spec.toLowerCase().includes(query)) ||
+                hospital.area.toLowerCase().includes(query) ||
+                hospital.description.toLowerCase().includes(query)
+            );
+            
+            // Display results
+            const hospitalList = document.getElementById('hospital-list');
+            if (!hospitalList) return;
+            
+            hospitalList.innerHTML = '';
+            
+            if (results.length === 0) {
+                hospitalList.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="fas fa-search"></i>
+                        <h3>No Results Found</h3>
+                        <p>No hospitals match your search for "${query}"</p>
+                        <button class="btn btn-primary" onclick="clearSearch()" style="margin-top: 15px;">
+                            <i class="fas fa-times"></i> Clear Search
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Render search results
+            results.forEach(hospital => {
+                const hospitalCard = document.createElement('div');
+                hospitalCard.className = 'hospital-card';
+                hospitalCard.innerHTML = `
+                    <div class="hospital-header">
+                        <div class="hospital-type">${hospital.type.toUpperCase()}</div>
+                        <h3>${hospital.name}</h3>
+                        <p>${hospital.description}</p>
+                        <div class="hospital-rating">
+                            <i class="fas fa-star"></i>
+                            <span>${hospital.rating}/5</span>
+                            <span>• ${hospital.distance} away</span>
+                            ${hospital.emergency ? '<span><i class="fas fa-ambulance"></i> 24/7 Emergency</span>' : ''}
+                        </div>
+                    </div>
+                    <div class="hospital-body">
+                        <div class="hospital-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${hospital.address}</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-phone"></i>
+                                <span>${hospital.phone}</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-compass"></i>
+                                <span>${hospital.area} City</span>
+                            </div>
+                        </div>
+                        
+                        <div class="specialties">
+                            ${hospital.specialties.slice(0, 3).map(spec => 
+                                `<span class="specialty-tag">${spec}</span>`
+                            ).join('')}
+                        </div>
+                        
+                        <div class="hospital-actions">
+                            <button class="btn btn-primary" onclick="bookAtHospital('${hospital.id}')">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </button>
+                        </div>
+                    </div>
+                `;
+                hospitalList.appendChild(hospitalCard);
+            });
+            
+            showToast(`🔍 Found ${results.length} hospital${results.length !== 1 ? 's' : ''} matching "${query}"`, 'info');
+        }
+        
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            renderHospitals();
+        }
+        
+        function applyHospitalFilters() {
+            const typeFilter = document.getElementById('filter-type').value;
+            const areaFilter = document.getElementById('filter-area').value;
+            
+            let filteredHospitals = App.data.hospitals;
             
             if (typeFilter) {
                 filteredHospitals = filteredHospitals.filter(h => h.type === typeFilter);
@@ -1641,238 +2983,104 @@
                 filteredHospitals = filteredHospitals.filter(h => h.area === areaFilter);
             }
             
-            renderHospitals(filteredHospitals);
-        }
-
-        // Book appointment function
-        function bookAppointment() {
-            const hospitalId = parseInt(hospitalSelect.value);
-            const department = document.getElementById('department-select').value;
-            const date = document.getElementById('appointment-date').value;
-            const timeSlot = document.getElementById('time-slot').value;
-            const patientName = document.getElementById('patient-name').value;
-            const contact = document.getElementById('patient-contact').value;
+            const hospitalList = document.getElementById('hospital-list');
+            if (!hospitalList) return;
             
-            if (!hospitalId || !department || !date || !timeSlot) {
-                alert('Please fill in all required fields');
+            hospitalList.innerHTML = '';
+            
+            if (filteredHospitals.length === 0) {
+                hospitalList.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="fas fa-filter"></i>
+                        <h3>No Hospitals Match Filters</h3>
+                        <p>Try changing your filter criteria</p>
+                    </div>
+                `;
                 return;
             }
             
-            // Find selected hospital
-            const selectedHospital = hospitals.find(h => h.id === hospitalId);
+            // Render filtered hospitals
+            filteredHospitals.forEach(hospital => {
+                const hospitalCard = document.createElement('div');
+                hospitalCard.className = 'hospital-card';
+                hospitalCard.innerHTML = `
+                    <div class="hospital-header">
+                        <div class="hospital-type">${hospital.type.toUpperCase()}</div>
+                        <h3>${hospital.name}</h3>
+                        <p>${hospital.description}</p>
+                        <div class="hospital-rating">
+                            <i class="fas fa-star"></i>
+                            <span>${hospital.rating}/5</span>
+                            <span>• ${hospital.distance} away</span>
+                        </div>
+                    </div>
+                    <div class="hospital-body">
+                        <div class="hospital-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${hospital.address}</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-phone"></i>
+                                <span>${hospital.phone}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="specialties">
+                            ${hospital.specialties.slice(0, 4).map(spec => 
+                                `<span class="specialty-tag">${spec}</span>`
+                            ).join('')}
+                        </div>
+                        
+                        <div class="hospital-actions">
+                            <button class="btn btn-primary" onclick="bookAtHospital('${hospital.id}')">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </button>
+                        </div>
+                    </div>
+                `;
+                hospitalList.appendChild(hospitalCard);
+            });
             
-            // Format time for display
-            const timeMap = {
-                '9-10': '9:00 AM',
-                '10-11': '10:00 AM',
-                '11-12': '11:00 AM',
-                '2-3': '2:00 PM',
-                '3-4': '3:00 PM',
-                '4-5': '4:00 PM'
-            };
-            
-            const displayTime = timeMap[timeSlot] || timeSlot;
-            
-            // Generate unique appointment ID
-            const appointmentId = 'APPT-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-            
-            // Create new appointment
-            const newAppointment = {
-                id: appointments.length + 1,
-                hospital: selectedHospital.name,
-                department: department.charAt(0).toUpperCase() + department.slice(1),
-                date: date,
-                time: displayTime,
-                status: 'confirmed',
-                patientName: patientName,
-                contact: contact,
-                appointmentId: appointmentId,
-                issuedDate: new Date().toISOString().split('T')[0]
-            };
-            
-            appointments.unshift(newAppointment);
-            healthCards.unshift(newAppointment);
-            
-            // Update UI
-            renderAppointments();
-            renderHealthCards();
-            renderReminders();
-            
-            // Show digital health card
-            showHealthCard(newAppointment);
-            
-            // Reset form
-            appointmentForm.reset();
-            document.getElementById('patient-name').value = 'John Doe';
-            document.getElementById('patient-contact').value = '+1 (555) 123-4567';
+            showToast(`🔍 Showing ${filteredHospitals.length} filtered hospital${filteredHospitals.length !== 1 ? 's' : ''}`, 'info');
         }
-
-        // Show digital health card
-        function showHealthCard(appointment) {
-            // Fill modal with appointment details
-            modalAppointmentId.textContent = appointment.appointmentId;
-            modalPatientName.textContent = appointment.patientName;
-            modalHospital.textContent = appointment.hospital;
-            modalDepartment.textContent = appointment.department;
-            modalDatetime.textContent = `${formatDate(appointment.date)} at ${appointment.time}`;
-            modalContact.textContent = appointment.contact;
-            modalIssuedDate.textContent = formatDate(appointment.issuedDate);
-            
-            // Update status badge
-            modalStatus.textContent = appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1);
-            modalStatus.className = `status-badge status-${appointment.status}`;
-            
-            // Show modal
-            healthCardModal.style.display = 'flex';
+        
+        function clearHospitalFilters() {
+            document.getElementById('filter-type').value = '';
+            document.getElementById('filter-area').value = '';
+            renderHospitals();
+            showToast('🗑️ Filters cleared', 'info');
         }
-
-        // View specific health card
-        function viewHealthCard(appointmentId) {
-            const card = healthCards.find(c => c.appointmentId === appointmentId);
-            if (card) {
-                showHealthCard(card);
-            }
-        }
-
-        // Book at specific hospital
-        function bookAtHospital(hospitalId) {
-            hospitalSelect.value = hospitalId;
-            document.getElementById('appointment-date').focus();
-            
-            // Scroll to appointment section
-            document.getElementById('appointment-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // View hospital details
-        function viewHospitalDetails(hospitalId) {
-            const hospital = hospitals.find(h => h.id === hospitalId);
-            alert(`Hospital Details:\n\nName: ${hospital.name}\nType: ${hospital.type}\nAddress: ${hospital.address}\nPhone: ${hospital.phone}\nRating: ${hospital.rating}/5\nSpecialties: ${hospital.specialties.join(', ')}`);
-        }
-
-        // Find service providers
-        function findServiceProviders(serviceName) {
-            const matchingHospitals = hospitals.filter(h => 
-                h.specialties.some(spec => 
-                    spec.toLowerCase().includes(serviceName.toLowerCase().split(' ')[0])
-                )
-            );
-            
-            if (matchingHospitals.length > 0) {
-                alert(`Hospitals offering ${serviceName}:\n\n${matchingHospitals.map(h => `• ${h.name} (${h.distance} away)`).join('\n')}\n\nClick "Book Appointment" to schedule.`);
-            } else {
-                alert(`We'll help you find providers for ${serviceName}. Please check back soon or contact our support.`);
-            }
-        }
-
-        // Cancel appointment
-        function cancelAppointment(appointmentId) {
-            if (confirm('Are you sure you want to cancel this appointment?')) {
-                appointments = appointments.filter(a => a.id !== appointmentId);
-                healthCards = healthCards.filter(c => c.id !== appointmentId);
-                renderAppointments();
-                renderHealthCards();
-                renderReminders();
-                alert('Appointment cancelled successfully.');
-            }
-        }
-
-        // Format date
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric' 
-            });
-        }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            // Navigation
-            document.querySelectorAll('.nav-tabs a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.querySelectorAll('.nav-tabs a').forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(`${targetId}-section`);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-            
-            // Filters
-            applyFiltersBtn.addEventListener('click', filterHospitals);
-            
-            // Book appointment
-            bookAppointmentBtn.addEventListener('click', bookAppointment);
-            
-            // Emergency booking
-            document.getElementById('emergency-appointment').addEventListener('click', function() {
-                alert('For immediate emergency assistance, please call 911 or go to the nearest emergency room.\n\nWe can help you schedule urgent care appointments during business hours.');
-            });
-            
-            // Modal close
-            closeModalBtn.addEventListener('click', () => {
-                healthCardModal.style.display = 'none';
-            });
-            
-            // Close modal when clicking outside
-            healthCardModal.addEventListener('click', (e) => {
-                if (e.target === healthCardModal) {
-                    healthCardModal.style.display = 'none';
-                }
-            });
-            
-            // Print card
-            document.getElementById('print-card').addEventListener('click', () => {
-                window.print();
-            });
-            
-            // Download as PDF (simulated)
-            document.getElementById('download-card').addEventListener('click', () => {
-                const appointmentId = modalAppointmentId.textContent;
-                alert(`Digital Health Card (${appointmentId}) downloaded as PDF.\n\nSave this file and present it at the hospital reception.`);
-            });
-            
-            // Add to wallet
-            document.getElementById('add-to-wallet').addEventListener('click', () => {
-                const appointmentId = modalAppointmentId.textContent;
-                alert(`Digital Health Card (${appointmentId}) added to your wallet.\n\nYou can access it anytime from "My Health Cards" section.`);
-                healthCardModal.style.display = 'none';
-            });
-            
-            // Search functionality
-            document.querySelector('.search-box button').addEventListener('click', function() {
-                const query = document.querySelector('.search-box input').value.toLowerCase();
-                if (query.trim()) {
-                    const filtered = hospitals.filter(h => 
-                        h.name.toLowerCase().includes(query) ||
-                        h.specialties.some(s => s.toLowerCase().includes(query)) ||
-                        h.area.toLowerCase().includes(query)
-                    );
-                    
-                    if (filtered.length > 0) {
-                        renderHospitals(filtered);
-                        alert(`Found ${filtered.length} hospital(s) matching "${query}"`);
-                    } else {
-                        alert(`No hospitals found matching "${query}". Try a different search term.`);
-                    }
-                }
-            });
-            
-            // Enter key in search
-            document.querySelector('.search-box input').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    document.querySelector('.search-box button').click();
-                }
-            });
-        }
-
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', init);
+        
+        // ============================================
+        // INITIALIZE APPLICATION
+        // ============================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+        
+        // Expose functions to global scope for HTML onclick attributes
+        window.switchTab = switchTab;
+        window.bookAppointment = bookAppointment;
+        window.bookAtHospital = bookAtHospital;
+        window.viewHospitalDetails = viewHospitalDetails;
+        window.findServiceProviders = findServiceProviders;
+        window.viewHealthCard = viewHealthCard;
+        window.cancelAppointment = cancelAppointment;
+        window.closeModal = closeModal;
+        window.printHealthCard = printHealthCard;
+        window.downloadHealthCard = downloadHealthCard;
+        window.addToWallet = addToWallet;
+        window.showUserProfile = showUserProfile;
+        window.scrollToTop = scrollToTop;
+        window.exportHTMLWithData = exportHTMLWithData;
+        window.loadDataFromFile = loadDataFromFile;
+        window.showDataInEditor = showDataInEditor;
+        window.resetAllData = resetAllData;
+        window.backupData = backupData;
+        
+        console.log('🎯 City Medical Connect ready!');
     </script>
 </body>
 </html>
