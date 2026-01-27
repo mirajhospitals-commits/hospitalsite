@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Medical Connect</title>
+    <title>City Medical Connect - Hospital Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -28,6 +27,7 @@
         header {
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -37,7 +37,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
         }
         
         .logo {
@@ -52,7 +51,7 @@
         }
         
         .logo h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #0066cc;
         }
         
@@ -60,13 +59,35 @@
             color: #ff6b35;
         }
         
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
         /* Navigation */
+        .main-nav {
+            background: #0066cc;
+            margin: 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
         .nav-tabs {
             display: flex;
             list-style: none;
-            background: #0066cc;
-            border-radius: 5px;
-            overflow: hidden;
         }
         
         .nav-tabs li {
@@ -90,75 +111,212 @@
         /* Main Content */
         .main-content {
             padding: 30px 0;
-            min-height: 70vh;
         }
         
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Quick Booking Widget */
+        .quick-booking {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .quick-booking h3 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .booking-widget {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .booking-widget select, .booking-widget input {
+            padding: 12px 15px;
+            border: 2px solid #e6f2ff;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .booking-widget select:focus, .booking-widget input:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+        }
+        
+        /* Doctors Grid */
         .section-header {
-            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
         }
         
         .section-header h2 {
             color: #0066cc;
             font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        /* Hospital Grid */
-        .hospital-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .hospital-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-        
-        .hospital-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .hospital-card h3 {
-            color: #0066cc;
-            margin-bottom: 10px;
-        }
-        
-        .hospital-details {
-            margin: 15px 0;
-        }
-        
-        .detail-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 8px;
-            color: #666;
-            font-size: 0.9rem;
         }
         
+        .view-all {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .doctor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e6f2ff 0%, #d1e7ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+            color: #0066cc;
+        }
+        
+        .doctor-card h3 {
+            color: #0066cc;
+            margin-bottom: 5px;
+        }
+        
+        .specialty {
+            color: #ff6b35;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .rating {
+            color: #ffc107;
+            margin: 10px 0;
+        }
+        
+        .availability {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 10px 0;
+        }
+        
+        /* Quick Action Button */
+        .quick-action {
+            background: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0066cc;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        .quick-action:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* Buttons */
         .btn {
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
-            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1rem;
         }
         
         .btn-primary {
             background: #0066cc;
             color: white;
-            width: 100%;
         }
         
         .btn-primary:hover {
             background: #004d99;
+            transform: translateY(-2px);
+        }
+        
+        .btn-large {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-success {
+            background: #2e7d32;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #1b5e20;
         }
         
         /* Modal */
@@ -170,43 +328,177 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .modal-content {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             width: 90%;
-            max-width: 400px;
+            max-width: 450px;
             padding: 30px;
             text-align: center;
+            position: relative;
+            animation: slideUp 0.3s ease;
         }
         
-        .modal-content i {
-            font-size: 4rem;
-            color: #2e7d32;
-            margin-bottom: 20px;
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
-        .modal-content h2 {
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2.5rem;
+            animation: bounce 0.6s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+        
+        /* Appointment Details */
+        .appointment-details {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-row:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            font-weight: 600;
             color: #0066cc;
-            margin-bottom: 15px;
         }
         
         /* Footer */
         footer {
-            background: #004d99;
+            background: linear-gradient(135deg, #004d99 0%, #003366 100%);
             color: white;
-            padding: 30px 0;
-            margin-top: 40px;
+            padding: 40px 0 20px;
+            margin-top: 60px;
         }
         
-        .loading {
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #cce0ff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
             text-align: center;
-            padding: 40px;
-            color: #666;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #cce0ff;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .doctors-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .booking-widget {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-action {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
@@ -216,311 +508,460 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i>🏥</i>
+                    <i class="fas fa-hospital-alt"></i>
                     <h1>City<span>Medical</span> Connect</h1>
+                </div>
+                
+                <div class="user-menu">
+                    <div class="avatar">JD</div>
+                    <div>
+                        <div style="font-weight: 500;">John Doe</div>
+                        <small style="color: #666;">Patient</small>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
     
     <!-- Navigation -->
-    <div class="container" style="margin-top: 20px;">
-        <ul class="nav-tabs">
-            <li><a href="#" class="active" onclick="showSection('hospitals')">🏥 Hospitals</a></li>
-            <li><a href="#" onclick="showSection('appointments')">📅 Appointments</a></li>
-            <li><a href="#" onclick="showSection('services')">🩺 Services</a></li>
-        </ul>
+    <div class="container">
+        <nav class="main-nav">
+            <ul class="nav-tabs">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-hospital"></i> Hospitals</a></li>
+                <li><a href="#"><i class="fas fa-calendar-check"></i> My Appointments</a></li>
+                <li><a href="#"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="#"><i class="fas fa-phone-alt"></i> Emergency</a></li>
+            </ul>
+        </nav>
     </div>
     
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- Hospitals Section -->
-            <div id="hospitals-section" class="tab-content active">
-                <div class="section-header">
-                    <h2>🏥 Hospitals in Our City</h2>
-                    <p>Find and book appointments at top hospitals</p>
-                </div>
-                
-                <div class="hospital-grid" id="hospital-list">
-                    <!-- Hospitals will load here -->
-                </div>
+            <!-- Hero Section -->
+            <div class="hero">
+                <h2>Find & Book Doctors Instantly</h2>
+                <p style="font-size: 1.2rem; opacity: 0.9;">Connect with top medical specialists in your city</p>
             </div>
             
-            <!-- Appointments Section -->
-            <div id="appointments-section" class="tab-content">
-                <div class="section-header">
-                    <h2>📅 Book Appointment</h2>
-                    <p>Schedule your medical visit</p>
-                </div>
-                
-                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
-                    <div style="display: grid; gap: 15px; margin-bottom: 20px;">
-                        <div>
-                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Hospital</label>
-                            <select id="hospital-select" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                                <option value="">Select a hospital</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Department</label>
-                            <select id="department-select" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                                <option value="">Select department</option>
-                                <option value="cardiology">Cardiology</option>
-                                <option value="orthopedics">Orthopedics</option>
-                                <option value="pediatrics">Pediatrics</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Date</label>
-                            <input type="date" id="appointment-date" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                        </div>
-                    </div>
+            <!-- Quick Booking Widget -->
+            <div class="quick-booking">
+                <h3><i class="fas fa-bolt"></i> Quick Appointment Booking</h3>
+                <div class="booking-widget">
+                    <select id="specialty-select">
+                        <option value="">Choose Specialty</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="dermatology">Dermatology</option>
+                        <option value="neurology">Neurology</option>
+                    </select>
                     
-                    <button class="btn btn-primary" onclick="bookAppointment()">Book Appointment</button>
+                    <select id="doctor-select">
+                        <option value="">Select Doctor</option>
+                    </select>
+                    
+                    <input type="date" id="booking-date">
+                    
+                    <select id="time-slot">
+                        <option value="">Choose Time</option>
+                        <option value="9-10">9:00 - 10:00 AM</option>
+                        <option value="10-11">10:00 - 11:00 AM</option>
+                        <option value="11-12">11:00 AM - 12:00 PM</option>
+                        <option value="2-3">2:00 - 3:00 PM</option>
+                        <option value="3-4">3:00 - 4:00 PM</option>
+                    </select>
                 </div>
-                
-                <!-- Recent Appointments -->
-                <div style="margin-top: 40px;">
-                    <h3 style="color: #0066cc; margin-bottom: 15px;">Recent Appointments</h3>
-                    <div id="appointments-list">
-                        <!-- Appointments will appear here -->
-                    </div>
-                </div>
+                <button class="btn btn-primary btn-large" onclick="quickBookAppointment()">
+                    <i class="fas fa-calendar-check"></i> Book Instantly
+                </button>
             </div>
             
-            <!-- Services Section -->
-            <div id="services-section" class="tab-content">
-                <div class="section-header">
-                    <h2>🩺 Medical Services</h2>
-                    <p>Comprehensive healthcare services</p>
-                </div>
-                
-                <div class="hospital-grid">
-                    <div class="hospital-card">
-                        <h3>Emergency Care</h3>
-                        <p>24/7 emergency services and ambulance</p>
-                    </div>
-                    <div class="hospital-card">
-                        <h3>Telemedicine</h3>
-                        <p>Virtual consultations with doctors</p>
-                    </div>
-                    <div class="hospital-card">
-                        <h3>Diagnostics</h3>
-                        <p>Lab tests and imaging services</p>
-                    </div>
-                </div>
+            <!-- Featured Doctors -->
+            <div class="section-header">
+                <h2><i class="fas fa-user-md"></i> Top Doctors Available Now</h2>
+                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="doctors-grid" id="doctors-list">
+                <!-- Doctors will be loaded here -->
+            </div>
+            
+            <!-- Emergency Services -->
+            <div style="background: #fff3e0; padding: 25px; border-radius: 15px; margin: 30px 0; text-align: center;">
+                <h3 style="color: #ef6c00; margin-bottom: 15px;"><i class="fas fa-ambulance"></i> Emergency Services</h3>
+                <p style="margin-bottom: 15px;">For immediate medical assistance, call:</p>
+                <div style="font-size: 2rem; font-weight: bold; color: #d32f2f;">911</div>
+                <p style="margin-top: 10px; color: #666;">Available 24/7 | Ambulance Dispatch</p>
             </div>
         </div>
     </main>
     
+    <!-- Quick Action Button -->
+    <div class="quick-action" onclick="showQuickBooking()" title="Quick Appointment">
+        <i class="fas fa-plus"></i>
+    </div>
+    
     <!-- Confirmation Modal -->
     <div id="confirmation-modal" class="modal">
         <div class="modal-content">
-            <div style="font-size: 4rem; color: #2e7d32; margin-bottom: 20px;">
-                ✓
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
             </div>
-            <h2>Appointment Booked!</h2>
-            <p id="confirmation-details" style="margin: 15px 0;"></p>
-            <button class="btn btn-primary" onclick="closeModal()">OK</button>
+            
+            <h2>Appointment Confirmed!</h2>
+            <p>Your appointment has been successfully booked.</p>
+            
+            <div class="appointment-details" id="appointment-details">
+                <!-- Details filled by JavaScript -->
+            </div>
+            
+            <button class="btn btn-success" onclick="closeModal()" style="width: 100%;">
+                <i class="fas fa-check"></i> Got it!
+            </button>
         </div>
     </div>
     
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p style="text-align: center;">City Medical Connect © 2023 | Your Health, Our Priority</p>
+            <div class="footer-content">
+                <div>
+                    <h3>City Medical Connect</h3>
+                    <p>Your trusted partner in healthcare. Connecting patients with top medical professionals across the city.</p>
+                </div>
+                
+                <div>
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Find Doctors</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Book Appointment</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Emergency Services</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Health Tips</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:911"><i class="fas fa-phone"></i> Emergency: 911</a></li>
+                        <li><a href="tel:5551234567"><i class="fas fa-phone-alt"></i> Support: (555) 123-4567</a></li>
+                        <li><a href="mailto:help@citymedical.org"><i class="fas fa-envelope"></i> help@citymedical.org</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Medical Center, City</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 City Medical Connect. All rights reserved.</p>
+                <p style="margin-top: 5px; font-size: 0.8rem;">Simplifying healthcare access for everyone</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Simple data
-        const hospitals = [
+        // Doctors Data
+        const doctors = [
             {
                 id: 1,
-                name: "City General Hospital",
-                address: "123 Medical Center Blvd",
-                phone: "(555) 123-4567",
-                specialties: ["Cardiology", "Emergency", "Surgery"]
+                name: "Dr. Sarah Johnson",
+                specialty: "Cardiologist",
+                rating: 4.9,
+                available: true,
+                experience: "12 years",
+                hospital: "City General Hospital",
+                icon: "fas fa-heart"
             },
             {
                 id: 2,
-                name: "Northside Medical Center",
-                address: "456 Health Park Dr",
-                phone: "(555) 234-5678",
-                specialties: ["Pediatrics", "Maternity", "Orthopedics"]
+                name: "Dr. Michael Chen",
+                specialty: "Orthopedic Surgeon",
+                rating: 4.8,
+                available: true,
+                experience: "15 years",
+                hospital: "Northside Medical",
+                icon: "fas fa-bone"
             },
             {
                 id: 3,
-                name: "Children's Health Institute",
-                address: "789 Pediatric Way",
-                phone: "(555) 345-6789",
-                specialties: ["Pediatrics", "Child Care", "Vaccinations"]
+                name: "Dr. Emily Rodriguez",
+                specialty: "Pediatrician",
+                rating: 4.9,
+                available: true,
+                experience: "8 years",
+                hospital: "Children's Health Institute",
+                icon: "fas fa-child"
+            },
+            {
+                id: 4,
+                name: "Dr. David Wilson",
+                specialty: "Neurologist",
+                rating: 4.7,
+                available: false,
+                experience: "20 years",
+                hospital: "City General Hospital",
+                icon: "fas fa-brain"
+            },
+            {
+                id: 5,
+                name: "Dr. Lisa Thompson",
+                specialty: "Dermatologist",
+                rating: 4.8,
+                available: true,
+                experience: "10 years",
+                hospital: "Skin Care Center",
+                icon: "fas fa-allergies"
+            },
+            {
+                id: 6,
+                name: "Dr. Robert Kim",
+                specialty: "General Physician",
+                rating: 4.6,
+                available: true,
+                experience: "18 years",
+                hospital: "Community Clinic",
+                icon: "fas fa-user-md"
+            },
+            {
+                id: 7,
+                name: "Dr. Amanda Lee",
+                specialty: "Eye Specialist",
+                rating: 4.9,
+                available: true,
+                experience: "9 years",
+                hospital: "Vision Center",
+                icon: "fas fa-eye"
+            },
+            {
+                id: 8,
+                name: "Dr. James Miller",
+                specialty: "Dentist",
+                rating: 4.7,
+                available: true,
+                experience: "14 years",
+                hospital: "Dental Care Center",
+                icon: "fas fa-tooth"
+            },
+            {
+                id: 9,
+                name: "Dr. Sophia Garcia",
+                specialty: "Gynecologist",
+                rating: 4.8,
+                available: true,
+                experience: "11 years",
+                hospital: "Women's Health Center",
+                icon: "fas fa-female"
+            },
+            {
+                id: 10,
+                name: "Dr. Kevin Brown",
+                specialty: "ENT Specialist",
+                rating: 4.6,
+                available: true,
+                experience: "13 years",
+                hospital: "Ear Nose Throat Center",
+                icon: "fas fa-ear"
             }
         ];
-
-        let appointments = [];
         
-        // Initialize
+        // Initialize the page
         function init() {
-            renderHospitals();
-            populateHospitalSelect();
+            renderDoctors();
+            populateDoctorSelect();
             
-            // Set minimum date
+            // Set today's date
             const today = new Date().toISOString().split('T')[0];
-            document.getElementById('appointment-date').min = today;
+            document.getElementById('booking-date').value = today;
+            document.getElementById('booking-date').min = today;
             
             // Load saved appointments
-            const saved = localStorage.getItem('medicalAppointments');
-            if (saved) {
-                appointments = JSON.parse(saved);
-                renderAppointments();
-            }
+            loadAppointments();
             
-            console.log('App loaded successfully');
+            console.log('🏥 City Medical Connect loaded successfully!');
         }
         
-        // Show section
-        function showSection(section) {
-            // Update navigation
-            document.querySelectorAll('.nav-tabs a').forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Show section
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.getElementById(section + '-section').classList.add('active');
-        }
-        
-        // Render hospitals
-        function renderHospitals() {
-            const container = document.getElementById('hospital-list');
+        // Render doctors on homepage
+        function renderDoctors() {
+            const container = document.getElementById('doctors-list');
             container.innerHTML = '';
             
-            hospitals.forEach(hospital => {
+            doctors.forEach(doctor => {
                 const card = document.createElement('div');
-                card.className = 'hospital-card';
+                card.className = 'doctor-card';
                 card.innerHTML = `
-                    <h3>${hospital.name}</h3>
-                    <div class="hospital-details">
-                        <div class="detail-item">
-                            📍 ${hospital.address}
-                        </div>
-                        <div class="detail-item">
-                            📞 ${hospital.phone}
-                        </div>
-                        <div class="detail-item">
-                            🩺 ${hospital.specialties.join(', ')}
-                        </div>
+                    <div class="doctor-avatar">
+                        <i class="${doctor.icon}"></i>
                     </div>
-                    <button class="btn btn-primary" onclick="bookAtHospital(${hospital.id})">
-                        Book Appointment
+                    <h3>${doctor.name}</h3>
+                    <div class="specialty">${doctor.specialty}</div>
+                    <div class="rating">
+                        ${'★'.repeat(Math.floor(doctor.rating))}${doctor.rating % 1 >= 0.5 ? '★' : ''}
+                        <span style="color: #666; margin-left: 5px;">${doctor.rating}</span>
+                    </div>
+                    <div style="color: #666; font-size: 0.9rem; margin: 10px 0;">
+                        <i class="fas fa-hospital"></i> ${doctor.hospital}
+                    </div>
+                    <div style="color: #666; font-size: 0.9rem; margin: 5px 0;">
+                        <i class="fas fa-clock"></i> ${doctor.experience} experience
+                    </div>
+                    ${doctor.available ? 
+                        '<div class="availability"><i class="fas fa-check-circle"></i> Available Today</div>' : 
+                        '<div style="background: #ffebee; color: #c62828; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;"><i class="fas fa-clock"></i> Booked Today</div>'
+                    }
+                    <button class="btn btn-primary" onclick="quickBookWithDoctor(${doctor.id})" style="margin-top: 15px; width: 100%;" ${!doctor.available ? 'disabled style="opacity: 0.5;"' : ''}>
+                        <i class="fas fa-calendar-plus"></i> ${doctor.available ? 'Book Now' : 'Not Available'}
                     </button>
                 `;
                 container.appendChild(card);
             });
         }
         
-        // Populate hospital select
-        function populateHospitalSelect() {
-            const select = document.getElementById('hospital-select');
-            select.innerHTML = '<option value="">Select a hospital</option>';
+        // Populate doctor select dropdown
+        function populateDoctorSelect() {
+            const select = document.getElementById('doctor-select');
+            select.innerHTML = '<option value="">Select Doctor</option>';
             
-            hospitals.forEach(hospital => {
-                const option = document.createElement('option');
-                option.value = hospital.id;
-                option.textContent = hospital.name;
-                select.appendChild(option);
+            doctors.forEach(doctor => {
+                if (doctor.available) {
+                    const option = document.createElement('option');
+                    option.value = doctor.id;
+                    option.textContent = `${doctor.name} - ${doctor.specialty}`;
+                    select.appendChild(option);
+                }
             });
         }
         
-        // Book at specific hospital
-        function bookAtHospital(hospitalId) {
-            showSection('appointments');
-            document.getElementById('hospital-select').value = hospitalId;
-        }
-        
-        // Book appointment
-        function bookAppointment() {
-            const hospitalId = document.getElementById('hospital-select').value;
-            const department = document.getElementById('department-select').value;
-            const date = document.getElementById('appointment-date').value;
-            
-            if (!hospitalId || !department || !date) {
-                alert('Please fill all fields');
+        // Quick booking with specific doctor
+        function quickBookWithDoctor(doctorId) {
+            const doctor = doctors.find(d => d.id == doctorId);
+            if (!doctor || !doctor.available) {
+                alert('Doctor is not available for booking today');
                 return;
             }
             
-            const hospital = hospitals.find(h => h.id == hospitalId);
+            // Pre-fill the form
+            document.getElementById('specialty-select').value = getSpecialtyValue(doctor.specialty);
+            document.getElementById('doctor-select').value = doctorId;
+            
+            // Scroll to booking widget
+            document.querySelector('.quick-booking').scrollIntoView({ behavior: 'smooth' });
+            
+            // Focus on date
+            document.getElementById('booking-date').focus();
+        }
+        
+        // Quick booking from widget
+        function quickBookAppointment() {
+            const specialty = document.getElementById('specialty-select').value;
+            const doctorId = document.getElementById('doctor-select').value;
+            const date = document.getElementById('booking-date').value;
+            const timeSlot = document.getElementById('time-slot').value;
+            
+            if (!specialty || !doctorId || !date || !timeSlot) {
+                alert('Please fill all fields to book appointment');
+                return;
+            }
+            
+            const doctor = doctors.find(d => d.id == doctorId);
+            if (!doctor) {
+                alert('Doctor not found');
+                return;
+            }
+            
+            // Format time
+            const timeMap = {
+                '9-10': '9:00 AM',
+                '10-11': '10:00 AM',
+                '11-12': '11:00 AM',
+                '2-3': '2:00 PM',
+                '3-4': '3:00 PM'
+            };
             
             // Create appointment
             const appointment = {
                 id: Date.now(),
-                hospital: hospital.name,
-                department: department,
+                doctor: doctor.name,
+                specialty: doctor.specialty,
+                hospital: doctor.hospital,
                 date: date,
-                time: '10:00 AM', // Default time
-                status: 'confirmed'
+                time: timeMap[timeSlot] || timeSlot,
+                timestamp: new Date().toISOString(),
+                reference: `APT-${Date.now().toString().slice(-6)}`
             };
             
-            appointments.unshift(appointment);
-            
-            // Save to localStorage
-            localStorage.setItem('medicalAppointments', JSON.stringify(appointments));
+            // Save appointment
+            saveAppointment(appointment);
             
             // Show confirmation
-            document.getElementById('confirmation-details').innerHTML = `
-                <strong>Hospital:</strong> ${hospital.name}<br>
-                <strong>Department:</strong> ${department}<br>
-                <strong>Date:</strong> ${date}<br>
-                <strong>Time:</strong> 10:00 AM<br>
-                <strong>Reference:</strong> APPT-${appointment.id.toString().slice(-6)}
-            `;
-            
-            document.getElementById('confirmation-modal').style.display = 'flex';
-            
-            // Update appointments list
-            renderAppointments();
+            showConfirmation(appointment);
             
             // Reset form
-            document.getElementById('hospital-select').value = '';
-            document.getElementById('department-select').value = '';
+            document.getElementById('specialty-select').value = '';
+            document.getElementById('doctor-select').value = '';
+            document.getElementById('time-slot').value = '';
+            
+            // Set next available date
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('booking-date').value = tomorrow.toISOString().split('T')[0];
         }
         
-        // Render appointments
-        function renderAppointments() {
-            const container = document.getElementById('appointments-list');
-            container.innerHTML = '';
+        // Show quick booking modal
+        function showQuickBooking() {
+            // Reset form
+            document.getElementById('specialty-select').value = '';
+            document.getElementById('doctor-select').value = '';
+            document.getElementById('time-slot').value = '';
             
-            if (appointments.length === 0) {
-                container.innerHTML = '<p style="color: #666; text-align: center;">No appointments yet</p>';
-                return;
-            }
+            // Set today's date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('booking-date').value = today;
             
-            appointments.forEach(appointment => {
-                const div = document.createElement('div');
-                div.className = 'hospital-card';
-                div.innerHTML = `
-                    <h3>${appointment.hospital}</h3>
-                    <div class="hospital-details">
-                        <div class="detail-item">
-                            🩺 ${appointment.department}
-                        </div>
-                        <div class="detail-item">
-                            📅 ${appointment.date} at ${appointment.time}
-                        </div>
-                        <div class="detail-item">
-                            ✅ ${appointment.status}
-                        </div>
-                    </div>
-                `;
-                container.appendChild(div);
-            });
+            // Scroll to booking widget
+            document.querySelector('.quick-booking').scrollIntoView({ behavior: 'smooth' });
+            
+            // Focus on specialty select
+            document.getElementById('specialty-select').focus();
+        }
+        
+        // Show confirmation modal
+        function showConfirmation(appointment) {
+            const detailsContainer = document.getElementById('appointment-details');
+            detailsContainer.innerHTML = `
+                <div class="detail-row">
+                    <div class="detail-label">Appointment ID</div>
+                    <div class="detail-value">${appointment.reference}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Doctor</div>
+                    <div class="detail-value">${appointment.doctor}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Specialty</div>
+                    <div class="detail-value">${appointment.specialty}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Hospital</div>
+                    <div class="detail-value">${appointment.hospital}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Date & Time</div>
+                    <div class="detail-value">${formatDate(appointment.date)} at ${appointment.time}</div>
+                </div>
+            `;
+            
+            // Show modal
+            document.getElementById('confirmation-modal').style.display = 'flex';
+            
+            // Auto-close after 10 seconds
+            setTimeout(() => {
+                if (document.getElementById('confirmation-modal').style.display === 'flex') {
+                    closeModal();
+                }
+            }, 10000);
         }
         
         // Close modal
@@ -528,15 +969,63 @@
             document.getElementById('confirmation-modal').style.display = 'none';
         }
         
-        // Close modal when clicking outside
-        document.getElementById('confirmation-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
+        // Save appointment to localStorage
+        function saveAppointment(appointment) {
+            let appointments = JSON.parse(localStorage.getItem('medicalAppointments') || '[]');
+            appointments.unshift(appointment);
+            localStorage.setItem('medicalAppointments', JSON.stringify(appointments));
+            
+            console.log('Appointment saved:', appointment.reference);
+        }
         
-        // Initialize on load
+        // Load appointments
+        function loadAppointments() {
+            const appointments = JSON.parse(localStorage.getItem('medicalAppointments') || '[]');
+            console.log(`Loaded ${appointments.length} appointments`);
+        }
+        
+        // Utility functions
+        function getSpecialtyValue(specialty) {
+            const map = {
+                'Cardiologist': 'cardiology',
+                'Orthopedic Surgeon': 'orthopedics',
+                'Pediatrician': 'pediatrics',
+                'Dermatologist': 'dermatology',
+                'Neurologist': 'neurology'
+            };
+            return map[specialty] || '';
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'short',
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+        
+        // Initialize when page loads
         window.onload = init;
+        
+        // Make functions available globally
+        window.quickBookAppointment = quickBookAppointment;
+        window.quickBookWithDoctor = quickBookWithDoctor;
+        window.showQuickBooking = showQuickBooking;
+        window.closeModal = closeModal;
+        
+        // Auto-update doctor availability
+        setInterval(() => {
+            // Randomly change some doctor availability
+            doctors.forEach(doctor => {
+                if (Math.random() > 0.7) {
+                    doctor.available = !doctor.available;
+                }
+            });
+            renderDoctors();
+            populateDoctorSelect();
+        }, 30000); // Update every 30 seconds
     </script>
 </body>
 </html>
